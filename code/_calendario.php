@@ -80,8 +80,42 @@ $contador = 0;
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
+    
+
+    <!-- Eventos -->
         
     <div class="page-content">  
+        <div class="card card-style">
+            <div class="content">
+                <h1>Evento por categoria</h1>
+                <form action="_buscar.php" method="POST"> 
+                <div class="col-4">
+                    <div class="input-style input-style-always-active has-borders no-icon mb-4">
+                        <select name="giro">
+                            <option value="Moda y Eventos">Moda y Eventos</option>
+							<option value="Salud">Salud</option>
+							<option value="Servicios">Servicios</option>
+							<option value="Construccion">Construcción</option>
+							<option value="Legal y Contable">Legal y Contable</option>
+							<option value="Tecnologia y Marketing">Tecnología y Marketing</option>
+							<option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
+                        </select>
+                        <span><i class="fa fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                </form>                
+            </div>
+        </div>
+        <?php
+			if (isset($_GET['giro']) && $_GET['filtros'] == 'true') {
+				$giro = $_GET['giro'];
+				$consulta = "SELECT Nombre, fechas, categoria, id_curso from eventos WHERE categoria = '$giro'";
+				$respuesta = mysqli_query($conn, $consulta);
+
+			if (mysqli_num_rows($respuesta) > 0) {
+				while ($row = mysqli_fetch_assoc($respuesta)) {
+	    ?>
+                
         <div class="card card-style s card-full-left bg-17" data-card-height="230">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
@@ -100,74 +134,16 @@ $contador = 0;
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        
-        <div data-menu-load="menu-footer.html"></div>
+        <?php } } }?>
     </div>
     <!-- Page content ends here-->
     
-
-    <div id="menu-join" 
-         class="menu menu-box-modal rounded-m" 
-         data-menu-width="350"
-         data-menu-height="570">
-        <div class="card bg-31 rounded-0 mb-0" data-card-height="150">
-            <div class="card-center ps-3">
-                <h1 class="color-white font-20 mb-0">Awesome Event </h1>
-                <h1 class="color-white font-28 mt-n2">Registration</h1>
-            </div>
-            <div class="card-overlay bg-gradient"></div>
-        </div>
-
-        <div class="content">
-            <div class="d-flex mb-4">
-                <div class="align-self-center">
-                    <h5 data-activate="toggle-id-1" class="font-700 font-16 mt-1 mb-0">Attending Event?</h5>
-                </div>
-                <div class="ms-auto me-4 mt-5 mb-n3">
-                    <div class="custom-control ios-switch scale-switch">
-                        <input type="checkbox" class="ios-input" id="toggle-id-1" checked>
-                        <label class="custom-control-label" for="toggle-id-1"></label>
-                    </div>
-                </div>
-            </div>
-            <div class="input-style has-borders no-icon validate-field mb-4">
-                <input type="name" class="form-control validate-name" id="form1" placeholder="Your Name">
-                <i class="fa fa-times disabled invalid color-red-dark"></i>
-                <i class="fa fa-check disabled valid color-green-dark"></i>
-                <em class="color-blue-dark opacity-90">John Doe</em>
-            </div>
-            <div class="input-style has-borders no-icon validate-field mb-4">
-                <input type="tel" class="form-control validate-te" id="form2" placeholder="Phone Number">
-                <i class="fa fa-times disabled invalid color-red-dark"></i>
-                <i class="fa fa-check disabled valid color-green-dark"></i>
-                <em class="color-blue-dark opacity-90">+1 234 567 7890</em>
-            </div>
-            <div class="input-style has-borders no-icon validate-field mb-4">
-                <input type="email" class="form-control validate-email" id="form3" placeholder="Email Address">
-                <i class="fa fa-times disabled invalid color-red-dark"></i>
-                <i class="fa fa-check disabled valid color-green-dark"></i>
-                <em class="color-blue-dark opacity-90">name@domain.com</em>
-            </div>
-            <div class="input-style has-borders no-icon validate-field mb-4">
-                <input type="number" class="form-control validate-number" id="form5" placeholder="Number of Total Guests">
-                <i class="fa fa-times disabled invalid color-red-dark"></i>
-                <i class="fa fa-check disabled valid color-green-dark"></i>
-                <em class="color-blue-dark opacity-90">12</em>
-            </div>
-            <a href="#" class="close-menu mt-4 btn btn-l btn-full rounded-sm gradient-blue font-600">Save</a>
-        </div>
-    </div>
-    
     <!-- Main Menu--> 
     <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
-    
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
-    
     <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
-     
-    
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>
 </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
