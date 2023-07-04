@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["user"])) {
-	header("Location: calendario.php");
+	header("Location: _calendario.php");
 }
 
 $user = $_SESSION["username"];
@@ -41,6 +41,6 @@ $cursosFiltrados = array_filter($cursos, function ($curso) use ($giro) {
 });
 
 
-header("Location: calendario.php?giro=$giro&filtros=true");
+header("Location: _calendario.php?giro=$giro&filtros=true");
 
 ?>
