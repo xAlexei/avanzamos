@@ -10,7 +10,6 @@ if(isset($_GET['id'])){
 $query = "SELECT * FROM eventos WHERE id_curso = '$id'";
 $res = mysqli_query($link, $query);
 while($row = mysqli_fetch_array($res)){
-    
 
 ?>
 
@@ -39,7 +38,7 @@ while($row = mysqli_fetch_array($res)){
 <div id="page">
 
     <div class="header header-fixed header-logo-center header-auto-show">
-        <a href="index.html" class="header-title">Event Details</a>
+        <a href="index.html" class="header-title">Evento</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
@@ -55,7 +54,7 @@ while($row = mysqli_fetch_array($res)){
     </div>
 
     <div class="page-title page-title-fixed">
-        <h1>Event Details</h1>
+        <h1>Evento</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -87,58 +86,13 @@ while($row = mysqli_fetch_array($res)){
                 <span class="pt-3 ps-2 font-700">Cupo de personas: <?php echo $row['cupo']?></span>
             </div>
         </div>
-<?php }?>
-        
-        <a href="#" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl">Inscribirse</a>
+      
+        <a href="#" data-menu="menu-event-accepted" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl">Inscribirse</a>
         <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
 
 
-    <div id="menu-join"
-         class="menu menu-box-modal rounded-m"
-         data-menu-width="350"
-         data-menu-height="570">
-        <div class="card bg-31 rounded-0 mb-0" data-card-height="150">
-            <div class="card-center ps-3">
-                <h1 class="color-white font-20 mb-0">Awesome Event </h1>
-                <h1 class="color-white font-28 mt-n2">Registration</h1>
-            </div>
-            <div class="card-overlay bg-gradient"></div>
-        </div>
-
-        <div class="content">
-            <div class="d-flex mb-4">
-                <div class="align-self-center">
-                    <h5 data-activate="toggle-id-1" class="font-700 font-16 mt-1 mb-0">Attending Event?</h5>
-                </div>
-                <div class="ms-auto me-4">
-                    <div class="custom-control ios-switch">
-                        <input type="checkbox" class="ios-input" id="toggle-id-1" checked>
-                        <label class="custom-control-label" for="toggle-id-1"></label>
-                    </div>
-                </div>
-            </div>
-            <div class="input-style input-style-2 input-required">
-                <em class="color-highlight">John Doe</em>
-                <input class="form-control" type="name" placeholder="Your Name">
-            </div>
-            <div class="input-style input-style-2 input-required">
-                <em class="color-highlight">+1 234 567 789</em>
-                <input class="form-control" type="tel" placeholder="Phone Number">
-            </div>
-            <div class="input-style input-style-2 input-required">
-                <em class="color-highlight">mail@domain.com</em>
-                <input class="form-control" type="email" placeholder="Email Address">
-            </div>
-            <div class="input-style input-style-2 input-required">
-                <em class="color-highlight">12</em>
-                <input class="form-control" type="email" placeholder="Number of Total Guests">
-            </div>
-            <div class=""></div>
-            <a href="#" class="close-menu mt-4 btn btn-l btn-full rounded-sm gradient-blue font-600">Save</a>
-        </div>
-    </div>
 
     <!-- Main Menu-->
     <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
@@ -151,6 +105,49 @@ while($row = mysqli_fetch_array($res)){
 
 
 </div>
+<div id="menu-event-accepted" class="menu menu-box-bottom rounded-m" data-menu-height="420">
+        <div class="content">
+            <div class="text-center">
+                <i class="fa fa-check-circle color-green-dark fa-5x scale-box px-3 py-2"></i>
+                <h1 class="pt-2 mb-0">¡Genial!</h1>
+                <p class="boxed-text-xl mb-3">Estamos emocionados de que asistas</p>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <img src="images/avatars/5s.png" class="float-start border border-white bg-highlight rounded-circle me-n2" width="25">
+                        <span href="#" class="float-start ps-4 font-10 color-theme opacity-30">Hosted by <?php echo $row['creador']?></span>
+                    </div>
+                    <div class="col-6">
+                        <img src="images/avatars/1s.png" class="float-start border border-white bg-yellow-light rounded-circle me-n2" width="25">
+                        <img src="images/avatars/4s.png" class="float-start border border-white bg-mint-dark rounded-circle me-n2" width="25">
+                        <img src="images/avatars/5s.png" class="float-start border border-white bg-highlight rounded-circle me-n2" width="25">
+                        <img src="images/avatars/1s.png" class="float-start border border-white bg-yellow-light rounded-circle me-n2" width="25">
+                        <span href="#" class="float-start ps-4 font-10 color-theme opacity-30">+135 others</span>
+                    </div>
+                </div>
+                <div class="divider mb-3"></div>
+                <div class="d-flex text-center">
+                    <div class="m-auto">
+                        <i class="fa fa-calendar color-blue-dark font-18"></i>
+                        <br>
+                        <h5><?php echo $row['fechas'] ?></h5>
+                    </div>
+                    <div class="m-auto">
+                    <i class="fa-sharp fa-solid color-green-dark fa-tag font-18"></i>
+                        <br>
+                        <h5>$<?php echo $row['costo']?></h5>
+                    </div>
+                    <div class="m-auto">
+                        <i class="fa fa-map-pin color-red-dark font-18"></i>
+                        <br>
+                        <h5><?php echo $row['lugar']?></h5>
+                    </div>
+                </div>
+                <div class="divider mt-2"></div>
+                <a href="#" class="btn btn-m rounded-sm btn-full text-uppercase font-700 gradient-green border-0">ENTENDIDO</a>
+            </div>
+        </div>
+        <?php }?>
+    </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
