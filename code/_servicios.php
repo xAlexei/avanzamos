@@ -39,46 +39,47 @@
         
     <div class="page-content">
         <!-- Reuniones Avanzamos -->
-    <!--<div class="card card-style">
+    <div class="card card-style">
             <div class="content">
-                <h1>Reuniones Avanzamos </h1>      
+                <h1>EVENTOS PROXIMOS </h1>      
             </div>
-        </div>-->
+        </div>
     <!-- Cards de reuniones -->
-        <div class="card card-style">
-            <div class="card-body p-3">
-                <p class="color-highlight font-500 mb-n1"></p>
-                <h1 class="color-white"> Aniversario AVANZAMOS</h1>
-                <ul class="color-white opacity-70 icon-list pt-4 pb-3">
-                    <li><i class="fa fa-dollar-sign"></i>12000/year</li>
-                    <li><i class="fa fa-map-marker"></i>California</li>
-                    <li><i class="fa fa-clock"></i>Full Time</li>
-                </ul>
-                <p class="color-white mt-2">
-                    If coding a WordPress Theme is easy to you, then we're interested in sitting down for a coffee! 
-                </p>
-                <a href="#" class="btn btn-s rounded-s font-600" style="background-color: #F1BE35;">Asistir</a>
+    <div class="page-content">  
+        <div class="card card-style s card-full-left bg-17" data-card-height="230">
+            <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
+                <div class="card-center text-center">
+                    <h1 class="font-30 text-uppercase font-900 opacity-30">DIC</h1>
+                    <h1 class="font-24 font-900">18</h1>
+                </div>
             </div>
-            <div class="card-overlay bg-black opacity-80"></div>
+            <div class="card-top ps-5 ms-5 pt-3">
+                <div class="ps-4">
+                    <h1 class="color-white pt-3 pb-3">Aniversario AVANZAMOS </h1>
+                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> Fiesta por el aniversario de la empresa </p>
+                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i>Ubicacion</p>
+                    <a href="#" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
+                </div>
+            </div>
+            <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        <div class="card card-style">
-            <div class="card-body p-3">
-                <h1 class="color-white">Posada AVANZAMOS</h1>
-                
-                <p class="color-white mt-2">
-                    18 DE DICIEMBRE DEL 2023
-                </p>
-                <a href="#" class="btn btn-s rounded-s font-600" style="background-color: #F1BE35;">Asistir</a>
+    </div>
+    <div class="card card-style s card-full-left bg-17" data-card-height="230" style="margin-top: -70px;">
+            <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
+                <div class="card-center text-center">
+                    <h1 class="font-30 text-uppercase font-900 opacity-30">DIC</h1>
+                    <h1 class="font-24 font-900">18</h1>
+                </div>
             </div>
-            <div class="card-overlay bg-black opacity-80"></div>
-        </div>
-        <div class="card card-style">
-            <div class="content">
-                <p class="mb-n1 color-highlight font-600">IMPORTANTE</p>
-                <p>
-                LAS REUNIONES CON LOS EMPRESARIOS. SE LLEVAN A CABO TODOS LOS JUEVES DE 9:30AM A 11:20AM
-                </p>
+            <div class="card-top ps-5 ms-5 pt-3">
+                <div class="ps-4">
+                    <h1 class="color-white pt-3 pb-3">Posada AVANZAMOS</h1>
+                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> Fiesta por el aniversario de la empresa </p>
+                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i>Ubicacion</p>
+                    <a href="#" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
+                </div>
             </div>
+            <div class="card-overlay bg-black opacity-70"></div>
         </div>
         <div class="card card-style">
         <iframe

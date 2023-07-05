@@ -2,34 +2,8 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-	header("Location: index.php");
+	header("Location: _index.php");
 }
-
-$user = $_SESSION["username"];
-require_once "_config.php";
-$conn = $link;
-
-// Attempt select query execution
-$sql = "SELECT * FROM eventos ORDER BY fechas";
-$resultado = mysqli_query($link, $sql);
-
-$query = "SELECT * FROM users WHERE username like '$user'";
-$result = mysqli_query($link, $query);
-
-if (mysqli_num_rows($result) > 0) {
-	$row = mysqli_fetch_assoc($result);
-} else {
-	echo '<script type="text/javascript">
-        alert("Error al obtener los datos de usuario, intente de nuevo");
-        window.location.href="calendario.php";
-        </script>';
-}
-//colores de las tarjetas
-$colores = array("#E3FFA8", "#9DCDC0", "#BDBBB7");
-
-//Contadores
-$i = 0;
-$contador = 0;
 
 ?>
 
@@ -80,10 +54,8 @@ $contador = 0;
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
-    
 
     <!-- Eventos -->
-        
     <div class="page-content">  
         <div class="card card-style">
             <div class="content">
@@ -91,7 +63,7 @@ $contador = 0;
                 <form action="_buscar.php" method="POST"> 
                 <div class="col-4">
                     <div class="input-style input-style-always-active has-borders no-icon mb-4">
-                        <select name="giro">
+                        <select name="giro" id="giro">
                             <option value="Moda y Eventos">Moda y Eventos</option>
 							<option value="Salud">Salud</option>
 							<option value="Servicios">Servicios</option>
@@ -103,38 +75,42 @@ $contador = 0;
                         <span><i class="fa fa-chevron-down"></i></span>
                     </div>
                 </div>
-                </form>                
+                <button style="margin-left: 150px; margin-top: -110px;" 
+                type="submit" name="buscar" class="btn btn-m bg-white color-black font-700"
+                onclick="buscar_filtro($('#giro').val); ">
+					Buscar
+				</button>
+                </form>         
             </div>
         </div>
-        <?php
-			if (isset($_GET['giro']) && $_GET['filtros'] == 'true') {
-				$giro = $_GET['giro'];
-				$consulta = "SELECT Nombre, fechas, categoria, id_curso from eventos WHERE categoria = '$giro'";
-				$respuesta = mysqli_query($conn, $consulta);
+        <!-- Eventos  -->
+        <?php 
+        require_once "_config.php";
+        $conn = $link;
 
-			if (mysqli_num_rows($respuesta) > 0) {
-				while ($row = mysqli_fetch_assoc($respuesta)) {
-	    ?>
-                
-        <div class="card card-style s card-full-left bg-17" data-card-height="230">
+
+        $query = "SELECT * FROM eventos";
+        $res = mysqli_query($link, $query);
+        while($row = mysqli_fetch_array($res)){
+        ?>
+        <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
-                    <h1 class="font-30 text-uppercase font-900 opacity-30">FRI</h1>
-                    <h1 class="font-24 font-900">15th</h1>
+                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fechas']?></h1>
+                    <h1 class="font-24 font-900">$ <?php echo $row['costo']?></h1>
                 </div>
             </div>
-            <div class="card-top ps-5 ms-5 pt-3">
+            <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
-                    <h1 class="color-white pt-3 pb-3">Apple Event </h1>
-                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> Bench Pressing and Squats</p>
-                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i> Steve Jobs Theater, Palo Alto</p>
-                    <a href="#" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Accept</a>
-                    <a href="#" data-menu="menu-join" class="btn btn-m border-white color-white font-700 ms-3">Decline</a>
+                    <h1 class="color-white pt-3 pb-3"> <?php echo $row['Nombre']?> </h1>
+                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> <?php echo $row['categoria']?> </p>
+                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i>Ubicacion</p>
+                    <a href="_mostrar_curso.php?id=<?php echo $row['id_curso']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
                 </div>
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        <?php } } }?>
+        <?php }?>
     </div>
     <!-- Page content ends here-->
     
