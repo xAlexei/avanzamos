@@ -54,45 +54,6 @@ session_start();
     <div class="page-title-clear"></div>
 
     <!-- Eventos -->
-    <div class="page-content">  
-        <div class="card card-style">
-            <div class="content">
-                <h1>EVENTOS PENDIENTES<i class="fa-solid color-green-dark fa-check" style="margin-left: 15px;"></i></h1>      
-            </div>
-        </div>
-        <!-- Eventos  -->
-        <?php 
-          require_once "_config.php";
-          $conn = $link;
-
-          if (!isset($_SESSION["username"])) {
-            header("Location: _index.php");
-        }else{
-            $user = $_SESSION['username'];
-  
-          $query = "SELECT * FROM eventos WHERE username = '$user'";
-          $res = mysqli_query($link, $query);
-          while($row = mysqli_fetch_array($res)){
-
-        ?>
-        <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
-            <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
-                <div class="card-center text-center">
-                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fechas']?></h1>
-                    <h1 class="font-24 font-900">$ <?php echo $row['costo']?></h1>
-                </div>
-            </div>
-            <div class="card-top bg-0 ps-5 ms-5 pt-3">
-                <div class="ps-4">
-                    <h1 class="color-white pt-3 pb-3"> <?php echo $row['Nombre']?> </h1>
-                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> <?php echo $row['categoria']?> </p>
-                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i><?php echo $row['lugar']?></p>
-                    <a href="_mostrar_curso.php?id=<?php echo $row['id_curso']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Detalles del evento</a>
-                </div>
-            </div>
-            <div class="card-overlay bg-black opacity-70"></div>
-        </div>
-        <?php }}?>
         <div class="card card-style">
             <div class="content">
                 <h1>REUNIONES PENDIENTES <i class="fa-solid color-green-dark fa-check" style="margin-left: 15px;"></i></h1>      
@@ -104,7 +65,7 @@ session_start();
 
           if (!isset($_SESSION["username"])) {
             header("Location: _index.php");
-        }else{
+            }else{
             $user = $_SESSION['username'];
   
           $query = "SELECT * FROM reuniones WHERE username = '$user'";
@@ -129,7 +90,9 @@ session_start();
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        <?php }}?>
+        <?php }}
+        mysqli_close($link);
+        ?>
     </div>
     <!-- Page content ends here-->
     
