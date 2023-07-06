@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-	header("Location: _index.php");
+	header("Location: _index.html");
 }
 
 ?>
@@ -89,7 +89,7 @@ if (!isset($_SESSION["username"])) {
         $conn = $link;
 
 
-        $query = "SELECT * FROM eventos";
+        $query = "SELECT * FROM eventos ORDER BY fechas";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)){
         ?>

@@ -7,9 +7,7 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
 }
 
-$query = "SELECT * FROM eventos WHERE id_curso = '$id'";
-$res = mysqli_query($link, $query);
-while($row = mysqli_fetch_array($res)){
+
 
 ?>
 
@@ -29,6 +27,8 @@ while($row = mysqli_fetch_array($res)){
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
 <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="theme-light">
@@ -64,7 +64,11 @@ while($row = mysqli_fetch_array($res)){
 
     <div class="page-content">
 
-
+        <?php 
+        
+        $query = "SELECT * FROM eventos WHERE id_curso = '$id'";
+        $res = mysqli_query($link, $query);
+        while($row = mysqli_fetch_array($res)){?>
         <div class="card card-style">
             <div class="card mb-0 rounded-0 bg-0" data-card-height="250">
                 <div class="card-bottom">
@@ -87,9 +91,11 @@ while($row = mysqli_fetch_array($res)){
             </div>
         </div>
       
-        <a href="#" data-menu="menu-event-accepted" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl">Inscribirse</a>
+        <a href="_inscribirse.php?id=" data-menu="menu-event-accepted" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl">Inscribirse</a>
         <div data-menu-load="menu-footer.html"></div>
+        
     </div>
+    
     <!-- Page content ends here-->
 
 

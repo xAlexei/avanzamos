@@ -1,8 +1,11 @@
 <?php
 session_start();
 
-
-
+if (!isset($_SESSION["username"])) {
+	header("Location: _index.html");
+}else{
+    $user = $_SESSION['username'];
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -28,22 +31,13 @@ session_start();
     
 <div id="page">
     
-    <div class="header header-fixed header-logo-center header-auto-show">
-        <a href="index.html" class="header-title">Proximos Eventos</a>
+<div class="header header-fixed header-logo-center header-auto-show">
+        <a href="index.html" class="header-title">Careers</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
-
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html" class="active-nav"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
-    
     <div class="page-title page-title-fixed">
         <h1>Proximos Eventos</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
@@ -59,40 +53,33 @@ session_start();
                 <h1>REUNIONES PENDIENTES <i class="fa-solid color-green-dark fa-check" style="margin-left: 15px;"></i></h1>      
             </div>
         </div>
-        <?php 
-          require_once "_config.php";
-          $conn = $link;
+       <?php 
+       
+        require_once "_config.php";
+        $conn = $link;
+        $query = "SELECT * FROM eventos WHERE username = '$user'";
+        $res = mysqli_query($link, $query);
+        while($row = mysqli_fetch_array($res)): 
 
-          if (!isset($_SESSION["username"])) {
-            header("Location: _index.php");
-            }else{
-            $user = $_SESSION['username'];
-  
-          $query = "SELECT * FROM reuniones WHERE username = '$user'";
-          $res = mysqli_query($link, $query);
-          while($row = mysqli_fetch_array($res)){
-
-        ?>
+       ?>
         <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
                     <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fechas']?></h1>
-                    
+                    <h1 class="font-24 font-900">$ <?php echo $row['costo']?></h1>
                 </div>
             </div>
             <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
-                    <h1 class="color-white pt-3 pb-3"> <?php echo $row['nombre']?> </h1>
-                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> <?php echo $row['categoria']?> </p>
-                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i><?php echo $row['lugar']?></p>
-                    <a href="_mostrar_curso.php?id=<?php echo $row['id_reunion']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Detalles del evento</a>
+                    <h1 class="color-white pt-3 pb-3"> <?php echo $row['Nombre'];?> </h1>
+                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i><?php echo $row['categoria'] ?>  </p>
+                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i><?php echo $row['lugar'] ?></p>
+                    <a href="_mostrar_curso.php?id=" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Detalles del evento</a>
                 </div>
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        <?php }}
-        mysqli_close($link);
-        ?>
+        <?php endwhile; ?>
     </div>
     <!-- Page content ends here-->
     
