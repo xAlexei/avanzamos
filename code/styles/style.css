@@ -3507,6 +3507,7 @@ button {
   left: 0px;
   right: 0px;
   top: 0px;
+  word-wrap: break-word;
 }
 
 .card-bottom {
@@ -6834,6 +6835,10 @@ input[type=number] {
 /*Styles used to showcase the demo product on ThemeForest and create backgrounds. These can be deleted to increase speed of loading*/
 .bg-0 {
   background-image: url(../uploads/wallpaper3.png);
+  position: absolute;
+  height: 100%;
+  width: auto;
+  word-wrap: break-word;
 }
 
 .bg-1 {

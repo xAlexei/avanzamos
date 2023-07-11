@@ -1,16 +1,17 @@
 <?php 
 
+session_start();
+if(!isset($_SESSION['username'])){
+    header("Location: _index.html");
+}
+
+$user = $_SESSION['username'];
 require_once "_config.php";
 $conn = $link;
 
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-}
-
-
+$id = $_GET['id'];
 
 ?>
-
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -64,34 +65,42 @@ if(isset($_GET['id'])){
 
     <div class="page-content">
 
-        <?php 
-        
-        $query = "SELECT * FROM eventos WHERE id_curso = '$id'";
-        $res = mysqli_query($link, $query);
-        while($row = mysqli_fetch_array($res)){?>
-        <div class="card card-style">
-            <div class="card mb-0 rounded-0 bg-0" data-card-height="250">
-                <div class="card-bottom">
-                    
-                </div>
-            </div>
-            <div class="content">
-                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fechas']?></p>
-                <h1 class="font-30 font-800"><?php echo $row['Nombre']?></h1>
-                <p class="font-14 mb-3">
-                    Expositor: <?php echo $row['creador']?>
-                </p>
-                <p class="opacity-80">
-                    <i class="fa icon-30 text-center fa-star pe-2"></i>Categoria: <?php echo $row['categoria']?><br>
-                    <i class="fa icon-30 text-center fa-tag pe-2"></i> $ <?php echo $row['costo']?> <br>
-                    <i class="fa icon-30 text-center fa-map-marker  pe-2"></i>Lugar: <?php echo $row['lugar']?>
-                </p>
-
-                <span class="pt-3 ps-2 font-700">Cupo de personas: <?php echo $row['cupo']?></span>
-            </div>
-        </div>
+      <?php 
       
-        <a href="_inscribirse.php?id=" data-menu="menu-event-accepted" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl">Inscribirse</a>
+      $query = "SELECT * FROM events WHERE _idEvent = '$id'";
+      $res = mysqli_query($link, $query);
+      while($row = mysqli_fetch_array($res)):
+
+      ?>
+        <div class="card card-style">            
+            <div class="content">
+            <h1><?php echo $row['eventName']?></h1>
+                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha'];?></p>
+                <h1 class="font-30 font-800"></h1>
+                <p class="font-900 font-14 mb-3">
+                    Expositor: <?php echo $row['hostedBy'] ?>
+                </p>
+                <p class="font-14 mb-3"> <?php echo $row['description'];?></p>
+                <p class="opacity-80">
+                    <i class="fa icon-30 text-center fa-star pe-2"></i>Categoria: <?php echo $row['category'];?><br>
+                    <i class="fa icon-30 text-center fa-tag pe-2"></i>$<?php echo $row['price'];?> <br>
+                    <i class="fa icon-30 text-center fa-map-marker  pe-2"></i>Lugar: <?php echo $row['ubication'];?>
+                </p>
+            </div>
+            <form action="_inscribirse.php" method="POST">
+            <input type="hidden" value="<?php echo $row['eventName'];?>" name="eventName">
+            <input type="hidden" value="<?php echo $user;?>" name="username">
+            <input type="hidden" value="<?php echo $row['category'];?>" name="category">
+            <input type="hidden" value="<?php echo $row['ubication'];?>" name="ubication">
+            <input type="hidden" value="<?php echo $row['fecha'];?>" name="fecha">
+            <button type="submit" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl" style="width: 92%;">
+                Inscribirse
+            </button>
+        </form>
+        </div>
+        
+        <?php endwhile; ?>
+        
         <div data-menu-load="menu-footer.html"></div>
         
     </div>
@@ -101,7 +110,7 @@ if(isset($_GET['id'])){
 
 
     <!-- Main Menu-->
-    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>
 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>
@@ -135,24 +144,24 @@ if(isset($_GET['id'])){
                     <div class="m-auto">
                         <i class="fa fa-calendar color-blue-dark font-18"></i>
                         <br>
-                        <h5><?php echo $row['fechas'] ?></h5>
+                        <h5></h5>
                     </div>
                     <div class="m-auto">
                     <i class="fa-sharp fa-solid color-green-dark fa-tag font-18"></i>
                         <br>
-                        <h5>$<?php echo $row['costo']?></h5>
+                        <h5>$</h5>
                     </div>
                     <div class="m-auto">
                         <i class="fa fa-map-pin color-red-dark font-18"></i>
                         <br>
-                        <h5><?php echo $row['lugar']?></h5>
+                        <h5></h5>
                     </div>
                 </div>
                 <div class="divider mt-2"></div>
                 <a href="#" class="btn btn-m rounded-sm btn-full text-uppercase font-700 gradient-green border-0">ENTENDIDO</a>
             </div>
         </div>
-        <?php }?>
+        <?php ?>
     </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>

@@ -1,0 +1,64 @@
+CREATE DATABASE avanzamos
+
+CREATE TABLE users(
+    _idUser INT AUTO_INCREMENT, 
+    username VARCHAR (255),
+    password VARCHAR (255),
+    email VARCHAR (255),
+    name VARCHAR (255),
+    phone VARCHAR (60),
+    companyName VARCHAR (255),
+    description VARCHAR (255), 
+    PRIMARY KEY (_idUser)
+)
+
+CREATE TABLE staffUsers (
+    _idStaff INT AUTO_INCREMENT, 
+    username VARCHAR (255),
+    password VARCHAR (255),
+    nameStaff VARCHAR (255),
+    phone VARCHAR (50), 
+    email VARCHAR (255), 
+    PRIMARY KEY (_idStaff)
+)
+
+CREATE TABLE events (
+    _idEvent INT AUTO_INCREMENT,
+    eventName VARCHAR (255), 
+    price VARCHAR (255),
+    description VARCHAR (255), 
+    category VARCHAR (255), 
+    ubication VARCHAR (255), 
+    fecha date, 
+    PRIMARY KEY (_idEvent)
+)
+
+CREATE TABLE participation (
+    _id INT AUTO_INCREMENT NOT NULL,
+    eventName VARCHAR (255),
+    username VARCHAR (255),
+    category VARCHAR (255),
+    ubication VARCHAR (255),
+    fecha date,
+    PRIMARY KEY (_id)
+)
+
+CREATE TABLE meetings (
+    _idMeet INT AUTO_INCREMENT,
+    meetName VARCHAR (255),
+    creator VARCHAR (255),
+    category VARCHAR (255),
+    ubication VARCHAR (255).
+    fecha date DEFAULT NOT NULL, 
+    username VARCHAR (255),
+    PRIMARY KEY (_idMeet),
+)
+
+INSERT INTO events (eventName, price, description, category, ubication, fecha)
+VALUES ('Curso de Ventas', '250', 'Aprende las mejores tecnicas de venta para tus negocios y emprendimientos.', 'Negocios', 'Expo Guadalajara', '2023-08-20');
+
+INSERT INTO staffusers (username, password, nameStaff, phone, email)
+VALUES ('Barcelo Marketing', 'Barcelo12', 'Alexei Palacios', '3312901876', 'sukesasuk2010@gmail.com');
+
+INSERT INTO meetings (meetName, creator, category, ubication, fecha, usernames)
+

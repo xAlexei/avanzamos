@@ -20,10 +20,7 @@
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
 
 <div id="page">
-
-
     <div class="page-content pb-0">
-
         <div data-card-height="cover-full" class="card mb-0" style="">
             <div class="card-center">
                 <div class="text-center">
@@ -43,11 +40,11 @@
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
                     </div>
-                    <!-- Nombre completo -->
-                    <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
-                        <i class="fa fa-user"></i>
-                        <input type="text" class="form-control validate-name" name="nombre" id="nombre" placeholder="Nombre completo">
-                        <label for="form1ab" class="color-highlight">Nombre</label>
+                     <!-- Contraseña -->
+                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Contraseña">
+                        <label for="form1ad" class="color-highlight">Contraseña</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
@@ -61,72 +58,45 @@
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
                     </div>
-                   <!-- Nombre de la empresa -->
-                   <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
-                        <i class="fa-solid fa-building"></i>
-                        <input type="text" class="form-control validate-name" name="nombre_empresa" id="nombre_empresa" placeholder="Nombre de la empresa">
-                        <label for="form1ab" class="color-highlight">Nombre de la empresa</label>
+                       <!-- Nombre completo -->
+                       <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control validate-name" name="name" id="name" placeholder="Nombre completo">
+                        <label for="form1ab" class="color-highlight">Nombre</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
                     </div>
-                    <!-- Telefono -->
-                    <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
+                     <!-- Telefono -->
+                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="number" class="form-control validate-password" name="tel_personal" id="tel_personal" placeholder="Numero de telefono">
+                        <input type="number" class="form-control validate-password" name="phone" id="phone" placeholder="Numero de telefono">
                         <label for="form1ad" class="color-highlight">Télefono</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
                     </div>
-                    <!-- Giro -->
-                    <div class="input-style input-style-always-active has-borders no-icon mb-4">
-                        <select id="giro" name="giro">
-                            <option value="default">Selecciona una opcion</option>
-                            <option value="Moda y Eventos">Moda y Eventos</option>
-                            <option value="Salud">Salud</option>
-                            <option value="Servicios">Servicios</option>
-                            <option value="Construccion">Construccion</option>
-                            <option value="Legal y Contable">Legal y Contable</option>
-                            <option value="Tecnologia y Marketing">Tecnología y Marketing</option>
-                            <option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
-                        </select>
-                        <span><i class="fa fa-chevron-down"></i></span>
+                   <!-- Nombre de la empresa -->
+                   <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
+                        <i class="fa-solid fa-building"></i>
+                        <input type="text" class="form-control validate-name" name="company" id="companyName" placeholder="Nombre de la empresa">
+                        <label for="form1ab" class="color-highlight">Nombre de la empresa</label>
+                        <i class="fa fa-times disabled invalid color-red-dark"></i>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <em>(required)</em>
                     </div>
                     <!-- Descripcion de la empresa -->
                     <div class="input-style has-borders no-icon validate-field mb-4">
-                        <textarea id="descripcion" style="width: 100%;" name="descripcion" placeholder="Descripcion de la empresa"></textarea>
+                        <textarea id="description" style="width: 100%;" name="description" placeholder="Descripcion de la empresa"></textarea>
                         <label for="form1ad" class="color-highlight">Descripcion</label>
                         <em class="mt-n6">(required)</em>
                     </div>
-                     <!-- Contraseña -->
-                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
-                        <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Contraseña">
-                        <label for="form1ad" class="color-highlight">Contraseña</label>
-                        <i class="fa fa-times disabled invalid color-red-dark"></i>
-                        <i class="fa fa-check disabled valid color-green-dark"></i>
-                        <em>(required)</em>
-                    </div>
-                    <!-- Foto de perfil -->
-                    <div class="user-box">
-                        <input for="imagen" type="file" class="imagen" id="imagen" name="imagen">
-                        <label>Elige una imagen de foto de perfil</label>
-                    </div>
-                    <!-- PIN -->
-                    <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="text" class="form-control validate-password" name="pin" id="pin" placeholder="Crea un PIN de 4 digitos">
-                        <label for="form1ad" class="color-highlight">PIN</label>
-                        <i class="fa fa-times disabled invalid color-red-dark"></i>
-                        <i class="fa fa-check disabled valid color-green-dark"></i>
-                        <em>(required)</em>
-                    </div>
                     <div class="col-12">
-                    <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
-                        REGISTRARSE
-                    </button>
-                </div>
+                        <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
+                            REGISTRARSE
+                        </button>
+                    </div>
+                    <input type="hidden" name="typeUser" value="USER">
             </form>   
                     <!-- Termina el fofrmulario -->
                     <div class="row pt-3 mb-3">

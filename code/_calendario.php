@@ -88,34 +88,36 @@ if (!isset($_SESSION["username"])) {
         require_once "_config.php";
         $conn = $link;
 
-
-        $query = "SELECT * FROM eventos ORDER BY fechas";
+        $query = "SELECT * FROM events";
         $res = mysqli_query($link, $query);
-        while($row = mysqli_fetch_array($res)){
+        while($row = mysqli_fetch_array($res)):
+
         ?>
         <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
-                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fechas']?></h1>
-                    <h1 class="font-24 font-900">$ <?php echo $row['costo']?></h1>
+                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fecha']; ?></h1>
+                    <h1 class="font-18 font-900">$ <?php echo $row['price'];?>MXN</h1>
+                    <a style="margin-top: 30px;" href="_mostrar_curso.php?id=<?php echo $row['_idEvent']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
                 </div>
             </div>
             <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
-                    <h1 class="color-white pt-3 pb-3"> <?php echo $row['Nombre']?> </h1>
-                    <p class="color-white mb-0"><i class="fa fa-mobile color-white pe-2 icon-30"></i> <?php echo $row['categoria']?> </p>
-                    <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i>Ubicacion</p>
-                    <a href="_mostrar_curso.php?id=<?php echo $row['id_curso']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
+                    <h1 class="color-white"> <?php echo $row['eventName']?> </h1>
+                    <p class="color-white"><?php echo $row['description'] ?> </p>
+                    <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
+                    <p class="color-white mb-0"><i class="fa fa-bars color-white pe-4 icon-30"></i><?php echo $row['category']?></p>
+                    
                 </div>
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
-        <?php }?>
+        <?php endwhile; ?>
     </div>
     <!-- Page content ends here-->
     
     <!-- Main Menu--> 
-    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
     <!-- Colors Menu-->

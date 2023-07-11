@@ -1,3 +1,15 @@
+<?php 
+
+session_start();
+if (!isset($_SESSION["username"])) {
+	header("Location: _index.html");
+}else{
+    $user = $_SESSION['username'];
+}
+
+?>
+
+
 <div class="card rounded-0 bg-6" data-card-height="150" style="background-image: url('uploads/background_avanzamos.png');">
     <div class="card-top">
         <a href="#" class="close-menu float-end me-2 text-center mt-3 icon-40 notch-clear"><i class="fa fa-times color-white"></i></a>
@@ -16,11 +28,13 @@
         <span>Inicio</span>
         <i class="fa fa-angle-right"></i>
     </a>
-    <a id="nav-homepages" href="_mis_reuniones.php">
+
+    <a id="nav-homepages" href="_mis_eventos.php">
         <i class="fa-solid fa-calendar-check" style="color: #f0d419;"></i>
         <span>Mis Eventos</span>
         <i class="fa fa-angle-right"></i>
     </a>
+   
     <a id="nav-components" href="_calendario.php">
         <i class="fa-solid fa-calendar-plus" style="color: #f0d419;"></i>
         <span>Proximas Eventos</span>

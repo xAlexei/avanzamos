@@ -5,7 +5,6 @@ require_once "_config.php";
 
 $username = $_POST["username"];
 $password = $_POST["password"];
-$pin = $_POST["pin"];
 
 // Create connection
   $conn = $link;
@@ -15,36 +14,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-
-
-/* prepare and bind
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = '$username' AND password = '$password';");
-$stmt->bind_param("ss", $username, $password);
-
-
-
-// set parameters and execute
-
-$stmt->execute();
-
-$result = $stmt->get_result();*/
-
-$consulta="SELECT * from users WHERE username = '$username' AND password = '$password' AND pin = '$pin';";
+$consulta="SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 $result=mysqli_query($conn, $consulta);
-$filas=mysqli_num_rows($result);
+$filas=mysqli_fetch_array($result);
 
 
-if ($filas > 0) {
+if ($filas['typeUser'] == 'ADMIN') {
     $_SESSION['username'] = $username;
+    header("Location: _adminPage.php");
+}else if($filas['typeUser'] == 'USER'){
     header("Location: _servicios.php");
-}
-else {
-    echo '<script type="text/javascript">
-    alert("Wrong username or password. Please check your credentials.");
-    window.location.href="_index.html";
-    </script>';
-    //echo "<script>alert('Wrong username or password. Please check your credentials');</script>";
-    //header("Location: index.php");
 }
 
 $conn->close();

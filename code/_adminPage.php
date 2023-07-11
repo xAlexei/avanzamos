@@ -104,12 +104,7 @@ $user = $_SESSION['username'];
     </div>
     <!-- Page content ends here-->
     
-   <?php 
-   
-   $query = "SELECT * FROM users WHERE typeofUser = '$user'";
-   $res = mysqli_query($link, $query);
-  
-   ?>
+
     <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-pages"></div>  
 
  
