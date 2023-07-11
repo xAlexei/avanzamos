@@ -14,8 +14,10 @@
     $description = $_POST['description'];
     $typeUser = $_POST['typeUser'];
 
+    $hash_password = password_hash($password, PASSWORD_DEFAULT);
+
     $query = "INSERT INTO users (username, password, email, name, phone, companyName, description, typeUser) 
-    VALUES ('$username', '$password', '$email', '$name', '$phone', '$companyName', '$description', typeUser)";
+    VALUES ('$username', '$hash_password', '$email', '$name', '$phone', '$companyName', '$description', typeUser)";
 
     if($link->query($query)){
         echo "<script>

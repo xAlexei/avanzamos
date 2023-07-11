@@ -34,7 +34,7 @@
                     <!-- Nombre de la usuario -->
                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-user"></i>
-                        <input type="text" class="form-control validate-name" name="username" id="username" placeholder="Nombre de usuario (Tu nombre/De tu empresa)">
+                        <input type="text" class="form-control validate-name" name="username" id="username" placeholder="Nombre de usuario (Tu nombre/De tu empresa)" required>
                         <label for="form1ab" class="color-highlight">Nombre de usuario</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -43,7 +43,7 @@
                      <!-- Contraseña -->
                      <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Contraseña" required>
                         <label for="form1ad" class="color-highlight">Contraseña</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -52,7 +52,7 @@
                     <!-- Correo electronico -->
                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-at"></i>
-                        <input type="email" class="form-control validate-email" name="email" id="email" placeholder="Correo electronico">
+                        <input type="email" class="form-control validate-email" name="email" id="email" placeholder="Correo electronico" required>
                         <label for="form1ac" class="color-highlight">Email</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -61,7 +61,7 @@
                        <!-- Nombre completo -->
                        <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-user"></i>
-                        <input type="text" class="form-control validate-name" name="name" id="name" placeholder="Nombre completo">
+                        <input type="text" class="form-control validate-name" name="name" id="name" placeholder="Nombre completo" required>
                         <label for="form1ab" class="color-highlight">Nombre</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -70,7 +70,7 @@
                      <!-- Telefono -->
                      <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="number" class="form-control validate-password" name="phone" id="phone" placeholder="Numero de telefono">
+                        <input type="number" class="form-control validate-password" name="phone" id="phone" placeholder="Numero de telefono" required>
                         <label for="form1ad" class="color-highlight">Télefono</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -79,7 +79,7 @@
                    <!-- Nombre de la empresa -->
                    <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa-solid fa-building"></i>
-                        <input type="text" class="form-control validate-name" name="company" id="companyName" placeholder="Nombre de la empresa">
+                        <input type="text" class="form-control validate-name" name="company" id="companyName" placeholder="Nombre de la empresa" required>
                         <label for="form1ab" class="color-highlight">Nombre de la empresa</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -87,17 +87,44 @@
                     </div>
                     <!-- Descripcion de la empresa -->
                     <div class="input-style has-borders no-icon validate-field mb-4">
-                        <textarea id="description" style="width: 100%;" name="description" placeholder="Descripcion de la empresa"></textarea>
+                        <textarea id="description" style="width: 100%;" name="description" placeholder="Descripcion de la empresa" required></textarea>
                         <label for="form1ad" class="color-highlight">Descripcion</label>
                         <em class="mt-n6">(required)</em>
                     </div>
+                    <!--Categoria del evento -->
+                    <div class="input-style has-borders no-icon mb-4">
+                        <label for="form5" class="color-highlight">Select A Value</label>
+                        <select id="category" name="category">
+                            <option value="default" disabled selected>Selecciona una opcion</option>
+                            <option value="Moda y Eventos">Moda y Eventos</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Servicios">Servicios</option>
+                            <option value="Construccion">Construcción</option>
+                            <option value="Legal y Contable">Legal y Contable</option>
+                            <option value="Tecnologia y Marketing">Tecnología y Marketing</option>
+                            <option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
+                        </select>
+                        <span><i class="fa fa-chevron-down"></i></span>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <i class="fa fa-check disabled invalid color-red-dark"></i>
+                        <em></em>
+                    </div>
+                    <!-- Direccion de la empresa -->
+                   <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
+                   <i class="fa-solid fa-location-dot"></i>
+                        <input type="text" class="form-control validate-name" name="address" id="address" placeholder="Direccion" required>
+                        <label for="form1ab" class="color-highlight">Nombre de la empresa</label>
+                        <i class="fa fa-times disabled invalid color-red-dark"></i>
+                        <i class="fa fa-check disabled valid color-green-dark"></i>
+                        <em>(required)</em>
+                    </div>
+                    <input type="hidden" name="typeUser" value="USER">
                     <div class="col-12">
                         <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
                             REGISTRARSE
                         </button>
                     </div>
-                    <input type="hidden" name="typeUser" value="USER">
-            </form>   
+                    </form>   
                     <!-- Termina el fofrmulario -->
                     <div class="row pt-3 mb-3">
                         <div class="col-6 text-start font-11">
@@ -107,10 +134,7 @@
                             <a class="color-white opacity-50" href="_index.html">Iniciar Sesion</a>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
             <div class="card-overlay bg-black opacity-85"></div>
         </div>

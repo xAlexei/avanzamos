@@ -6,6 +6,8 @@ require_once "_config.php";
 $username = $_POST["username"];
 $password = $_POST["password"];
 
+
+
 // Create connection
   $conn = $link;
 
