@@ -40,7 +40,7 @@ $username = $_SESSION['username'];
     </div>
 
     <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
+        <a href="_calendario.php"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
         <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
         <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
         <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
@@ -68,7 +68,12 @@ $username = $_SESSION['username'];
         require_once "_config.php";
         $conn = $link;
 
-        $query = "SELECT * FROM asistencia WHERE username = '$username'";
+        $consulta = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($link, $consulta);
+        $filas = mysqli_fetch_array($result);
+        $name = $filas['name'];
+
+        $query = "SELECT * FROM asistencia WHERE username = '$name'";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
 

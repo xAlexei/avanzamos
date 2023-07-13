@@ -71,6 +71,11 @@ $id = $_GET['id'];
     <div class="page-content">
 
       <?php 
+
+      $consulta = "SELECT * FROM users WHERE username = '$user'";
+      $result = mysqli_query($link, $consulta);
+      $fila = mysqli_fetch_array($result);
+      $userName = $fila['name'];
       
       $query = "SELECT * FROM events WHERE _idEvent = '$id'";
       $res = mysqli_query($link, $query);
@@ -95,6 +100,7 @@ $id = $_GET['id'];
             <form action="_inscribirse.php" method="POST">
             <input type="hidden" value="<?php echo $row['_idEvent'];?>" name="idEvent">
             <input type="hidden" value="<?php echo $row['description']?>" name="description">
+            <input type="hidden" value="<?php echo $userName?>" name="username">
             <input type="hidden" value="<?php echo $row['eventName'];?>" name="eventName">
             <input type="hidden" value="<?php echo $row['fecha']?>" name="fecha">            
             <button type="submit" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl" style="width: 92%;">

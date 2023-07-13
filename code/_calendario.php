@@ -39,8 +39,8 @@ if (!isset($_SESSION["username"])) {
     </div>
 
     <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
-        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
+        <a href="index-components.html"  class="active-nav"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
+        <a href="_mis_eventos.php"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
         <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
         <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
         <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
@@ -83,7 +83,7 @@ if (!isset($_SESSION["username"])) {
             <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
                     <h1 class="color-white"> <?php echo $row['eventName']?>: <?php echo $row['fecha']; ?> </h1>
-                    <p class="color-white"><?php echo $row['description'] ?> </p>
+                    <p class="color-white mb-0"><?php echo $row['description'] ?> </p>
                     <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
                     <p class="color-white mb-0"><i class="fa fa-bars color-white pe-4 icon-30"></i><?php echo $row['category']?></p>
                     

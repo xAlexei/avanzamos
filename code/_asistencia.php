@@ -77,7 +77,7 @@ $conn = $link;
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT * FROM participation";
+                        $query = "SELECT * FROM asistencia";
                         $res = mysqli_query($link, $query);
                         while($row = mysqli_fetch_array($res)):
                         ?>
@@ -85,8 +85,24 @@ $conn = $link;
                             <th scope="row"><?php echo $row['eventName']?></th>
                             <th scope="row"><?php echo $row['username']?></th>
                             <td>
-                            <a href="_editarEvento.php?id=<?php echo $row['_id']?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="_eliminarEvento.php?id=<?php echo $row['_id']?>"><i class="fa-solid fa-trash" style="color: #eb0a0a;"></i></a>
+                            <label class="color-white">¿Asistio?</label>        
+                <div class="row mb-0" style="display: grid;
+                                            justify-content: center;">
+                    <div class="col-6">
+                        <div class="form-check icon-check">
+                            <input class=" color-white" type="radio" name="destacado" value="0" id="radio3">
+                            <label class=" color-white" for="radio3">Si</label>
+                            <i class="icon-check-1 far fa-square font-16"></i>
+                            <i class="icon-check-2 far fa-check-square font-16"></i>
+                        </div>
+                        <div class="form-check icon-check">
+                            <input class="form-check-input color-white" type="radio" name="destacado" value="1" id="radio4">
+                            <label class="form-check-label color-white" for="radio4">No</label>
+                            <i class="icon-check-1 far fa-square font-16"></i>
+                            <i class="icon-check-2 far fa-check-square font-16"></i>
+                        </div>                        
+                    </div>
+                </div>   
                             </td>
                         </tr>
                         <?php

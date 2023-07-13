@@ -23,6 +23,7 @@ $conn = $link;
 <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
 <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
 <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="theme-light">
@@ -71,23 +72,25 @@ $conn = $link;
                     <thead>
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Fecha</th>
+                            <th scope="col "class="color-white py-3 font 14">Asistencia</th>
                             <th scope="col" class="color-white py-3 font-14">Acciones</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT _idEvent, eventName, fecha FROM events ORDER BY fecha ASC";
+                        $query = "SELECT _idEvent, eventName, fecha FROM events ORDER BY fecha DESC";
                         $res = mysqli_query($link, $query);
                         while($row = mysqli_fetch_array($res)):
                         ?>
                         <tr>
                             <th scope="row"><?php echo $row['eventName']?></th>
-                            <th scope="row"><?php echo $row['fecha']?></th>
                             <td>
-                            <a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash" style="color: #eb0a0a;"></i></a>
+                                <a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a>
+                                <a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a>
                             </td>
+                            <td><a href="_reunionForm.php?name=" class="btn btn-m bg-success font-900">Lista</a></td>
+                            
                         </tr>
                         <?php
                         endwhile;

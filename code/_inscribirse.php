@@ -12,10 +12,11 @@ $conn = $link;
 $idevent = $_POST['idEvent'];
 $eventname = $_POST['eventName'];
 $description = $_POST['description'];
+$userName = $_POST['username'];
 $fecha = $_POST['fecha'];
 
 $query = "INSERT INTO asistencia (idEvent, eventName, description, username, fecha)
-VALUES ($idevent, '$eventname', '$description', '$username', '$fecha')";
+VALUES ($idevent, '$eventname', '$description', '$userName', '$fecha')";
 $res = mysqli_query($link, $query);
 if($res){
     echo "

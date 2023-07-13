@@ -47,7 +47,7 @@ if (!isset($_SESSION["username"])) {
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_agendarReunion.php">
-    <i class="fa-solid fa-calendar-plus" style="color: #f0d419;"></i>
+    <i class="fa-solid fa-star" style="color: #f0d419;"></i>
         <span>Agradecimientos</span>
         <i class="fa fa-angle-right"></i>
     </a>
