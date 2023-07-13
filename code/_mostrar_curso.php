@@ -5,11 +5,16 @@ if(!isset($_SESSION['username'])){
     header("Location: _index.html");
 }
 
+date_default_timezone_set('America/Mexico_City');
+$fechaActual = date("Y-m-d");
+
+
 $user = $_SESSION['username'];
 require_once "_config.php";
 $conn = $link;
 
 $id = $_GET['id'];
+
 
 ?>
 
@@ -20,7 +25,7 @@ $id = $_GET['id'];
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>AppKit Mobile</title>
+<title>Reuniones</title>
 <link rel="icon" type="image/png" href="uploads/avanzare.png">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -75,10 +80,10 @@ $id = $_GET['id'];
         <div class="card card-style">            
             <div class="content">
             <h1><?php echo $row['eventName']?></h1>
-                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha'];?></p>
+                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha']?></p>
                 <h1 class="font-30 font-800"></h1>
                 <p class="font-900 font-14 mb-3">
-                    Expositor: <?php echo $row['hostedBy'] ?>
+                    Expositor: Israel
                 </p>
                 <p class="font-14 mb-3"> <?php echo $row['description'];?></p>
                 <p class="opacity-80">
@@ -88,11 +93,10 @@ $id = $_GET['id'];
                 </p>
             </div>
             <form action="_inscribirse.php" method="POST">
+            <input type="hidden" value="<?php echo $row['_idEvent'];?>" name="idEvent">
+            <input type="hidden" value="<?php echo $row['description']?>" name="description">
             <input type="hidden" value="<?php echo $row['eventName'];?>" name="eventName">
-            <input type="hidden" value="<?php echo $user;?>" name="username">
-            <input type="hidden" value="<?php echo $row['category'];?>" name="category">
-            <input type="hidden" value="<?php echo $row['ubication'];?>" name="ubication">
-            <input type="hidden" value="<?php echo $row['fecha'];?>" name="fecha">
+            <input type="hidden" value="<?php echo $row['fecha']?>" name="fecha">            
             <button type="submit" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl" style="width: 92%;">
                 Inscribirse
             </button>

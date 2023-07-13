@@ -40,10 +40,10 @@ $username = $_SESSION['username'];
     </div>
 
     <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html" class="active-nav"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
+        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
+        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
+        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
+        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
         <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
     </div>
     
@@ -59,11 +59,16 @@ $username = $_SESSION['username'];
     <!-- Eventos -->
     <div class="page-content">  
         <!-- Eventos  -->
+        <div class="card card-style">
+            <div class="content text-center">
+                <h1> REUNIONES SEMANALES</h1>       
+            </div>
+        </div>
         <?php 
         require_once "_config.php";
         $conn = $link;
 
-        $query = "SELECT * FROM participation WHERE username = '$username'";
+        $query = "SELECT * FROM asistencia WHERE username = '$username'";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
 
@@ -72,19 +77,22 @@ $username = $_SESSION['username'];
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
                     <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fecha']; ?></h1>                    
-                    <a style="margin-top: 30px;" href="_mostrar_curso.php?id=" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
                 </div>
             </div>
+            <a href="">
             <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
                     <h1 class="color-white"> <?php echo $row['eventName'];?></h1>
-                    <p class="color-white"> <?php ?></p>
-                    <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication']; ?></p>
-                    <p class="color-white mb-0"><i class="fa fa-bars color-white pe-4 icon-30"></i><?php echo $row['category']?></p>                    
+                    <p class="font-900 font-14 color-white mb-0"> <?php echo $row['fecha'];?></p>
+                    <p class="color-white mb-0"><i class="fa fa-quote-left color-white pe-3 icon-30"></i><?php echo $row['description']; ?></p>
+                    <br><p class="opacity-80">
+                    <a href="_cancelarAsistencia.php?id=<?php echo $row['id']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar </a>
+                    </p>                   
                 </div>
             </div>
             <div class="card-overlay bg-black opacity-70"></div>
         </div>
+        </a>
         <?php endwhile; mysqli_close($link);?>
     </div>
     <!-- Page content ends here-->

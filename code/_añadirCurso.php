@@ -9,12 +9,9 @@ $description = $_POST['description'];
 $category = $_POST['category'];
 $ubication = $_POST['ubication'];
 $fecha = $_POST['fecha'];
-$places = $_POST['places'];
-$hostedBy = $_POST['hostedBy'];
-$desctado = $_POST['destacado'];
 
-$query = "INSERT INTO events (eventName, price, description, category, ubication, fecha, places, hostedBy, destacado) 
-VALUES ('$eventName', '$price', '$description', '$category', '$ubication', '$fecha', '$places', '$hostedBy', '$desctado')";
+$query = "INSERT INTO events (eventName, price, description, category, ubication, fecha) 
+VALUES ('$eventName', '$price', '$description', '$category', '$ubication', '$fecha')";
 $res = mysqli_query($link, $query);
 
 if($res){

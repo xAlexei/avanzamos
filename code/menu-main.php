@@ -8,15 +8,13 @@ if (!isset($_SESSION["username"])) {
 }
 
 ?>
-
-
 <div class="card rounded-0 bg-6" data-card-height="150" style="background-image: url('uploads/background_avanzamos.png');">
     <div class="card-top">
         <a href="#" class="close-menu float-end me-2 text-center mt-3 icon-40 notch-clear"><i class="fa fa-times color-white"></i></a>
     </div>
     <div class="card-bottom">
         <h1 class="color-white ps-3 mb-n1 font-28"></h1>
-        <p class="mb-2 ps-3 font-12 color-white opacity-50">Al futuro</p>
+        <p class="mb-2 ps-3 font-12 color-white opacity-50">Usuario: <?php echo $user;?></p>
     </div>
     <div class="card-overlay bg-gradient"></div>
 </div>
@@ -28,21 +26,29 @@ if (!isset($_SESSION["username"])) {
         <span>Inicio</span>
         <i class="fa fa-angle-right"></i>
     </a>
-
     <a id="nav-homepages" href="_mis_eventos.php">
         <i class="fa-solid fa-calendar-check" style="color: #f0d419;"></i>
-        <span>Mis Eventos</span>
+        <span>Agendado</span>
         <i class="fa fa-angle-right"></i>
     </a>
-   
     <a id="nav-components" href="_calendario.php">
         <i class="fa-solid fa-calendar-plus" style="color: #f0d419;"></i>
-        <span>Proximas Eventos</span>
+        <span>Reuniones Semanales</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_mis_reuniones.php">
         <i class="fa-sharp fa-solid fa-users" style="color: #f0d419;"></i>
-        <span>Reuniones Personales</span>
+        <span>Mis reuniones</span>
+        <i class="fa fa-angle-right"></i>
+    </a>
+    <a id="nav-pages" href="_agendarReunion.php">
+    <i class="fa-solid fa-calendar-plus" style="color: #f0d419;"></i>
+        <span>Agendar Reunion</span>
+        <i class="fa fa-angle-right"></i>
+    </a>
+    <a id="nav-pages" href="_agendarReunion.php">
+    <i class="fa-solid fa-calendar-plus" style="color: #f0d419;"></i>
+        <span>Agradecimientos</span>
         <i class="fa fa-angle-right"></i>
     </a>
 </div>

@@ -20,13 +20,13 @@ $query = "SELECT * FROM users WHERE username = '$username' AND password = '$pass
 $res = mysqli_query($link, $query);
 $row = mysqli_fetch_array($res);
 
-if($row['typeUser'] == 'USER'){
+if($row['typeUser'] == 'ADMIN'){
     $_SESSION['username'] = $username;
-    header("Location: _servicios.php");
+    header("Location: _adminPage.php");
 }else{
     echo "
     <script>alert('Usuario o contraseñas incorrectos')
-    window.location.replace('_index.html');
+    window.location.replace('_adminLogin.html');
     </script>
     ";
 }

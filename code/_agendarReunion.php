@@ -34,7 +34,7 @@ $conn = $link;
     <div class="header header-fixed header-logo-center header-auto-show">
         <a href="index.html" class="header-title">Tables</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
-        <a href="#" data-menu="menu-main-admin" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
@@ -44,7 +44,7 @@ $conn = $link;
         <a href="index-pages.html"><i class="fa fa-file"></i><span>Pages</span></a>
         <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
         <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
-        <a href="#" data-menu="menu-main-admin"><i class="fa fa-bars"></i><span>Menu</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
     </div>
 
     <div class="page-title page-title-fixed">
@@ -52,7 +52,7 @@ $conn = $link;
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main-admin"><i class="fa fa-bars"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
 
@@ -66,71 +66,48 @@ $conn = $link;
         </div>
         <div class="card card-style">
             <div class="content mb-2">
-                <h4>REUNIONES SEMANALES</h4>
+                <h4>Seleccion con quien quieres agendar una reunion</h4>
+                <form action="_addReunion.php">
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Fecha</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
+                            <th scope="col" class="color-white py-3 font-14">Agendar Reunion</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT _idEvent, eventName, fecha FROM events ORDER BY fecha ASC";
+                        $query = "SELECT * FROM users WHERE typeUser = 'USER'";
                         $res = mysqli_query($link, $query);
                         while($row = mysqli_fetch_array($res)):
                         ?>
                         <tr>
-                            <th scope="row"><?php echo $row['eventName']?></th>
-                            <th scope="row"><?php echo $row['fecha']?></th>
-                            <td>
-                            <a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash" style="color: #eb0a0a;"></i></a>
-                            </td>
+                            <th scope="row"><?php echo $row['name']?></th>
+                            <td><a href="_reunionForm.php?name=<?php echo $row['name']?>" class="btn btn-m bg-white color-black font-700">Agendar</a></td>
                         </tr>
                         <?php
                         endwhile;
                         ?>
-
                     </tbody>
                 </table>
+                </form>
+                <nav aria-label="pagination-demo">
+            <ul class="pagination pagination- justify-content-center">
+                <li class="page-item">
+                    <a class="page-link rounded-xs color-black bg-transparent bg-theme shadow-xl border-0" href="#" tabindex="-1" aria-disabled="true"><i class="fa fa-angle-left"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link rounded-xs color-black bg-theme shadow-l border-0" href="#">1</a></li>
+                <li class="page-item"><a class="page-link rounded-xs color-black bg-theme shadow-l border-0" href="#">2</a></li>
+                <li class="page-item"><a class="page-link rounded-xs color-black bg-theme shadow-l border-0" href="#">3</a></li>
+                <li class="page-item"><a class="page-link rounded-xs color-black bg-theme shadow-l border-0" href="#">4</a></li>
+                <li class="page-item"><a class="page-link rounded-xs color-black bg-theme shadow-l border-0" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link rounded-xs color-black bg-transparent bg-theme shadow-l border-0" href="#"><i class="fa fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </nav>
             </div>
         </div>
-        <!-- Reuniones -->
-        <div class="card card-style">
-            <div class="content mb-2">
-                <h4>ASISTENCIA</h4>
-                <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
-                    <thead>
-                        <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Fecha</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php                         
-                        $query = "SELECT username FROM asistencia ORDER BY username ASC";
-                        $res = mysqli_query($link, $query);
-                        while($row = mysqli_fetch_array($res)):
-                        ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['username']?></th>
-                            
-                            <td>
-                 
-                            </td>
-                        </tr>
-                        <?php
-                        endwhile;
-                        ?>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
         
 
         <div data-menu-load="menu-footer.html"></div>
@@ -138,7 +115,7 @@ $conn = $link;
     <!-- Page content ends here-->
 
     <!-- Main Menu-->
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-components"></div>
 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>

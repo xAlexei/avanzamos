@@ -29,12 +29,13 @@
                 <div class="text-center">
                     <p class="font-600 color-highlight mb-1 font-16"></p>
                     <h1 class="font-30 color-white"> <img src="uploads/avanzare.png" width="25px"> AVANZAMOS</h1>
+                    <h1> ADMNISTRADOR</h1>
                 </div>
                 <div class="content px-4">
-                    <form action="_login.php" method="POST">
+                    <form action="_adminLogin.php" method="POST">
                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-user"></i>
-                        <input type="name" class="form-control validate-name" name="username" id="username" placeholder="Username">
+                        <input type="name" class="form-control validate-name" name="username" id="username" placeholder="Username" required>
                         <label for="form1a" class="color-highlight">Username</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -42,7 +43,7 @@
                     </div>
                     <div class="input-style input-transparent no-borders has-icon validate-field mb-4">
                         <i class="fa fa-lock"></i>
-                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control validate-password" name="password" id="password" placeholder="Password" required>
                         <label for="form1a" class="color-highlight">Password</label>
                         <i class="fa fa-times disabled invalid color-red-dark"></i>
                         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -51,21 +52,16 @@
                     <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
                         Ingresar
                     </button>
-
+                    </form>
                     <div class="row pt-3 mb-3">
                         <div class="col-6 text-start font-11">
                             <a class="color-white opacity-50" href="page-system-forgot-2.html">Olvidaste tu contraseña?</a>
                         </div>
                         <div class="col-6 text-end font-11">
-                            <a class="color-white opacity-50" href="_register.php">Crear Cuenta</a>
+                            <a class="color-white opacity-50" href="_index.html">Regresar</a>
                         </div>
                     </div>
-                    </form>
                     <div class="text-center mb-4">
-                        <a href="#" class="icon icon-xs rounded-sm shadow-l mr-1 "><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
-                        <a href="#" class="icon icon-xs rounded-sm shadow-l mr-1 "><i class="fa-brands fa-youtube" style="color: #ffffff"></i></a>
-                        <a href="#" class="icon icon-xs rounded-sm shadow-l mr-1 "><i class="fa-brands fa-spotify" style="color: #ffffff"></i></i></a>
-                        <a href="_adminLogin.html" class="icon icon-xs rounded-sm mr-1 shadow-l "><i class="fa-solid fa-lock" style="color: #ffffff"></i></a>
                     </div>
                 </div>
 

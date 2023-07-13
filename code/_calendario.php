@@ -39,10 +39,10 @@ if (!isset($_SESSION["username"])) {
     </div>
 
     <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html" class="active-nav"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
+        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
+        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
+        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
+        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
         <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
     </div>
     
@@ -58,29 +58,8 @@ if (!isset($_SESSION["username"])) {
     <!-- Eventos -->
     <div class="page-content">  
         <div class="card card-style">
-            <div class="content">
-                <h1>Evento por categoria</h1>
-                <form action="_buscar.php" method="POST"> 
-                <div class="col-4">
-                    <div class="input-style input-style-always-active has-borders no-icon mb-4">
-                        <select name="giro" id="giro">
-                            <option value="Moda y Eventos">Moda y Eventos</option>
-							<option value="Salud">Salud</option>
-							<option value="Servicios">Servicios</option>
-							<option value="Construccion">Construcción</option>
-							<option value="Legal y Contable">Legal y Contable</option>
-							<option value="Tecnologia y Marketing">Tecnología y Marketing</option>
-							<option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
-                        </select>
-                        <span><i class="fa fa-chevron-down"></i></span>
-                    </div>
-                </div>
-                <button style="margin-left: 150px; margin-top: -110px;" 
-                type="submit" name="buscar" class="btn btn-m bg-white color-black font-700"
-                onclick="buscar_filtro($('#giro').val); ">
-					Buscar
-				</button>
-                </form>         
+            <div class="content text-center">
+                <h1> PROXIMAS REUNIONES GRUPALES</h1>       
             </div>
         </div>
         <!-- Eventos  -->
@@ -96,14 +75,14 @@ if (!isset($_SESSION["username"])) {
         <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">
-                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fecha']; ?></h1>
+                    <h1 class="font-25 text-uppercase font-900 opacity-30">COSTO</h1>
                     <h1 class="font-18 font-900">$ <?php echo $row['price'];?>MXN</h1>
                     <a style="margin-top: 30px;" href="_mostrar_curso.php?id=<?php echo $row['_idEvent']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
                 </div>
             </div>
             <div class="card-top bg-0 ps-5 ms-5 pt-3">
                 <div class="ps-4">
-                    <h1 class="color-white"> <?php echo $row['eventName']?> </h1>
+                    <h1 class="color-white"> <?php echo $row['eventName']?>: <?php echo $row['fecha']; ?> </h1>
                     <p class="color-white"><?php echo $row['description'] ?> </p>
                     <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
                     <p class="color-white mb-0"><i class="fa fa-bars color-white pe-4 icon-30"></i><?php echo $row['category']?></p>

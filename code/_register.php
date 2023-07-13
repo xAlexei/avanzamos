@@ -118,6 +118,7 @@
                         <i class="fa fa-check disabled valid color-green-dark"></i>
                         <em>(required)</em>
                     </div>
+                    <!-- Tipo de usuario -->
                     <input type="hidden" name="typeUser" value="USER">
                     <div class="col-12">
                         <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">

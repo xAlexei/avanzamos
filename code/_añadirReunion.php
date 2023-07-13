@@ -53,7 +53,7 @@ if(!isset($_SESSION['username'])){
             <div class="content mb-0">        
                 <h3>Ingresa los datos del evento</h3>        
                 <!--Nombre del evento -->
-                <form action="_addMeeting.php" method="POST">
+                <form action="_.php" method="POST">
                 <div class="input-style has-borders no-icon validate-field mb-4">
                     <input type="text" class="form-control validate-name" name="meetName" id="eventName" placeholder="Nombre del evento">
                     <label for="form1" class="color-highlight">Name</label>

@@ -4,6 +4,7 @@ session_start();
 if(!isset($_SESSION['username'])){
     header("Location: _index.html");
 }
+  
 
 ?>
 
@@ -25,11 +26,8 @@ if(!isset($_SESSION['username'])){
 </head>
     
 <body class="theme-light">
-    
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
-    
 <div id="page">
-    
     <div class="header header-fixed header-logo-center header-auto-show">
         <a href="index.html" class="header-title">Inputs</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
@@ -38,8 +36,16 @@ if(!isset($_SESSION['username'])){
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
+        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
+        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
+        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
+    </div>
+
     <div class="page-title page-title-fixed">
-        <h1>Añadir Eveneto</h1>
+        <h1>Reuniones Semanales</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -48,19 +54,12 @@ if(!isset($_SESSION['username'])){
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-
         <div class="card card-style">
             <div class="content mb-0">        
-                <h3>Ingresa los datos del evento</h3>        
+                <h3> Datos de la reunion semanal</h3>        
                 <!--Nombre del evento -->
-                <form action="_añadirCurso.php" method="POST">
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-name" name="eventName" id="eventName" placeholder="Nombre del evento">
-                    <label for="form1" class="color-highlight">Name</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
+                <br><form action="_añadirCurso.php" method="POST">
+                    <input type="hidden" class="form-control validate-name" name="eventName" value="Reunion Semanal">
                 <!--Precio -->
                 <div class="input-style has-borders no-icon validate-field mb-4">
                     <input type="number" class="form-control validate-text" name="price" id="price" placeholder="Precio del evento">
@@ -94,55 +93,14 @@ if(!isset($_SESSION['username'])){
                     <em></em>
                 </div>
                 <!--Ubicacion -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="ubication" id="ubication" placeholder="Lugar del evento">
-                    <label for="form2" class="color-highlight">Lugar</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
+                    <input type="hidden" class="form-control validate-text" name="ubication" value="Edificio Lincon">
                 <!--Fecha del evento -->
                 <div class="input-style has-borders no-icon mb-4">
-                    <input type="date" max="2030-01-01" min="2021-01-01" class="form-control validate-text" id="fecha" name="fecha" placeholder="Fecha">
+                    <input type="date" max="2030-01-01" min="2021-01-01" class="form-control validate-text" name="fecha" placeholder="Fecha">
                     <label for="form6" class="color-highlight">Select Date</label>
                     <i class="fa fa-check disabled valid me-4 pe-3 font-12 color-green-dark"></i>
                     <i class="fa fa-check disabled invalid me-4 pe-3 font-12 color-red-dark"></i>
                 </div>
-                <!-- Cupos disponibles  -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="places" id="places" placeholder="Lugares disponibles">
-                    <label for="form2" class="color-highlight">Lugares disponibles</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <!-- Creado por -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="hostedBy" id="hostedBy" placeholder="Presentado por John Doe">
-                    <label for="form2" class="color-highlight">Presentado por</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <!-- Destacar evento -->    
-                <label>¿Destacar Evento?</label>        
-                <div class="row mb-0">
-                    <div class="col-6">
-                        <div class="form-check icon-check">
-                            <input class="form-check-input" type="radio" name="destacado" value="SI" id="radio3">
-                            <label class="form-check-label" for="radio3">Si</label>
-                            <i class="icon-check-1 far fa-square color-gray-dark font-16"></i>
-                            <i class="icon-check-2 far fa-check-square font-16 color-highlight"></i>
-                        </div>
-                        <div class="form-check icon-check">
-                            <input class="form-check-input" type="radio" name="destacado" value="NO" id="radio4">
-                            <label class="form-check-label" for="radio4">No</label>
-                            <i class="icon-check-1 far fa-square color-gray-dark font-16"></i>
-                            <i class="icon-check-2 far fa-check-square font-16 color-highlight"></i>
-                        </div>                        
-                    </div>
-                </div>
-
                 <div class="input-style">
                 <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
                         AÑADIR EVENTO
