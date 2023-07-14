@@ -4,7 +4,8 @@ session_start();
 if(!isset($_SESSION['username'])){
     header("Location: _index.html");
 }
-
+require_once "_config.php";
+$conn = $link;
 $user = $_SESSION['username'];
 
 ?>
@@ -55,16 +56,7 @@ $user = $_SESSION['username'];
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
-        
-    <div class="page-content">
-         
-        <!-- Reuniones Avanzamos -->
-        <div class="card card-style">
-            <div class="content">
-                <h1 class="text-center">EVENTOS DESTACADOS </h1>      
-            </div>
-        </div>
-        <div class="content mt-n3 mb-4">
+    <div class="content mt-n3 mb-4">
             <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
                 <form method="POST">  
                         <i class="fa fa-search ms-1"></i>
@@ -72,11 +64,31 @@ $user = $_SESSION['username'];
                 </form>
             </div>   
         </div>
+
+   
+
+    <div class="page-content">
+    
+    <div class="card card-style">
+            <div class="content mb-0">
+                <p class="text-center pt-3">
+                    <i class="fa fa-quote-left fa-4x color-yellow-dark"></i>
+                </p>
+                <h1 class="text-center font-700 pb-3">Las reuniones semanales <br> se llevan a cabo en</h1>
+                <p class="text-center pb-4 color-highlight"><a href="https://goo.gl/maps/GEXJg3afLcoNfvJA8">
+                     OUI Restaurante Bar</a></p>
+            </div>
+        </div>
+        <!-- Reuniones Avanzamos -->
+        <div class="card card-style">
+            <div class="content">
+                <h1 class="text-center">EVENTOS DESTACADOS </h1>      
+            </div>
+        </div>
+          
+        
         <!-- EVENTOS DESTACADOS -->
         <?php 
-        require_once "_config.php";
-        $conn = $link;
-
         $query = "SELECT * FROM specialEvents";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
@@ -100,13 +112,42 @@ $user = $_SESSION['username'];
             <div class="card-overlay opacity-70"></div>
         </div>
         <?php endwhile; ?>
+        <div class="divider divider-margins"></div>
+        <div class="card card-style">
+            <div class="content">
+                <h1 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
+            </div>
+        </div>
+        
+        <?php
+        $query = "SELECT * FROM rewards ORDER BY amount DESC LIMIT 3";
+        $res = mysqli_query($link, $query);
+        while($row = mysqli_fetch_array($res)):
+        ?>
+        <div class="card card-style">
+            <div class="content text-center">
+                <img src="https://www.pngmart.com/files/22/User-Avatar-Profile-PNG-Isolated-Transparent-Picture.png" class="mx-auto rounded-circle shadow-xl" width="150">
+                <h1 class="mt-4 font-20 font-700 mb-n1"><?php echo $row['username']?></h1>
+                <span>
+                    <i class="fa fa-star font-18 color-yellow-dark"></i>
+                    <i class="fa fa-star font-18 color-yellow-dark"></i>
+                    <i class="fa fa-star font-18 color-yellow-dark"></i>
+                    <i class="fa fa-star font-18 color-yellow-dark"></i>
+                    <i class="fa fa-star font-18 color-yellow-dark"></i>
+                    <p class="line-height-l boxed-text-xl font-14 pb-3">
+                        ¡Agradecemos las contribuciones que realizas con tus compañeros!
+                    </p>
+                </span>
+            </div>
+        </div>
+        <?php endwhile; mysqli_close($link);?>  
         <div class="card card-style">
             <iframe
 			src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14931.510530327723!2d-103.3906055!3d20.6745568!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae72bfeceaf5%3A0x6a0a9dfc0d56d667!2sOUI%20Restaurant%20Bar!5e0!3m2!1ses-419!2smx!4v1684782770664!5m2!1ses-419!2smx"
 				width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
 				referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        
+       
         <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->

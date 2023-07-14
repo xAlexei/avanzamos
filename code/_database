@@ -91,5 +91,10 @@ VALUES ('Curso de Ventas', '250', 'Aprende las mejores tecnicas de venta para tu
 INSERT INTO staffusers (username, password, nameStaff, phone, email)
 VALUES ('Barcelo Marketing', 'Barcelo12', 'Alexei Palacios', '3312901876', 'sukesasuk2010@gmail.com');
 
-INSERT INTO meetings (meetName, creator, category, ubication, fecha, usernames)
+INSERT INTO rewards (username, amouont)
+VALUES ('Alexei Palacios' 10000),
+('Miguel Sarabia' 9000),
+('Gabriel Sanchez' 8000),
+('Alexei Palacios' 1000),
+('Alexei Palacios' 1000)
 

@@ -1,12 +1,17 @@
 <?php 
 
 session_start();
-if(!isset($_SESSION['username'])){
-    header('Location: _index.html');
-} 
-
 require_once "_config.php";
 $conn = $link;
+
+if(!isset($_SESSION['username'])){
+    header("Location: _index.html");
+}
+
+$username = $_SESSION['username'];
+$query = "SELECT * FROM users";
+$res = mysqli_query($link, $query);
+                                                         
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -33,7 +38,7 @@ $conn = $link;
 <div id="page">
 
     <div class="header header-fixed header-logo-center header-auto-show">
-        <a href="index.html" class="header-title">Tables</a>
+        <a href="index.html" class="header-title">Usuarios</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main-admin" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
@@ -49,7 +54,7 @@ $conn = $link;
     </div>
 
     <div class="page-title page-title-fixed">
-        <h1>Lista de Eventos</h1>
+        <h1>Usuarios</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -67,30 +72,26 @@ $conn = $link;
         </div>
         <div class="card card-style">
             <div class="content mb-2">
-                <h4>REUNIONES SEMANALES</h4>
+                <h4>Usuarios MAS CONFIABLES</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
                         <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col "class="color-white py-3 font 14">Asistencia</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
+                            <th scope="col" class="color-white py-3 font-14">Usuario</th>
+                            <th scope="col" class="color-white py-3 font-14">Nivel de verificacion</th>
+                            <th scope="col" class="color-white py-3 font-14">Bajar nivel</th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT _idEvent, eventName, fecha FROM events ORDER BY fecha DESC";
+                        $query = "SELECT * FROM users WHERE verification = 2 ORDER BY name";
                         $res = mysqli_query($link, $query);
                         while($row = mysqli_fetch_array($res)):
                         ?>
                         <tr>
-                            <th scope="row"><?php echo $row['eventName']?></th>
-                            <td>
-                                <a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a>
-                                <a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a>
-                            </td>
-                            <td><a href="_lista" class="btn btn-m bg-success font-900">Lista</a></td>
-                            
+                            <th scope="row"><?php echo $row['name']?></th>
+                            <td> <i class='fa-sharp fa-solid fa-circle-check font-25' style='color: #239414;'></i></td>
+                            <td><a href="_degradarVerification.php?id=<?php echo $row['_idUser']?>" name="bajar" class="btn btn-m bg-danger font-700 rounded">Degradar</a></td>
                         </tr>
                         <?php
                         endwhile;
@@ -100,41 +101,69 @@ $conn = $link;
                 </table>
             </div>
         </div>
-        <!-- Reuniones -->
         <div class="card card-style">
             <div class="content mb-2">
-                <h4>ASISTENCIA</h4>
+                <h4>Usuarios verificados</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
                         <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Fecha</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
+                            <th scope="col" class="color-white py-3 font-14">Usuario</th>
+                            <th scope="col" class="color-white py-3 font-14">Nivel de verificacion</th>
+                            <th scope="col" class="color-white py-3 font-14">Subir Nivel</th>
+                            <th scope="col" class="color-white py-3 font-14">Bajar Nivel</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT username FROM asistencia ORDER BY username ASC";
+                        $query = "SELECT * FROM users WHERE verification = 1 ORDER BY name";
                         $res = mysqli_query($link, $query);
-                        while($row = mysqli_fetch_array($res)):
-                        ?>
+                        while($row = mysqli_fetch_array($res)):        
+                        ?>  
                         <tr>
-                            <th scope="row"><?php echo $row['username']?></th>
-                            
-                            <td>
-                 
-                            </td>
+                            <th scope="row"><?php echo $row['name']?></th>
+                            <td><i class='fa-sharp fa-solid fa-circle-check font-25 color-white'></td>
+                            <td><a href="_safeuserVerification.php?id=<?php echo $row['_idUser']?>" class="btn btn-m bg-success font-700 rounded">Verificar</a></td>
+                            <td><a href="_quitarVerification.php?id=<?php echo $row['_idUser']?>" name="bajar" class="btn btn-m bg-danger font-700 rounded">Degradar</a></td>
                         </tr>
                         <?php
                         endwhile;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card card-style">
+            <div class="content mb-2">
+                <h4>Usuarios por verificar</h4>
+                <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
+                    <thead>
+                        <tr class="bg-blue-dark">
+                            <th scope="col" class="color-white py-3 font-14">Usuario</th>
+                            <th scope="col" class="color-white py-3 font-14">Verificar</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php                         
+                        $query = "SELECT * FROM users WHERE verification = 0";
+                        $res = mysqli_query($link, $query);
+                        while($row = mysqli_fetch_array($res)):                            
+                        ?>  
+                        <tr>
+                            <th scope="row"><?php echo $row['name']?></th>
+                            <td><a href="_addVerification.php?id=<?php echo $row['_idUser']?>" class="btn btn-m bg-success font-700 rounded">Verificar</a></td>
+                        </tr>
+                        <?php
+                        endwhile;
+                        mysqli_close($link);
                         ?>
 
                     </tbody>
                 </table>
             </div>
         </div>
-
-        
+    
 
         <div data-menu-load="menu-footer.html"></div>
     </div>
@@ -151,7 +180,29 @@ $conn = $link;
 
 
 </div>
-
+<script>
+    function delete(){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                window.location.replace('_verification.php')
+                )
+            }
+        })
+    }
+   
+</script>
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 </body>
