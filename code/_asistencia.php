@@ -5,6 +5,9 @@ if(!isset($_SESSION['username'])){
     header('Location: _index.html');
 } 
 
+date_default_timezone_set('America/Mexico_City');
+$fechaActual = date("d-m-Y");
+
 require_once "_config.php";
 $conn = $link;
 ?>
@@ -58,63 +61,75 @@ $conn = $link;
 
     <div class="page-content">
 
-
-        <div class="card card-style">
-            <p class="content">
-                Aqui se muestran los eventos programados ordenados por fecha.
-            </p>
-        </div>
         <div class="card card-style">
             <div class="content mb-2">
-                <h4>Lista de eventos</h4>
-                <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
+                <h4 class="text-center"> ASISTENCIA DE REUNIONES SEMANALES </h4>
+                <br><form method="POST">
+                <table class="table bg-ye table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
-                        <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Evento</th>
+                        <tr class="bg-yellow-dark">
                             <th scope="col" class="color-white py-3 font-14">Participantes</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
+                            <th scope="col" class="color-white py-3 font-14">Asistencia</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php                         
-                        $query = "SELECT * FROM asistencia";
-                        $res = mysqli_query($link, $query);
-                        while($row = mysqli_fetch_array($res)):
-                        ?>
-                        <tr>
-                            <th scope="row">
-                                <?php echo $row['eventName']?>
-                                <br><?php echo $row['fecha']?></th>
-                            <th scope="row"><?php echo $row['username']?></th>
-                            <td>
-                            <label class="color-white">¿Asistio?</label>        
-                <div class="row mb-0" style="display: grid;
-                                            justify-content: center;">
-                    <div class="col-6">
-                        <div class="form-check icon-check">
-                            <input class=" color-white" type="radio" name="destacado" value="0" id="radio3">
-                            <label class=" color-white" for="radio3">Si</label>
-                            <i class="icon-check-1 far fa-square font-16"></i>
-                            <i class="icon-check-2 far fa-check-square font-16"></i>
-                        </div>
-                        <div class="form-check icon-check">
-                            <input class="form-check-input color-white" type="radio" name="destacado" value="1" id="radio4">
-                            <label class="form-check-label color-white" for="radio4">No</label>
-                            <i class="icon-check-1 far fa-square font-16"></i>
-                            <i class="icon-check-2 far fa-check-square font-16"></i>
-                        </div>                        
-                    </div>
-                </div>   
-                            </td>
-                        </tr>
-                        <?php
-                        endwhile;
-                        ?>
-
+                    <?php
+                     $asistencia = "SELECT * FROM asistencia";
+                     $res = mysqli_query($link, $asistencia);
+                    while ($row = $res->fetch_array(MYSQLI_BOTH))
+                        {
+                            echo'<tr>
+                                <td hidden><input name="id[]" value="'.$row['id'].'" /></td>
+                                <th scope="row">'.$row['username'].' </th>			
+                                <td>
+                                    <select class="form-select" name="asist['.$row['id'].']">
+                                        <option value="0"> Si </option>
+                                        <option value="1"> No </option>
+                                    </select>
+                                </td>
+                                </tr>';
+                        }
+                    ?>
+                                            
                     </tbody>
+                    
                 </table>
+                <button name="actualizar" type="submit" class="btn btn-m bg-yellow-dark font-700 rounded" type="submit" style="width: 100%;">
+                    GUARDAR
+                </button>
+                </form>
+               <br>
             </div>
         </div>
+        <?php
+			if(isset($_POST['actualizar']))
+			{
+				foreach ($_POST['id'] as $ids) 
+				{
+					$editAssist = mysqli_real_escape_string($link, $_POST['asist'][$ids]);
+					$actualizar= mysqli_query($link, "UPDATE asistencia SET asistencia = (asistencia + $editAssist) WHERE id='$ids'");
+				}
+				if($actualizar==true)
+				{
+					echo "
+                    <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
+                        <span><i class='fa fa-check color-white'></i></span>
+                        <strong class='color-white'>Guardado!</strong>
+                        <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+                    </div> ";
+				}
+				else
+				{
+					echo " <div class='ms-3 me-3 mb-5 alert alert-small rounded-s shadow-xl bg-red-dark' role='alert'>
+                    <span><i class='fa fa-times color-white'></i></span>
+                    <strong class='color-white'>We have a problem here</strong>
+                    <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+                </div>";
+				}
+			}
+
+            mysqli_close($link);
+		?>
         <!-- Reuniones -->
         <div data-menu-load="menu-footer.html"></div>
     </div>

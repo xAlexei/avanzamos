@@ -7,8 +7,6 @@ if(!isset($_SESSION['username'])){
 
 require_once "_config.php";
 $conn = $link;
-
-
 ?>
 
 <!DOCTYPE HTML>
@@ -59,40 +57,80 @@ $conn = $link;
     </div>
     <div class="page-title-clear"></div>
         
-    <div class="page-content">       
+    <div class="page-content">
+    <div class="content mt-n3 mb-4">
+        <form method="POST">
+            <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
+                <i class="fa fa-search ms-1"></i>
+                <input type="text" name="username" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'">
+            </div>   
+            </div> 
+        </form>
+
+        <?php 
+        $user = '';
+
+        if($_POST['username'] == false){
+            echo "";
+        }else if($_POST['username']){
+            $user = $_POST['username'];
+            $query = "SELECT * FROM users WHERE username = '$user'";
+            $res = mysqli_query($link, $query);
+            while($row = mysqli_fetch_array($res)){?>
+                <div class='card card-style'>            
+                <div class='d-flex content mb-1'>
+                    <!-- left side of profile -->
+                    <div class='flex-grow-1'>
+                        <h2>
+                            <?php if(($row['verification']) == 2){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-green-dark font-18 mt-2 ms-3'></i>";
+                            }else if(($row['verification']) == 1){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-white font-18 mt-2 ms-3'></i>";
+                            }else{
+                                echo "".$row['name']."<p>Usuario sin verificar</p>";
+                            }                           
+                            ?>
+                        </h2>
+                        <p class='font-900 font-14 mb-3'>
+                           <br>Nombre de la Compañia: <?php echo $row['companyName']?>
+                           <br>Email: <?php echo $row['email']?>
+                           <br>Télefono: <a href="#"> <?php echo $row['phone']?></a>
+                           <br>Direccion: <?php echo $row['address']?>
+                        </p>
+                        <p class="font-10">
+                        <p class="mb-0"><?php echo $row['description']?></p>
+                        
+                        </p>
+                        
+                        
+                        
+                    </div>
+                    <!-- right side of profile. increase image width to increase column size-->
+                    <img src='images/pictures/6s.jpg' width='115' height='103' class='rounded-circle mt-3 shadow-xl'>
+                </div>
+                <!-- follow buttons-->
+                <div class='content mb-0'>
+                    <div class='row mb-0'>
+                        <div class='col-6'>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>Agendar cita</a>
+                        </div>
+                        <div class='col-6'>
+                            <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>
+                        
+                            <br></div>
+                    </div>
+               </div>
+        <?php
+            }
+        }
+        ?>
        
-        <div data-menu-load="menu-footer.html"></div>
+        
     </div>
     <!-- Page content ends here-->
-      
-    <!-- Added to Bookmarks Menu-->
-    <div id="menu-heart" 
-         class="menu menu-box-modal rounded-m" 
-         data-menu-hide="800"
-         data-menu-width="250"
-         data-menu-height="170">
-        
-        <h1 class="text-center mt-3 pt-2">
-            <i class="fa fa-check-circle color-green-dark fa-3x"></i>
-        </h1>
-        <h3 class="text-center pt-2">Saved to Favorites</h3>
-    </div>
-    
-    <!-- Added to Cart Menu-->
-    <div id="menu-added" 
-         class="menu menu-box-modal rounded-m" 
-         data-menu-hide="800"
-         data-menu-width="250"
-         data-menu-height="170">
-        
-        <h1 class="text-center mt-3 pt-2">
-            <i class="fa fa-shopping-bag color-brown-dark fa-3x"></i>
-        </h1>
-        <h3 class="text-center pt-2">Added to Cart</h3>
-    </div>
     
     <!-- Main Menu--> 
-    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>
     
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  

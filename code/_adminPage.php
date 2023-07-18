@@ -50,7 +50,7 @@ $user = $_SESSION['username'];
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-    <div class="page-content">
+    
          
          <!-- Reuniones Avanzamos -->
          <div class="card card-style">
@@ -103,10 +103,9 @@ $user = $_SESSION['username'];
 
  
     <!-- Share Menu-->
-    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
     
     <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
      
     
 </div>

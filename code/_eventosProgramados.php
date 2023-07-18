@@ -72,9 +72,8 @@ $conn = $link;
                     <thead>
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
-                            <th scope="col "class="color-white py-3 font 14">Asistencia</th>
-                            
+                            <th scope="col" class="color-white py-3 font-14">Editar</th>
+                            <th scope="col" class="color-white py-3 font-14">Elimninar</th>
                             
                         </tr>
                     </thead>
@@ -86,11 +85,8 @@ $conn = $link;
                         ?>
                         <tr>
                             <th scope="row"><?php echo $row['eventName']?></th>
-                            <td>
-                                <a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a>
-                                <a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a>
-                            </td>
-                            <td><a href="_asistencia.php" class="btn btn-m bg-success font-900 rounded">Lista</a></td>
+                            <td><a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a></td>
+                            <td><a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a></td>
                             
                         </tr>
                         <?php
@@ -101,42 +97,7 @@ $conn = $link;
                 </table>
             </div>
         </div>
-        <!-- Reuniones -->
-        <div class="card card-style">
-            <div class="content mb-2">
-                <h4>ASISTENCIA</h4>
-                <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
-                    <thead>
-                        <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Fecha</th>
-                            <th scope="col" class="color-white py-3 font-14">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php                         
-                        $query = "SELECT username FROM asistencia ORDER BY username ASC";
-                        $res = mysqli_query($link, $query);
-                        while($row = mysqli_fetch_array($res)):
-                        ?>
-                        <tr>
-                            <th scope="row"><?php echo $row['username']?></th>
-                            
-                            <td>
-                 
-                            </td>
-                        </tr>
-                        <?php
-                        endwhile;
-                        ?>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
         
-
         <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
