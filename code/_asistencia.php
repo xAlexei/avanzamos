@@ -82,7 +82,9 @@ $conn = $link;
                         while($row = mysqli_fetch_array($res)):
                         ?>
                         <tr>
-                            <th scope="row"><?php echo $row['eventName']?></th>
+                            <th scope="row">
+                                <?php echo $row['eventName']?>
+                                <br><?php echo $row['fecha']?></th>
                             <th scope="row"><?php echo $row['username']?></th>
                             <td>
                             <label class="color-white">¿Asistio?</label>        

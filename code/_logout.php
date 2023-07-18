@@ -9,8 +9,9 @@ if (!isset($_SESSION["user"])) {
 $user = $_SESSION["username"];
 
 // Destruye la sesión
+session_unset($user);
 session_destroy();
-session_unset();
+
 
 
 // Redirecciona a la página de inicio de sesión o a otra página que desees
