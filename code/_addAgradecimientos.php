@@ -63,11 +63,11 @@ $conn = $link;
     <div class="page-content">
         <div class="card card-style">
             <div class="content mb-0">        
-                <h3 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>Agredece a tus compañeros</h3>        
+                <h3 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>Agredece a tus compañero <?php echo $name?></h3>        
                 <br><form method="POST">                 
                 <!-- Usuario para agradacer -->
                 <div class="input-style has-borders no-icon mb-4">
-                    <input type="text" value="<?php echo $name;?>" class="form-control validate-text" name="username">
+                    <input type="hidden" value="<?php echo $name;?>" class="form-control validate-text" name="username" required>
                 </div>
                 <!-- Cantidad generada -->
                 <div class="input-style has-borders no-icon mb-4">
@@ -75,7 +75,7 @@ $conn = $link;
                     <label for="" class="for">Cantidad</label>
                 </div>
                 <div class="input-style">
-                <button name="" type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
+                <button name="submit" type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
                         AGRADACER
                 </button>
                 </div>
@@ -83,42 +83,28 @@ $conn = $link;
             </div>
         </div>
         <?php 
-
        
-       
-        $username = $_POST['username'] ?? null;
-        $amount = $_POST['amount'] ?? null;
-
-        $res = mysqli_query($link, "SELECT * FROM rewards WHERE username = '$username'");
-        $row = mysqli_num_rows($res);
-        if($row > 0){
-            $query = "UPDATE rewards SET amount = (amount + $amount) WHERE username = '$username'";
-            $res = mysqli_query($link, $query);
-            if($res){
-                echo "
-                <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
-                    <span><i class='fa fa-check color-white'></i></span>
-                    <strong class='color-white'>Gracias por tu agradecimiento!</strong>
-                    <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-                </div> ";
-            }else if($row == 0){
-                $query2 = "INSERT INTO rewards (username, amount) VALUES ('$username', $amount)";
-                $res2 = mysqli_query($link, $query2);
-                if($res2){
-                    echo "
-                    <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
-                        <span><i class='fa fa-check color-white'></i></span>
-                        <strong class='color-white'>Gracias por tu agradecimiento!</strong>
-                        <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-                    </div> ";
-                }
-            }
+       if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $amount = $_POST['amount'];
+        
+        $query = "INSERT INTO rewards (username, amount) VALUES ('$username', $amount) ON DUPLICATE KEY UPDATE amount = (amount + $amount)";
+        $result = $link->query($query);
+        if($result){
+            echo "
+            <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
+                <span><i class='fa fa-check color-white'></i></span>
+                <strong class='color-white'>Gracias por tu agradecimiento!</strong>
+                <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+            </div> ";
         }
 
+       }
+       
+         
         ?>
        
-
-        <div data-menu-load="menu-footer.html"></div>
+      
     </div>
     <!-- Page content ends here-->
     

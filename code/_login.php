@@ -20,7 +20,11 @@ $password_hash = $row['password'];
 $typeUser = $row['typeUser'];
 
 if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
-    echo "Usuario o contrasñeas incorrectos";
+    echo "
+    <script>alert('Usuario o contraseña incorrectos')
+    window.location.replace('_index.html')
+    </script>
+    ";
 }else if(password_verify($password, $password_hash) && $typeUser == 'USER'){
   $_SESSION['username'] = $username;
   $_SESSION['name'] = $name;
@@ -31,7 +35,7 @@ if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
                 <strong class='color-white'>We have a problem here</strong>
               <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
           </div>";
-          header("Location: _index.hmtl");
+          header("Location: _index.html");
 
 }
 

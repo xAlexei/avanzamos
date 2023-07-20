@@ -58,14 +58,15 @@ $conn = $link;
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-    <div class="content mt-n3 mb-4">
-        <form method="POST">
+        <div class="content mt-n3 mb-4">
+                <form method="POST">
             <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
                 <i class="fa fa-search ms-1"></i>
-                <input type="text" name="username" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'">
+                <input type="text" name="username" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'" data-menu="menu-success-2">
             </div>   
-            </div> 
-        </form>
+                </form>
+        </div> 
+             
 
         <?php 
         $user = '';
@@ -74,7 +75,7 @@ $conn = $link;
             echo "";
         }else if($_POST['username']){
             $user = $_POST['username'];
-            $query = "SELECT * FROM users WHERE username = '$user'";
+            $query = "SELECT * FROM users WHERE username = '$user' OR name = '$user'";
             $res = mysqli_query($link, $query);
             while($row = mysqli_fetch_array($res)){?>
                 <div class='card card-style'>            
@@ -99,14 +100,10 @@ $conn = $link;
                         </p>
                         <p class="font-10">
                         <p class="mb-0"><?php echo $row['description']?></p>
-                        
                         </p>
-                        
-                        
-                        
                     </div>
                     <!-- right side of profile. increase image width to increase column size-->
-                    <img src='images/pictures/6s.jpg' width='115' height='103' class='rounded-circle mt-3 shadow-xl'>
+                    <img src='images/avatars/2s.png' width='115' height='103' class='rounded-circle mt-3 shadow-xl'>
                 </div>
                 <!-- follow buttons-->
                 <div class='content mb-0'>
@@ -120,11 +117,11 @@ $conn = $link;
                             <br></div>
                     </div>
                </div>
+               
         <?php
             }
         }
         ?>
-       
         
     </div>
     <!-- Page content ends here-->

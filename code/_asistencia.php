@@ -18,7 +18,7 @@ $conn = $link;
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>Eventos Programados</title>
+<title>Asitencia</title>
 <link rel="icon" type="image/png" href="uploads/avanzare.png">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -51,7 +51,7 @@ $conn = $link;
     </div>
 
     <div class="page-title page-title-fixed">
-        <h1>Lista de Eventos</h1>
+        <h1>Lista de Asistencia</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -70,6 +70,7 @@ $conn = $link;
                         <tr class="bg-yellow-dark">
                             <th scope="col" class="color-white py-3 font-14">Participantes</th>
                             <th scope="col" class="color-white py-3 font-14">Asistencia</th>
+                            <th scope="col" class="color-white py-3 font-14">Faltas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,9 +87,20 @@ $conn = $link;
                                         <option value="0"> Si </option>
                                         <option value="1"> No </option>
                                     </select>
-                                </td>
-                                </tr>';
-                        }
+                                </td>';
+                                if($row['asistencia'] == 1){
+                                    echo "<td><i class='fa-solid fa-x color-red-dark'></i>|</td>
+                                    </tr>";
+                                }else if($row['asistencia'] == 2){
+                                    echo "<td>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|</td></tr>";
+                                }else if($row['asistencia'] == 3){
+                                    echo "<td>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|</td></tr>";
+                                }else if($row['asistencia'] == 4){
+                                    echo "<td>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|<i class='fa-solid fa-x color-red-dark'></i>|</td></tr>";
+                                }else{
+                                    echo "";
+                                }
+                            }
                     ?>
                                             
                     </tbody>

@@ -7,6 +7,12 @@ if (!isset($_SESSION["username"])) {
     $user = $_SESSION['username'];
 }
 
+require_once "_config.php";
+$conn = $link;
+$query = "SELECT * FROM users WHERE username = '$user'";
+$res = mysqli_query($link, $query);
+$row = mysqli_fetch_array($res);
+
 ?>
 <div class="card rounded-0 bg-6" data-card-height="150" style="background-image: url('uploads/background_avanzamos.png');">
     <div class="card-top">
@@ -14,7 +20,16 @@ if (!isset($_SESSION["username"])) {
     </div>
     <div class="card-bottom">
         <h1 class="color-white ps-3 mb-n1 font-28"></h1>
-        <p class="mb-2 ps-3 font-12 color-white opacity-50">Usuario: <?php echo $user;?></p>
+        <p class="mb-2 ps-3 font-12 color-white">
+        <?php if(($row['verification']) == 2){
+                        echo "".$row['name']."<i class='fa fa-check-circle color-green-dark font-18 mt-2 ms-3'></i>";
+                    }else if(($row['verification']) == 1){
+                        echo "".$row['name']."<i class='fa fa-check-circle color-white font-18 mt-2 ms-3'></i>";
+                    }else{
+                        echo "".$row['name']."<p>Usuario sin verificar</p>";
+                    }                           
+                ?>    
+        </p>
     </div>
     <div class="card-overlay bg-gradient"></div>
 </div>

@@ -93,7 +93,9 @@ $username = $_SESSION['username'];
                 </p>
             </div>
         </div>
-        <?php endwhile; ?>
+        <?php endwhile; 
+        mysqli_close($link);
+        ?>
     </div>
     <!-- Page content ends here-->
     

@@ -63,13 +63,6 @@ $res = mysqli_query($link, $query);
     <div class="page-title-clear"></div>
 
     <div class="page-content">
-
-
-        <div class="card card-style">
-            <p class="content">
-                Aqui se muestran los eventos programados ordenados por fecha.
-            </p>
-        </div>
         <div class="card card-style">
             <div class="content mb-2">
                 <h4>Usuarios MAS CONFIABLES</h4>
@@ -78,8 +71,7 @@ $res = mysqli_query($link, $query);
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Usuario</th>
                             <th scope="col" class="color-white py-3 font-14">Nivel de verificacion</th>
-                            <th scope="col" class="color-white py-3 font-14">Bajar nivel</th>
-                            
+                            <th scope="col" class="color-white py-3 font-14">Bajar nivel</th>                            
                         </tr>
                     </thead>
                     <tbody>

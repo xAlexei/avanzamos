@@ -41,7 +41,7 @@ if(!isset($_SESSION['username'])){
         <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
         <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
         <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
+        <a href="#" data-menu="menu-main-admin"><i class="fa fa-bars"></i><span>Menu</span></a>
     </div>
 
     <div class="page-title page-title-fixed">
@@ -118,12 +118,6 @@ if(!isset($_SESSION['username'])){
     <!-- Main Menu--> 
     <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-components"></div>
     
-    <!-- Share Menu-->
-    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
-    
-    <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
-     
     
 </div>
 

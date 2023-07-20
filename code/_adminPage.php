@@ -51,7 +51,6 @@ $user = $_SESSION['username'];
         
     <div class="page-content">
     
-         
          <!-- Reuniones Avanzamos -->
          <div class="card card-style">
              <div class="content">
@@ -87,21 +86,46 @@ $user = $_SESSION['username'];
              <div class="card-overlay opacity-70"></div>
          </div>
          <?php endwhile; ?>
+          <?php 
+          
+          $query = mysqli_query($link, "SELECT * FROM events WHERE active = 1");
+          while($row = mysqli_fetch_array($query)):
+          ?>
+            <!-- Reuniones Avanzamos -->
+            <div class="card card-style">
+                <div class="content">
+                    <h1 class="text-center">REUNIONES ACTIVAS </h1>      
+                </div>             
+            </div>
+            <div class="card card-style">            
+            <div class="content">
+                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha'];?></p>
+                <h1 class="font-20 font-800"><?php echo $row['eventName']?></h1>
+                <p class="font-900 font-14 mb-3">
+                    <?php echo $row['description'] ?>
+                </p>
+                <p class="opacity-80">
+                    <a href="_endMeet.php?idmeeting=<?php echo $row['_idEvent']?>" class="btn btn-m btn-success font-700 rounded"> Finalizar Reunion </a>
+                    <a href="_cancelarEvento.php?idmeeting=<?php echo $row['_idEvent']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar reunion </a>                    
+                </p>
+            </div>
+        </div>
+         <?php endwhile; ?>
+         
          <div class="card card-style">
              <iframe
              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14931.510530327723!2d-103.3906055!3d20.6745568!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae72bfeceaf5%3A0x6a0a9dfc0d56d667!2sOUI%20Restaurant%20Bar!5e0!3m2!1ses-419!2smx!4v1684782770664!5m2!1ses-419!2smx"
                  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                  referrerpolicy="no-referrer-when-downgrade"></iframe>
          </div>
+
+       
          
-         <div data-menu-load="menu-footer.html"></div>
      </div>
     <!-- Page content ends here-->
-    
 
     <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-pages"></div>  
 
- 
     <!-- Share Menu-->
     
     
