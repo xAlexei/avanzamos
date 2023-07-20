@@ -67,11 +67,11 @@ $conn = $link;
                 <br><form method="POST">                 
                 <!-- Usuario para agradacer -->
                 <div class="input-style has-borders no-icon mb-4">
-                    <input type="text" value="<?php echo $name;?>" class="form-control validate-text" name="username" readonly>
+                    <input type="text" value="<?php echo $name;?>" class="form-control validate-text" name="username">
                 </div>
                 <!-- Cantidad generada -->
                 <div class="input-style has-borders no-icon mb-4">
-                    <input type="text" class="form-control validate-text" id="amount" name="amount" placeholder="Cantidad">
+                    <input type="text" class="form-control validate-text" id="amount" name="amount" placeholder="¿Qué cantidad te ayudo a generar esta persona?" required>
                     <label for="" class="for">Cantidad</label>
                 </div>
                 <div class="input-style">
@@ -84,13 +84,35 @@ $conn = $link;
         </div>
         <?php 
 
-        $username = $_POST['username'];
-        $amount = $_POST['amount'];
+       
+       
+        $username = $_POST['username'] ?? null;
+        $amount = $_POST['amount'] ?? null;
 
         $res = mysqli_query($link, "SELECT * FROM rewards WHERE username = '$username'");
         $row = mysqli_num_rows($res);
         if($row > 0){
             $query = "UPDATE rewards SET amount = (amount + $amount) WHERE username = '$username'";
+            $res = mysqli_query($link, $query);
+            if($res){
+                echo "
+                <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
+                    <span><i class='fa fa-check color-white'></i></span>
+                    <strong class='color-white'>Gracias por tu agradecimiento!</strong>
+                    <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+                </div> ";
+            }else if($row == 0){
+                $query2 = "INSERT INTO rewards (username, amount) VALUES ('$username', $amount)";
+                $res2 = mysqli_query($link, $query2);
+                if($res2){
+                    echo "
+                    <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
+                        <span><i class='fa fa-check color-white'></i></span>
+                        <strong class='color-white'>Gracias por tu agradecimiento!</strong>
+                        <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+                    </div> ";
+                }
+            }
         }
 
         ?>

@@ -70,7 +70,7 @@ $conn = $link;
         <?php 
         $user = '';
 
-        if($_POST['username'] == false){
+        if(!isset($_POST['username'])){
             echo "";
         }else if($_POST['username']){
             $user = $_POST['username'];

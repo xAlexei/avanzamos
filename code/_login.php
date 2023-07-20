@@ -26,10 +26,13 @@ if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
   $_SESSION['name'] = $name;
   header("Location: _servicios.php");
 }else{
-  echo "<script>
-  alert('Usuario o contraseña incorrectos')
-  window.location.replace('_index.html')
-  </script>";
+  echo " <div class='ms-3 me-3 mb-5 alert alert-small rounded-s shadow-xl bg-red-dark' role='alert'>
+                <span><i class='fa fa-times color-white'></i></span>
+                <strong class='color-white'>We have a problem here</strong>
+              <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+          </div>";
+          header("Location: _index.hmtl");
+
 }
 
 
