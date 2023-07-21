@@ -50,14 +50,12 @@ $user = $_SESSION['username'];
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-    
          <!-- Reuniones Avanzamos -->
          <div class="card card-style">
              <div class="content">
                  <h1 class="text-center">EVENTOS DESTACADOS </h1>      
              </div>
          </div>
-         
          <!-- EVENTOS DESTACADOS -->
          <?php 
          require_once "_config.php";
@@ -105,22 +103,43 @@ $user = $_SESSION['username'];
                     <?php echo $row['description'] ?>
                 </p>
                 <p class="opacity-80">
-                    <a href="_endMeet.php?idmeeting=<?php echo $row['_idEvent']?>" class="btn btn-m btn-success font-700 rounded"> Finalizar Reunion </a>
-                    <a href="_cancelarEvento.php?idmeeting=<?php echo $row['_idEvent']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar reunion </a>                    
+                    <a href="" data-menu="menu-option-1" class="btn btn-m btn-success font-700 rounded"> Finalizar Reunion </a>
+                    <a href="_cancelarEvento.php?id=<?php echo $row['_idEvent']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar reunion </a>                    
                 </p>
             </div>
         </div>
+
+        <div id="menu-option-1" 
+         class="menu menu-box-modal rounded-m" 
+         data-menu-height="200" 
+         data-menu-width="350">
+        <div class="menu-title">
+            <i class="fa fa-question-circle scale-box float-start me-3 ms-3 fa-3x mt-1 color-blue-dark"></i>
+            <p class="color-highlight">We need to know,</p>
+            <h1 class="font-20">Are you Sure?</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="content mt-0">
+            <p class="pe-3">
+                Please confirm before proceeding to the next step.
+            </p>
+            <div class="row mb-0">
+                <div class="col-6">
+                    <a href="#" class="btn close-menu btn-full btn-m bg-red-dark font-600 rounded-s">No, cancel</a>
+                </div>
+                <div class="col-6">
+                    <a href="_endMeet.php?idmeeting=<?php echo $row['_idEvent']?>"  class="btn close-menu btn-full btn-m bg-green-dark font-600 rounded-s">Yes, proceed!</a>
+                </div>
+            </div>
+        </div>
+    </div> 
          <?php endwhile; ?>
-         
          <div class="card card-style">
              <iframe
              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14931.510530327723!2d-103.3906055!3d20.6745568!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae72bfeceaf5%3A0x6a0a9dfc0d56d667!2sOUI%20Restaurant%20Bar!5e0!3m2!1ses-419!2smx!4v1684782770664!5m2!1ses-419!2smx"
                  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-         </div>
-
-       
-         
+         </div>         
      </div>
     <!-- Page content ends here-->
 
@@ -130,6 +149,8 @@ $user = $_SESSION['username'];
     
     
     <!-- Colors Menu-->
+
+    
      
     
 </div>

@@ -109,18 +109,19 @@ $conn = $link;
                 <div class='content mb-0'>
                     <div class='row mb-0'>
                         <div class='col-6'>
-                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>Agendar cita</a>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
                         </div>
                         <div class='col-6'>
                             <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>
                         
                             <br></div>
                     </div>
-               </div>
-               
+               </div>               
         <?php
             }
         }
+            
+        
         ?>
         
     </div>

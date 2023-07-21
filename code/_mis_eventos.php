@@ -91,7 +91,7 @@ $username = $_SESSION['username'];
                     <p class="font-900 font-14 color-white mb-0"> <?php echo $row['fecha'];?></p>
                     <p class="color-white mb-0"><i class="fa fa-quote-left color-white pe-3 icon-30"></i><?php echo $row['description']; ?></p>
                     <br><p class="opacity-80">
-                    <a href="_cancelarAsistencia.php?id=<?php echo $row['id']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar </a>
+                    <a href="_cancelarAsistencia.php?id=<?php echo $row['id']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar Asistencia </a>
                     </p>                   
                 </div>
             </div>

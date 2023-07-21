@@ -65,7 +65,6 @@ $user = $_SESSION['username'];
                 </form>
         </div> 
              
-
         <?php 
         $user = '';
 
@@ -140,8 +139,6 @@ $user = $_SESSION['username'];
                 <h1 class="text-center">EVENTOS DESTACADOS </h1>      
             </div>
         </div>
-          
-        
         <!-- EVENTOS DESTACADOS -->
         <?php 
         $query = "SELECT * FROM specialEvents";
@@ -173,7 +170,6 @@ $user = $_SESSION['username'];
                 <h1 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
             </div>
         </div>
-        
         <?php
         $query = "SELECT * FROM rewards ORDER BY amount DESC LIMIT 3";
         $res = mysqli_query($link, $query);
@@ -202,21 +198,13 @@ $user = $_SESSION['username'];
 				width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
 				referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-       
-        <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
-    
     <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>  
-
- 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
-    
     <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
-     
-    
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>    
 </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>

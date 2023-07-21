@@ -49,7 +49,7 @@ $conn = $link;
     </div>
     
     <div class="page-title page-title-fixed">
-        <h1>Agradecimientos</h1>
+        <h1>Perfil</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -58,25 +58,11 @@ $conn = $link;
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-        <div class="content mt-n3 mb-4">
-                <form method="POST">
-            <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
-                <i class="fa fa-search ms-1"></i>
-                <input type="text" name="username" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'" data-menu="menu-success-2">
-            </div>   
-                </form>
-        </div> 
-
         <?php 
-        $user = '';
-
-        if(!isset($_POST['username'])){
-            echo "";
-        }else if($_POST['username']){
-            $user = $_POST['username'];
-            $query = "SELECT * FROM users WHERE username = '$user' OR name = '$user'";
+            $id = $_GET['id'];
+            $query = "SELECT * FROM users WHERE _idUser = '$id'";
             $res = mysqli_query($link, $query);
-            while($row = mysqli_fetch_array($res)){?>
+            while($row = mysqli_fetch_array($res)):?>
                 <div class='card card-style'>            
                 <div class='d-flex content mb-1'>
                     <!-- left side of profile -->
@@ -110,24 +96,25 @@ $conn = $link;
                         <div class='col-6'>
                             <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
                         </div>
-                        <div class='col-6'>
-                            <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>
-                        
-                            <br></div>
                     </div>
-               </div>               
-        <?php
-            }
-        }
+            <br></div>               
+        <?php       
+        endwhile;
         ?>
+        
     </div>
     <!-- Page content ends here-->
+    
     <!-- Main Menu--> 
     <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>
+    
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
     <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>     
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
+     
+    
 </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
