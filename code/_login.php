@@ -18,6 +18,7 @@ $res = mysqli_query($link, $query);
 $row = mysqli_fetch_array($res);
 $password_hash = $row['password'];
 $typeUser = $row['typeUser'];
+$name = $row['name'];
 
 if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
     echo "

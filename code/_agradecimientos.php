@@ -62,23 +62,33 @@ $conn = $link;
                 <form method="POST">
             <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
                 <i class="fa fa-search ms-1"></i>
-                <input type="text" name="username" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'" data-menu="menu-success-2">
+                <input type="text" name="keyword" class="border-0" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'" data-menu="menu-success-2">
             </div>   
                 </form>
         </div> 
-             
 
         <?php 
-        $user = '';
-
-        if(!isset($_POST['username'])){
+        
+        $aKeyword = explode(" ", $_POST['keyword'] ?? null);
+        if(!isset($_POST['keyword'])){
             echo "";
-        }else if($_POST['username']){
-            $user = $_POST['username'];
-            $query = "SELECT * FROM users WHERE username = '$user' OR name = '$user'";
-            $res = mysqli_query($link, $query);
-            while($row = mysqli_fetch_array($res)){?>
-                <div class='card card-style'>            
+        }else{
+        $query ="SELECT * FROM users WHERE name like '%" . $aKeyword[0] . "%' OR username like '%" . $aKeyword[0] . "%'";
+                
+        ?>
+        <?php 
+             for($i = 1; $i < count($aKeyword); $i++) {
+                if(!empty($aKeyword[$i])) {
+                    echo "";
+                }
+             }
+
+            $result = $conn->query($query);
+            if(mysqli_num_rows($result) > 0) {
+            $row_count=0;
+            While($row = $result->fetch_assoc()) {
+            ?>
+      <div class='card card-style'>            
                 <div class='d-flex content mb-1'>
                     <!-- left side of profile -->
                     <div class='flex-grow-1'>
@@ -112,18 +122,20 @@ $conn = $link;
                             <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
                         </div>
                         <div class='col-6'>
-                            <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>
-                        
+                            <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>                        
                             <br></div>
                     </div>
-               </div>               
-        <?php
+               </div>    
+            </div>                     
+        <?php        
             }
+        }else {
+            echo "<br>Resultados encontrados: Ninguno";
         }
-            
-        
+    }
         ?>
         
+       
     </div>
     <!-- Page content ends here-->
     

@@ -93,8 +93,8 @@ $res = mysqli_query($link, $query);
                 </table>
             </div>
         </div>
-        <div class="card card-style">
-            <div class="content mb-2">
+        <div class="card card-style" >
+            <div class="content mb-2" style="padding: 10px;">
                 <h4>Usuarios verificados</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
@@ -115,8 +115,8 @@ $res = mysqli_query($link, $query);
                         <tr>
                             <th scope="row"><?php echo $row['name']?></th>
                             <td><i class='fa-sharp fa-solid fa-circle-check font-25 color-white'></td>
-                            <td><a href="_safeuserVerification.php?id=<?php echo $row['_idUser']?>" class="btn btn-m bg-success font-700 rounded">Verificar</a></td>
-                            <td><a href="_quitarVerification.php?id=<?php echo $row['_idUser']?>" name="bajar" class="btn btn-m bg-danger font-700 rounded">Degradar</a></td>
+                            <td><a href="_safeuserVerification.php?id=<?php echo $row['_idUser']?>"><i class="fa-solid fa-arrow-up font-20 color-green-dark"></i></a></td>
+                            <td><a href="_quitarVerification.php?id=<?php echo $row['_idUser']?>"><i class="fa-solid fa-arrow-down font-20 color-red-dark"></i></a></td>
                         </tr>
                         <?php
                         endwhile;
@@ -150,13 +150,10 @@ $res = mysqli_query($link, $query);
                         endwhile;
                         mysqli_close($link);
                         ?>
-
                     </tbody>
                 </table>
             </div>
         </div>
-    
-
         <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->

@@ -1,12 +1,12 @@
 <?php 
-
 session_start();
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['username']) && !($_SESSION['name'])){
     header("Location: _index.html");
 }
 require_once "_config.php";
 $conn = $link;
 $user = $_SESSION['username'];
+$name = $_SESSION['name'];
 
 ?>
 <!DOCTYPE HTML>
@@ -56,14 +56,32 @@ $user = $_SESSION['username'];
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
-    <div class="content mt-n3 mb-4">
-                <form method="POST">
-            <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
-                <i class="fa fa-search ms-1"></i>
-                <input type="text" name="username" class="border-0" data-menu="menu-success-2" placeholder="Ingresa el nombre de la persona, ejemplo 'John Doe'">
-            </div>   
-                </form>
+        <div class="content mt-n3 mb-4">
+            
         </div> 
+
+        <?php 
+        
+        $query = $conn->query("SELECT FORMAT(sum(amount),2) AS total FROM rewards");
+        $res = mysqli_fetch_array($query);
+        
+        ?>
+
+        <div class="card card-style mt-n3">
+            <div class="content mb-2 mt-3">
+                <div class="row mb-0">
+                    <div class="col-6 pe-1">
+                    <p class="font-600 color-highlight mb-0">Total Generado</p>
+                        <h2 class="color-brown-dark mb-0"><?php ?></h2>
+                    </div>
+                    <div class="col-6 ps-1">
+                        <h6 class="font-12 font-500">Cantidad</h6>
+                        <h2 class=" mb-0">$<?php echo $res['total']?></h2>
+                    </div>
+                    <div class="col-12 pb-3"></div>
+                </div>
+            </div>
+        </div>
              
         <?php 
         $user = '';
@@ -75,7 +93,7 @@ $user = $_SESSION['username'];
             $query = "SELECT * FROM users WHERE username = '$user' OR name = '$user'";
             $res = mysqli_query($link, $query);
             while($row = mysqli_fetch_array($res)){?>
-                <div class='card card-style'>            
+            <div class='card card-style'>            
                 <div class='d-flex content mb-1'>
                     <!-- left side of profile -->
                     <div class='flex-grow-1'>

@@ -9,6 +9,8 @@ $username = $_SESSION['username'];
 require_once "_config.php";
 $conn = $link;
 
+$fecha_actual = date("Y-m-d");
+
 $idevent = $_POST['idEvent'];
 $eventname = $_POST['eventName'];
 $description = $_POST['description'];
