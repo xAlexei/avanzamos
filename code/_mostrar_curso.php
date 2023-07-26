@@ -105,7 +105,7 @@ $id = $_GET['id'];
                 <h4 class='color-white'>Ups!</h4>
                 <strong class='alert-icon-text color-white'>La fecha limite para asistir ya expiro</strong>
                 <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-            </div>  ";
+            </div> ";
             }else{  
             ?>
             <form action="_inscribirse.php" method="POST">
@@ -115,7 +115,7 @@ $id = $_GET['id'];
             <input type="hidden" value="<?php echo $row['eventName'];?>" name="eventName">
             <input type="hidden" value="<?php echo $row['fecha']?>" name="fecha">            
             <button type="submit" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl" style="width: 92%;">
-                Inscribirse
+                Asistir
             </button>
         </form>
         <?php }?>

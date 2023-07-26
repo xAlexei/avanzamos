@@ -185,7 +185,7 @@ $name = $_SESSION['name'];
         <div class="divider divider-margins"></div>
         <div class="card card-style">
             <div class="content">
-                <h1 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
+                <h1 class="text-center font-20"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
             </div>
         </div>
         <?php

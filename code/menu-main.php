@@ -26,7 +26,7 @@ $row = mysqli_fetch_array($res);
                     }else if(($row['verification']) == 1){
                         echo "".$row['name']."<i class='fa fa-check-circle color-white font-18 mt-2 ms-3'></i>";
                     }else{
-                        echo "".$row['name']."<p>Usuario sin verificar</p>";
+                        echo "";
                     }                           
                 ?>    
         </p>

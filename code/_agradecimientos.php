@@ -66,15 +66,13 @@ $conn = $link;
             </div>   
                 </form>
         </div> 
-
         <?php 
         
         $aKeyword = explode(" ", $_POST['keyword'] ?? null);
         if(!isset($_POST['keyword'])){
             echo "";
         }else{
-        $query ="SELECT * FROM users WHERE name like '%" . $aKeyword[0] . "%' OR username like '%" . $aKeyword[0] . "%'";
-                
+        $query ="SELECT * FROM users WHERE name like '%" . $aKeyword[0] . "%' OR username like '%" . $aKeyword[0] . "%'";  
         ?>
         <?php 
              for($i = 1; $i < count($aKeyword); $i++) {
@@ -82,11 +80,14 @@ $conn = $link;
                     echo "";
                 }
              }
-
             $result = $conn->query($query);
             if(mysqli_num_rows($result) > 0) {
+                
             $row_count=0;
             While($row = $result->fetch_assoc()) {
+                $userId = $row['_idUser'];
+                
+                
             ?>
       <div class='card card-style'>            
                 <div class='d-flex content mb-1'>
@@ -119,18 +120,25 @@ $conn = $link;
                 <div class='content mb-0'>
                     <div class='row mb-0'>
                         <div class='col-6'>
-                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Cita Personal</a>
                         </div>
                         <div class='col-6'>
                             <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>                        
-                            <br></div>
+                    <br></div>
+                        <div class='col-6' style="width: 100%;">
+                            <a href='_calidadServicio.php?id=<?php echo $row['_idUser']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>CALIDAD DE SERVICIO</a>
+                        <br></div>
                     </div>
                </div>    
             </div>                     
         <?php        
             }
         }else {
-            echo "<br>Resultados encontrados: Ninguno";
+            echo " <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-yellow-dark' role='alert'>
+            <span><i class='fa fa-exclamation-triangle color-white'></i></span>
+            <strong class='color-white'>Lo sentimos, no encontramos resultados</strong>
+            <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+        </div>";
         }
     }
         ?>
