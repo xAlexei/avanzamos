@@ -8,6 +8,61 @@ if(!isset($_SESSION['username'])){
 }
 
 $user = $_SESSION['username'];
+$mesActual = date("m");
+$monthNum  = $mesActual;
+$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+$monthName = $dateObj->format('F'); 
+
+switch($monthName)
+{   
+    case "January":
+    $monthNameSpanish = "Enero";
+    break;
+
+    case "February":
+    $monthNameSpanish = "Febrero";
+    break;
+
+    case "March":
+    $monthNameSpanish = "Marzo";
+    break;
+
+    case "April":
+    $monthNameSpanish = "Abril";
+    break;
+
+    case "May":
+    $monthNameSpanish = "Mayo";
+    break;
+
+    case "June":
+    $monthNameSpanish = "Junio";
+    break;
+
+    case "July":
+    $monthNameSpanish = "Julio";
+    break;
+    
+    case "August":
+    $monthNameSpanish = "Agosto";
+    break;
+
+    case "September":
+    $monthNameSpanish = "Septiembre";
+    break;
+
+    case "October":
+    $monthNameSpanish = "Octubre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Noviembre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Diciembre";
+    break;
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -53,18 +108,18 @@ $user = $_SESSION['username'];
          <!-- USUARIOS CON MAS REUNIONES PERSONALES -->
          <div class="card card-style">
             <div class="content mb-2">
-                <h4>Usuarios que mas reuniones personales han concretado</h4>
+                <h4 class="text-center">Usuarios con mas reuniones personales en el mes de <?php echo $monthNameSpanish?></h4>
+                <div class="divider mt-3"></div>        
                 <div class="list-group list-custom-small list-menu ms-0 me-1">
                     <?php 
-                    $query = $conn->query("SELECT a.username, COUNT(*) AS num
-                    FROM personalmeetings AS a 
-                   GROUP BY a.username ORDER BY num desc");
+                    $query = $conn->query("SELECT username, COUNT(*) AS num FROM personalmeetings 
+                    WHERE MONTH(fecha) = $mesActual GROUP BY username ORDER BY num DESC");
                     while($row = mysqli_fetch_array($query)):
                     ?>
                     <a href="#">
                         <img src="images/avatars/2s.png">
-                        <span><?php echo $row['username']?></span>
-                        <p class="float-end">Total: <?php echo $row['num']?></p>
+                        <span class="font-20"><?php echo $row['username']?></span>
+                        <p class="float-end font-20">Total: <?php echo $row['num']?></p>
                     </a>    
                     <?php endwhile;?>    
                 </div>

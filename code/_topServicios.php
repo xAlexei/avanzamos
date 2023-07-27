@@ -8,7 +8,7 @@ require_once "_config.php";
 $conn = $link;
 
 $username = $_SESSION['username'];
-$userId = $_GET['id'];
+
 ?>
 
 <!DOCTYPE HTML>
@@ -20,7 +20,6 @@ $userId = $_GET['id'];
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
 <title>AppKit Mobile</title>
 <link rel="icon" type="image/png" href="uploads/avanzare.png">
-<link rel="preload" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,10 +27,6 @@ $userId = $_GET['id'];
 <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
 <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
 <style>
-
-
-
-
 
 </style>
 </head>
@@ -66,17 +61,28 @@ $userId = $_GET['id'];
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
-    <div class="page-content">    
+    <div class="page-content">
         <?php         
-        $consulta = $link->query("SELECT FORMAT(AVG(rating),1) AS averageRating FROM rating WHERE userId = '$userId'");
-        $result = mysqli_fetch_array($consulta);
-        $query = $link->query("SELECT * FROM users WHERE _idUser = '$userId'");
-        while($row = mysqli_fetch_array($query)):
+        $consulta = $link->query("SELECT
+        E.name as 'name',
+        E.companyName as 'companyName',
+        E.phone as 'phone',
+        E.verification as 'verification',
+        E.address as 'address',
+        E.username as 'username',
+        E.email as 'email',
+        D.userId as 'userId',
+        FORMAT (AVG(D.rating),1) as 'averageRating' 
+        FROM users E
+        JOIN rating D
+        ON E._idUser = D.userId GROUP BY E.username ORDER BY averageRating DESC LIMIT 3");
+        while($row = mysqli_fetch_array($consulta)):
+            $averageRating = $row['averageRating'];
         ?>
         <div class="card card-style">
             <div class="content">
-                <h1 class="mb-n2 font-22 font-800"><?php echo $row['name']?></h1>
-                <h1 class="float-end font-900 font-40 mt-n3"><?php echo $result['averageRating'];?></h1>
+                <h1 class="mb-n2 font-22 font-800"><?php echo $row['name'];?></h1>
+                <h1 class="float-end font-900 font-40 mt-n3"><?php echo $row['averageRating'];?></h1>
                 <?php 
                 if($row['verification'] == 2){
                 ?>
@@ -90,9 +96,9 @@ $userId = $_GET['id'];
                     <h5 class="col-6">Calidad de Servicio</h5> 
                     <?php 
                 
-                $query = $link->query("SELECT FORMAT(AVG(rating),1) AS averageRating FROM rating WHERE userId = '$userId'");
+                $query = $link->query("SELECT FORMAT(AVG(rating),1) AS averageRating FROM rating GROUP BY userId");
                 $row = mysqli_fetch_array($query);
-                if($row['averageRating'] >= 5){
+                if($averageRating >= 5){
                     echo "
                     <p class='col-6 mb-3 text-end'>
                         <i class='fa fa-star color-yellow-dark'></i>
@@ -101,7 +107,7 @@ $userId = $_GET['id'];
                         <i class='fa fa-star color-yellow-dark'></i>
                         <i class='fa fa-star color-yellow-dark'></i>
                     </p>"; 
-                }else if($row['averageRating'] >= 4){
+                }else if($averageRating >= 4){
                     echo "
                     <p class='col-6 mb-3 text-end'>
                         <i class='fa fa-star color-yellow-dark'></i>
@@ -110,7 +116,7 @@ $userId = $_GET['id'];
                         <i class='fa fa-star color-yellow-dark'></i>
                         <i class='fa fa-star color-gray-dark'></i>
                     </p>"; 
-                }else if($row['averageRating'] >=3 ){
+                }else if($averageRating >=3 ){
                     echo "
                     <p class='col-6 mb-3 text-end'>
                         <i class='fa fa-star color-yellow-dark'></i>
@@ -119,7 +125,7 @@ $userId = $_GET['id'];
                         <i class='fa fa-star color-gray-dark'></i>
                         <i class='fa fa-star color-gray-dark'></i>
                     </p>"; 
-                }else if($row['averageRating'] >=2 ){
+                }else if($averageRating >=2 ){
                     echo "
                     <p class='col-6 mb-3 text-end'>
                         <i class='fa fa-star color-yellow-dark'></i>
@@ -128,7 +134,7 @@ $userId = $_GET['id'];
                         <i class='fa fa-star color-gray-dark'></i>
                         <i class='fa fa-star color-gray-dark'></i>
                     </p>"; 
-                }else if($row['averageRating'] >=1){
+                }else if($averageRating>=1){
                     echo "
                     <p class='col-6 mb-3 text-end'>
                         <i class='fa fa-star color-yellow-dark'></i>
@@ -153,65 +159,7 @@ $userId = $_GET['id'];
         </div>
         <?php endwhile; ?>
         <!--  -->    
-        <div class="card card-style">
-            <div class="content">
-                <h5>Calidad del servicio</h5>
-                <form method="POST">
-                <select name="rating" class="form-select form-style rounded">
-                    <option class="bg-dark" value="1">Malo</option>
-                    <option class="bg-dark" value="2">Regular</option>
-                    <option class="bg-dark" value="3">Bueno</option>
-                    <option class="bg-dark" value="4">Muy Bueno</option>
-                    <option class="bg-dark" value="5">Excelente</option>
-                </select>    
-                <input type="hidden" value="<?php echo $userId;?>">
-                <br><button type="submit" class="btn btn-m rounded border-yellow-dark" style="width: 100%;">
-                    Calificar
-                </button>
-                </form>                
-            </div>
-            <?php 
-    
-    $rating = $_POST['rating'] ?? null;
-    if(!isset($_POST['rating'])){
-        echo "";
-    }else{
-        $query = $link->query("SELECT * FROM rating WHERE userId = '$userId' AND username = '$username'");
-        $row = mysqli_num_rows($query);
-        if($row > 0){
-            echo "
-            <div class='ms-3 me-3 mb-5 alert alert-small rounded-s shadow-xl bg-red-dark' role='alert'>
-                    <span><i class='fa fa-times color-white'></i></span>
-                    <strong class='color-white'>No puedes calificar dos veces</strong>
-                    <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-                </div>
-            ";
-        }else{
-            $query = $link->query("INSERT INTO rating (userId, rating, username) VALUES ($userId, $rating, '$username')");
-            if($query == TRUE){
-                echo "
-                <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
-                <span><i class='fa fa-check color-white'></i></span>
-                <strong class='color-white'>Everything's okay here!</strong>
-                <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-            </div> 
-                ";
-            }else{
-                echo "
-                <div class='ms-3 me-3 mb-5 alert alert-small rounded-s shadow-xl bg-red-dark' role='alert'>
-                        <span><i class='fa fa-times color-white'></i></span>
-                        <strong class='color-white'>We have a problem here</strong>
-                        <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-                    </div>
-                ";
-            }
-        }
-    }
-    
-    ?>
-        </div>
-    
-        </div>
+        
     </div>
    
     <!-- Page content ends here-->

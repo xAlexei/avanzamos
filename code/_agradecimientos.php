@@ -7,6 +7,8 @@ if(!isset($_SESSION['username'])){
 
 require_once "_config.php";
 $conn = $link;
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -28,8 +30,7 @@ $conn = $link;
     
 <body class="theme-light">
     
-<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
-    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>    
 <div id="page">
     
     <div class="header header-fixed header-logo-center header-auto-show">
@@ -71,10 +72,8 @@ $conn = $link;
         $aKeyword = explode(" ", $_POST['keyword'] ?? null);
         if(!isset($_POST['keyword'])){
             echo "";
-        }else{
+        }else{        
         $query ="SELECT * FROM users WHERE name like '%" . $aKeyword[0] . "%' OR username like '%" . $aKeyword[0] . "%'";  
-        ?>
-        <?php 
              for($i = 1; $i < count($aKeyword); $i++) {
                 if(!empty($aKeyword[$i])) {
                     echo "";
@@ -86,7 +85,7 @@ $conn = $link;
             $row_count=0;
             While($row = $result->fetch_assoc()) {
                 $userId = $row['_idUser'];
-                
+                $consulta = $link->query("SELECT FORMAT(AVG(rating),1) AS averageRating FROM rating WHERE userId = '$userId'");
                 
             ?>
       <div class='card card-style'>            

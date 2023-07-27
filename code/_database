@@ -81,6 +81,7 @@ CREATE TABLE rewards(
     id INT AUTO_INCREMENT NOT NULL, 
     username VARCHAR (255),
     amount INT DEFAULT 0,
+    fecha date,
     PRIMARY KEY (id)
 )
 

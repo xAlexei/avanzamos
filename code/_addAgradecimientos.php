@@ -9,12 +9,11 @@ $name = $_GET['name'];
 require_once "_config.php";
 
 $conn = $link;
+$fecha = date("Y-m-d");
 
 
 
 ?>
-
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -34,6 +33,7 @@ $conn = $link;
     
 <body class="theme-light">
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
 <div id="page">
     <div class="header header-fixed header-logo-center header-auto-show">
         <a href="index.html" class="header-title">Inputs</a>
@@ -64,7 +64,8 @@ $conn = $link;
         <div class="card card-style">
             <div class="content mb-0">        
                 <h3 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>Agredece a tus compañero <?php echo $name?></h3>        
-                <br><form method="POST">                 
+                <br><form method="POST">        
+                <input type="hidden" name="fecha" value="<?php echo $fecha;?>">
                 <!-- Usuario para agradacer -->
                 <div class="input-style has-borders no-icon mb-4">
                     <input type="hidden" value="<?php echo $name;?>" class="form-control validate-text" name="username" required>
@@ -87,8 +88,9 @@ $conn = $link;
        if(isset($_POST['submit'])){
         $username = $_POST['username'];
         $amount = $_POST['amount'];
+        $fecha_actual = $_POST['fecha'];
         
-        $query = "INSERT INTO rewards (username, amount) VALUES ('$username', $amount) ON DUPLICATE KEY UPDATE amount = (amount + $amount)";
+        $query = "INSERT IGNORE rewards (username, amount, fecha) VALUES ('$username', $amount, '$fecha_actual')";
         $result = $link->query($query);
         if($result){
             echo "

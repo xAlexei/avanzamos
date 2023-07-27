@@ -4,9 +4,66 @@ if(!isset($_SESSION['username']) && !($_SESSION['name'])){
     header("Location: _index.html");
 }
 require_once "_config.php";
+date_default_timezone_set('America/Mexico_City');
 $conn = $link;
 $user = $_SESSION['username'];
 $name = $_SESSION['name'];
+
+$mesActual = date("m");
+$monthNum  = $mesActual;
+$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+$monthName = $dateObj->format('F'); 
+
+switch($monthName)
+{   
+    case "January":
+    $monthNameSpanish = "Enero";
+    break;
+
+    case "February":
+    $monthNameSpanish = "Febrero";
+    break;
+
+    case "March":
+    $monthNameSpanish = "Marzo";
+    break;
+
+    case "April":
+    $monthNameSpanish = "Abril";
+    break;
+
+    case "May":
+    $monthNameSpanish = "Mayo";
+    break;
+
+    case "June":
+    $monthNameSpanish = "Junio";
+    break;
+
+    case "July":
+    $monthNameSpanish = "Julio";
+    break;
+    
+    case "August":
+    $monthNameSpanish = "Agosto";
+    break;
+
+    case "September":
+    $monthNameSpanish = "Septiembre";
+    break;
+
+    case "October":
+    $monthNameSpanish = "Octubre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Noviembre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Diciembre";
+    break;
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -61,17 +118,14 @@ $name = $_SESSION['name'];
         </div> 
 
         <?php 
-        
-        $query = $conn->query("SELECT FORMAT(sum(amount),2) AS total FROM rewards");
+        $query = $conn->query("SELECT FORMAT(sum(amount),2) AS total FROM rewards WHERE MONTH(fecha) = '$mesActual'");
         $res = mysqli_fetch_array($query);
-        
         ?>
-
         <div class="card card-style mt-n3">
             <div class="content mb-2 mt-3">
                 <div class="row mb-0">
                     <div class="col-6 pe-1">
-                    <p class="font-600 color-highlight mb-0">Total Generado</p>
+                    <p class="font-600 font-15 color-highlight mb-0">Total Generado <?php echo $monthNameSpanish?></p>
                         <h2 class="color-brown-dark mb-0"><?php ?></h2>
                     </div>
                     <div class="col-6 ps-1">

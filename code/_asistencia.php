@@ -84,8 +84,8 @@ $conn = $link;
                                 <th scope="row">'.$row['username'].' </th>			
                                 <td>
                                     <select class="form-select" name="asist['.$row['id'].']">
-                                        <option value="0"> Si </option>
-                                        <option value="1"> No </option>
+                                        <option class="bg-dark" value="0"> Si </option>
+                                        <option class="bg-dark" value="1"> No </option>
                                     </select>
                                 </td>';
                                 if($row['asistencia'] == 1){
