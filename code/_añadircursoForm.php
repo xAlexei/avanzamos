@@ -90,7 +90,7 @@ if(!isset($_SESSION['username'])){
     <!-- Page content ends here-->
     
     <!-- Main Menu--> 
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280"></div>
     
     
 </div>

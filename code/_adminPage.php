@@ -101,9 +101,9 @@ $user = $_SESSION['username'];
      </div>
     <!-- Page content ends here-->
 
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280"></div>    
-</div>
+    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>    
 
+    
 <!-- Menu de confirmacion -->
 <div id="menu-option-1" 
          class="menu menu-box-modal rounded-m" 
@@ -154,6 +154,8 @@ $user = $_SESSION['username'];
             </div>
         </div>
     </div>
+</div>
+
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
