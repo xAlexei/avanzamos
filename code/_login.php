@@ -35,6 +35,5 @@ if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
 
 }
 
-
 $conn->close();
 ?>
