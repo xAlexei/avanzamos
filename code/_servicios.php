@@ -1,12 +1,69 @@
 <?php 
-
 session_start();
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['username']) && !($_SESSION['name'])){
     header("Location: _index.html");
 }
 require_once "_config.php";
+date_default_timezone_set('America/Mexico_City');
 $conn = $link;
 $user = $_SESSION['username'];
+$name = $_SESSION['name'];
+
+$mesActual = date("m");
+$monthNum  = $mesActual;
+$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+$monthName = $dateObj->format('F'); 
+
+switch($monthName)
+{   
+    case "January":
+    $monthNameSpanish = "Enero";
+    break;
+
+    case "February":
+    $monthNameSpanish = "Febrero";
+    break;
+
+    case "March":
+    $monthNameSpanish = "Marzo";
+    break;
+
+    case "April":
+    $monthNameSpanish = "Abril";
+    break;
+
+    case "May":
+    $monthNameSpanish = "Mayo";
+    break;
+
+    case "June":
+    $monthNameSpanish = "Junio";
+    break;
+
+    case "July":
+    $monthNameSpanish = "Julio";
+    break;
+    
+    case "August":
+    $monthNameSpanish = "Agosto";
+    break;
+
+    case "September":
+    $monthNameSpanish = "Septiembre";
+    break;
+
+    case "October":
+    $monthNameSpanish = "Octubre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Noviembre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Diciembre";
+    break;
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -56,16 +113,84 @@ $user = $_SESSION['username'];
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
     </div>
     <div class="page-title-clear"></div>
-    <div class="content mt-n3 mb-4">
-            <div class="search-box search-dark shadow-m border-0 mt-4 bg-theme rounded-m bottom-0">
-                <form method="POST">  
-                        <i class="fa fa-search ms-1"></i>
-                    <input type="text" name ="searcher" class="border-0" placeholder="Buscar compañeros">
-                </form>
-            </div>   
-        </div>
+        <div class="content mt-n3 mb-4">
+            
+        </div> 
 
-   
+        <?php 
+        $query = $conn->query("SELECT FORMAT(sum(amount),2) AS total FROM rewards WHERE MONTH(fecha) = '$mesActual'");
+        $res = mysqli_fetch_array($query);
+        ?>
+        <div class="card card-style mt-n3">
+            <div class="content mb-2 mt-3">
+                <div class="row mb-0">
+                    <div class="col-6 pe-1">
+                    <p class="font-600 font-15 color-highlight mb-0">Total Generado <?php echo $monthNameSpanish?></p>
+                        <h2 class="color-brown-dark mb-0"><?php ?></h2>
+                    </div>
+                    <div class="col-6 ps-1">
+                        <h6 class="font-12 font-500">Cantidad</h6>
+                        <h2 class=" mb-0">$<?php echo $res['total']?></h2>
+                    </div>
+                    <div class="col-12 pb-3"></div>
+                </div>
+            </div>
+        </div>
+             
+        <?php 
+        $user = '';
+
+        if(!isset($_POST['username'])){
+            echo "";
+        }else if($_POST['username']){
+            $user = $_POST['username'];
+            $query = "SELECT * FROM users WHERE username = '$user' OR name = '$user'";
+            $res = mysqli_query($link, $query);
+            while($row = mysqli_fetch_array($res)){?>
+            <div class='card card-style'>            
+                <div class='d-flex content mb-1'>
+                    <!-- left side of profile -->
+                    <div class='flex-grow-1'>
+                        <h2>
+                            <?php if(($row['verification']) == 2){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-green-dark font-18 mt-2 ms-3'></i>";
+                            }else if(($row['verification']) == 1){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-white font-18 mt-2 ms-3'></i>";
+                            }else{
+                                echo "".$row['name']."<p>Usuario sin verificar</p>";
+                            }                           
+                            ?>
+                        </h2>
+                        <p class='font-900 font-14 mb-3'>
+                           <br>Nombre de la Compañia: <?php echo $row['companyName']?>
+                           <br>Email: <?php echo $row['email']?>
+                           <br>Télefono: <a href="#"> <?php echo $row['phone']?></a>
+                           <br>Direccion: <?php echo $row['address']?>
+                        </p>
+                        <p class="font-10">
+                        <p class="mb-0"><?php echo $row['description']?></p>
+                        </p>
+                    </div>
+                    <!-- right side of profile. increase image width to increase column size-->
+                    <img src='images/avatars/2s.png' width='115' height='103' class='rounded-circle mt-3 shadow-xl'>
+                </div>
+                <!-- follow buttons-->
+                <div class='content mb-0'>
+                    <div class='row mb-0'>
+                        <div class='col-6'>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>Agendar cita</a>
+                        </div>
+                        <div class='col-6'>
+                            <a href='_addAgradecimientos.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 color-bg-yellow-dark border-yellow-dark'>Agradecimiento</a>
+                        
+                            <br></div>
+                    </div>
+               <br></div>               
+        <?php
+            }
+        }
+        ?>
+    <div class="divider divider-margins"></div>
 
     <div class="page-content">
     
@@ -79,14 +204,13 @@ $user = $_SESSION['username'];
                      OUI Restaurante Bar</a></p>
             </div>
         </div>
+        <div class="divider divider-margins"></div>
         <!-- Reuniones Avanzamos -->
         <div class="card card-style">
             <div class="content">
                 <h1 class="text-center">EVENTOS DESTACADOS </h1>      
             </div>
         </div>
-          
-        
         <!-- EVENTOS DESTACADOS -->
         <?php 
         $query = "SELECT * FROM specialEvents";
@@ -115,10 +239,9 @@ $user = $_SESSION['username'];
         <div class="divider divider-margins"></div>
         <div class="card card-style">
             <div class="content">
-                <h1 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
+                <h1 class="text-center font-20"><i class="fa-solid fa-star color-yellow-dark"></i>USUARIOS DESTACADOS <i class="fa-solid fa-star color-yellow-dark"></i></h1>      
             </div>
         </div>
-        
         <?php
         $query = "SELECT * FROM rewards ORDER BY amount DESC LIMIT 3";
         $res = mysqli_query($link, $query);
@@ -147,21 +270,13 @@ $user = $_SESSION['username'];
 				width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
 				referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-       
-        <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
-    
     <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>  
-
- 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
-    
     <!-- Colors Menu-->
-    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
-     
-    
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>    
 </div>
 
 <script type="text/javascript" src="scripts/bootstrap.min.js"></script>

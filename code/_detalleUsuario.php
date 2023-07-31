@@ -5,15 +5,10 @@ if(!isset($_SESSION['username'])){
     header("Location: _index.html");
 }
 
-$name = $_GET['name'];
 require_once "_config.php";
-
 $conn = $link;
-$fecha = date("Y-m-d");
-
-
-
 ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -21,7 +16,7 @@ $fecha = date("Y-m-d");
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>Añadir Evento</title>
+<title>Agradecimientos</title>
 <link rel="icon" type="image/png" href="uploads/avanzare.png">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -32,11 +27,13 @@ $fecha = date("Y-m-d");
 </head>
     
 <body class="theme-light">
+    
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
-
+    
 <div id="page">
+    
     <div class="header header-fixed header-logo-center header-auto-show">
-        <a href="index.html" class="header-title">Inputs</a>
+        <a href="index.html" class="header-title">Store</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
@@ -44,15 +41,15 @@ $fecha = date("Y-m-d");
     </div>
 
     <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
-        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
-        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
-        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
+        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>Features</span></a>
+        <a href="index-pages.html" class="active-nav"><i class="fa fa-file"></i><span>Pages</span></a>
+        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
         <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
     </div>
-
+    
     <div class="page-title page-title-fixed">
-        <h1>Agendar reunion</h1>
+        <h1>Perfil</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -61,57 +58,55 @@ $fecha = date("Y-m-d");
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-        <div class="card card-style">
-            <div class="content mb-0">        
-                <h3 class="text-center"><i class="fa-solid fa-star color-yellow-dark"></i>Agredece a tus compañero <?php echo $name?></h3>        
-                <br><form method="POST">        
-                <input type="hidden" name="fecha" value="<?php echo $fecha;?>">
-                <!-- Usuario para agradacer -->
-                <div class="input-style has-borders no-icon mb-4">
-                    <input type="hidden" value="<?php echo $name;?>" class="form-control validate-text" name="username" required>
-                </div>
-                <!-- Cantidad generada -->
-                <div class="input-style has-borders no-icon mb-4">
-                    <input type="text" class="form-control validate-text" id="amount" name="amount" placeholder="¿Qué cantidad te ayudo a generar esta persona?" required>
-                    <label for="" class="for">Cantidad</label>
-                </div>
-                <div class="input-style">
-                <button name="submit" type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">
-                        AGRADACER
-                </button>
-                </div>
-            </form>
-            </div>
-        </div>
         <?php 
-       
-       if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $amount = $_POST['amount'];
-        $fecha_actual = $_POST['fecha'];
-        
-        $query = "INSERT IGNORE rewards (username, amount, fecha) VALUES ('$username', $amount, '$fecha_actual')";
-        $result = $link->query($query);
-        if($result){
-            echo "
-            <div class='ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark' role='alert'>
-                <span><i class='fa fa-check color-white'></i></span>
-                <strong class='color-white'>Gracias por tu agradecimiento!</strong>
-                <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
-            </div> ";
-        }
-
-       }
-       
-         
+            $id = $_GET['id'];
+            $query = "SELECT * FROM users WHERE _idUser = '$id'";
+            $res = mysqli_query($link, $query);
+            while($row = mysqli_fetch_array($res)):?>
+                <div class='card card-style'>            
+                <div class='d-flex content mb-1'>
+                    <!-- left side of profile -->
+                    <div class='flex-grow-1'>
+                        <h2>
+                            <?php if(($row['verification']) == 2){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-green-dark font-18 mt-2 ms-3'></i>";
+                            }else if(($row['verification']) == 1){
+                                echo "".$row['name']."<i class='fa fa-check-circle color-white font-18 mt-2 ms-3'></i>";
+                            }else{
+                                echo "".$row['name']."<p>Usuario sin verificar</p>";
+                            }                           
+                            ?>
+                        </h2>
+                        <p class='font-900 font-14 mb-3'>
+                           <br>Nombre de la Compañia: <?php echo $row['companyName']?>
+                           <br>Email: <?php echo $row['email']?>
+                           <br>Télefono: <a href="#"> <?php echo $row['phone']?></a>
+                           <br>Direccion: <?php echo $row['address']?>
+                        </p>
+                        <p class="font-10">
+                        <p class="mb-0"><?php echo $row['description']?></p>
+                        </p>
+                    </div>
+                    <!-- right side of profile. increase image width to increase column size-->
+                    <img src='images/avatars/2s.png' width='115' height='103' class='rounded-circle mt-3 shadow-xl'>
+                </div>
+                <!-- follow buttons-->
+                <div class='content mb-0'>
+                    <div class='row mb-0'>
+                        <div class='col-6'>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
+                        </div>
+                    </div>
+            <br></div>               
+        <?php       
+        endwhile;
         ?>
-       
-      
+        
     </div>
     <!-- Page content ends here-->
     
     <!-- Main Menu--> 
-    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-components"></div>
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>
     
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  

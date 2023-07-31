@@ -1,13 +1,14 @@
 <?php 
 
 session_start();
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['username']) && !($_SESSION['name'])){
     header("Location: _index.html");
 }
-
-$username = $_SESSION['username'];
+require_once "_config.php";
+$conn = $link;
+$user = $_SESSION['username'];
+$name = $_SESSION['name'];
 $person = $_GET['name'];
-
 ?>
 
 <!DOCTYPE HTML>
@@ -61,7 +62,7 @@ $person = $_GET['name'];
                 <h3>Ingresa los datos del evento</h3>        
                 <!-- Usuario que agendo la cita -->
                 <br><form action="_addReunion.php" method="POST">
-                <input type="hidden" class="form-control validate-name" name="userName" value="<?php echo $username;?>">
+                <input type="hidden" class="form-control validate-name" name="userName" value="<?php echo $name;?>">
                 <!-- Persona con la que se agendo la cita -->
                 <input type="hidden" class="form-control validate-text" name="person" value="<?php echo $person;?>">                   
                 <!--Descripcion del evento -->

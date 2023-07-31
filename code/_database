@@ -29,22 +29,12 @@ CREATE TABLE specialEvents(
 CREATE TABLE events (
     _idEvent INT AUTO_INCREMENT,
     eventName VARCHAR (255), 
-    price VARCHAR (255),
     description VARCHAR (255), 
-    category VARCHAR (255), 
     ubication VARCHAR (255), 
     fecha date, 
     active INT DEFAULT 1,
+    hora time DEFAULT "12:00:00",
     PRIMARY KEY (_idEvent)
-)
-
-CREATE TABLE participation (
-    _id INT AUTO_INCREMENT NOT NULL,
-    eventName VARCHAR (255),
-    username VARCHAR (255),
-    ubication VARCHAR (255),
-    fecha date,
-    PRIMARY KEY (_id)
 )
 
 CREATE TABLE asistencia (
@@ -75,6 +65,8 @@ CREATE TABLE personalMeetings (
     userName VARCHAR (255),
     person VARCHAR (255), 
     description VARCHAR (255),
+    fecha date,
+    active INT DEFAULT 1,
     PRIMARY KEY (id)
 )
 
@@ -82,6 +74,7 @@ CREATE TABLE rewards(
     id INT AUTO_INCREMENT NOT NULL, 
     username VARCHAR (255),
     amount INT DEFAULT 0,
+    fecha date,
     PRIMARY KEY (id)
 )
 

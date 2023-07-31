@@ -5,10 +5,6 @@ if(!isset($_SESSION['username'])){
     header("Location: _index.html");
 }
 
-date_default_timezone_set('America/Mexico_City');
-$fechaActual = date("Y-m-d");
-
-
 $user = $_SESSION['username'];
 require_once "_config.php";
 $conn = $link;
@@ -85,18 +81,33 @@ $id = $_GET['id'];
         <div class="card card-style">            
             <div class="content">
             <h1><?php echo $row['eventName']?></h1>
-                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha']?></p>
+                <p class="font-600 color-highlight mb-n1">FECHA: <?php echo $row['fecha']?> <span>Hora limite de inscripción <?php echo $row['hora']?></span></p>
                 <h1 class="font-30 font-800"></h1>
                 <p class="font-900 font-14 mb-3">
                     Expositor: Israel
                 </p>
                 <p class="font-14 mb-3"> <?php echo $row['description'];?></p>
-                <p class="opacity-80">
-                    <i class="fa icon-30 text-center fa-star pe-2"></i>Categoria: <?php echo $row['category'];?><br>
-                    <i class="fa icon-30 text-center fa-tag pe-2"></i>$<?php echo $row['price'];?> <br>
+                <p class="opacity-80">                                        
                     <i class="fa icon-30 text-center fa-map-marker  pe-2"></i>Lugar: <?php echo $row['ubication'];?>
                 </p>
             </div>
+            <?php 
+
+            date_default_timezone_set('America/Mexico_City');            
+            $horaActual = strtotime(date("h:i:s"));
+            $hora_reunion = $row['hora'];
+            $fecha_actual = date("Y-m-d");
+            $fecha_reunion = $row['fecha'];
+
+            if($fecha_actual >= $fecha_reunion && $horaActual > $hora_reunion){
+                echo "<div class='alert me-3 ms-3 rounded-s bg-red-dark ' role='alert'>
+                <span class='alert-icon color-white'><i class='fa fa-times-circle font-18'></i></span>
+                <h4 class='color-white'>Ups!</h4>
+                <strong class='alert-icon-text color-white'>La fecha limite para asistir ya expiro</strong>
+                <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
+            </div> ";
+            }else{  
+            ?>
             <form action="_inscribirse.php" method="POST">
             <input type="hidden" value="<?php echo $row['_idEvent'];?>" name="idEvent">
             <input type="hidden" value="<?php echo $row['description']?>" name="description">
@@ -104,9 +115,11 @@ $id = $_GET['id'];
             <input type="hidden" value="<?php echo $row['eventName'];?>" name="eventName">
             <input type="hidden" value="<?php echo $row['fecha']?>" name="fecha">            
             <button type="submit" class="btn btn-full btn-margins rounded-sm color-black bg-white font-14 font-600 btn-xl" style="width: 92%;">
-                Inscribirse
+                Asistir
             </button>
         </form>
+        <?php }?>
+            
         </div>
         
         <?php endwhile; ?>

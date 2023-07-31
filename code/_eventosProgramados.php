@@ -79,12 +79,12 @@ $conn = $link;
                     </thead>
                     <tbody>
                         <?php                         
-                        $query = "SELECT _idEvent, eventName, fecha FROM events ORDER BY fecha DESC";
+                        $query = "SELECT _idEvent, eventName, fecha FROM events WHERE active = 1 ORDER BY fecha DESC";
                         $res = mysqli_query($link, $query);
                         while($row = mysqli_fetch_array($res)):
                         ?>
                         <tr>
-                            <th scope="row"><?php echo $row['eventName']?></th>
+                            <th scope="row"><?php echo $row['eventName']?><br><?php echo $row['fecha']?></th>
                             <td><a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a></td>
                             <td><a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a></td>
                             
@@ -92,18 +92,17 @@ $conn = $link;
                         <?php
                         endwhile;
                         ?>
-
                     </tbody>
                 </table>
             </div>
         </div>
         
-        <div data-menu-load="menu-footer.html"></div>
+        
     </div>
     <!-- Page content ends here-->
 
     <!-- Main Menu-->
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>
 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>

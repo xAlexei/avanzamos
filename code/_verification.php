@@ -63,13 +63,6 @@ $res = mysqli_query($link, $query);
     <div class="page-title-clear"></div>
 
     <div class="page-content">
-
-
-        <div class="card card-style">
-            <p class="content">
-                Aqui se muestran los eventos programados ordenados por fecha.
-            </p>
-        </div>
         <div class="card card-style">
             <div class="content mb-2">
                 <h4>Usuarios MAS CONFIABLES</h4>
@@ -78,8 +71,7 @@ $res = mysqli_query($link, $query);
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Usuario</th>
                             <th scope="col" class="color-white py-3 font-14">Nivel de verificacion</th>
-                            <th scope="col" class="color-white py-3 font-14">Bajar nivel</th>
-                            
+                            <th scope="col" class="color-white py-3 font-14">Bajar nivel</th>                            
                         </tr>
                     </thead>
                     <tbody>
@@ -101,8 +93,8 @@ $res = mysqli_query($link, $query);
                 </table>
             </div>
         </div>
-        <div class="card card-style">
-            <div class="content mb-2">
+        <div class="card card-style" >
+            <div class="content mb-2" style="padding: 10px;">
                 <h4>Usuarios verificados</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
@@ -123,8 +115,8 @@ $res = mysqli_query($link, $query);
                         <tr>
                             <th scope="row"><?php echo $row['name']?></th>
                             <td><i class='fa-sharp fa-solid fa-circle-check font-25 color-white'></td>
-                            <td><a href="_safeuserVerification.php?id=<?php echo $row['_idUser']?>" class="btn btn-m bg-success font-700 rounded">Verificar</a></td>
-                            <td><a href="_quitarVerification.php?id=<?php echo $row['_idUser']?>" name="bajar" class="btn btn-m bg-danger font-700 rounded">Degradar</a></td>
+                            <td><a href="_safeuserVerification.php?id=<?php echo $row['_idUser']?>"><i class="fa-solid fa-arrow-up font-20 color-green-dark"></i></a></td>
+                            <td><a href="_quitarVerification.php?id=<?php echo $row['_idUser']?>"><i class="fa-solid fa-arrow-down font-20 color-red-dark"></i></a></td>
                         </tr>
                         <?php
                         endwhile;
@@ -158,19 +150,16 @@ $res = mysqli_query($link, $query);
                         endwhile;
                         mysqli_close($link);
                         ?>
-
                     </tbody>
                 </table>
             </div>
         </div>
-    
-
         <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
 
     <!-- Main Menu-->
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html" ></div>
 
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>

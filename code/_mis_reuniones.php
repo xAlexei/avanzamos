@@ -74,7 +74,7 @@ $username = $_SESSION['username'];
         $fila = mysqli_fetch_array($result);
         $name = $fila['name'];
 
-        $query = "SELECT * FROM personalmeetings WHERE userName = '$username' OR person = '$name' ORDER BY fecha ASC";
+        $query = "SELECT * FROM personalmeetings WHERE userName = '$username' AND active = 1 OR person = '$name' AND active = 1 ORDER BY fecha ASC";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
         
@@ -88,12 +88,15 @@ $username = $_SESSION['username'];
                 </p>
                 <p class="font-14 mb-3">Tema a tratar en la reunion: <?php echo $row['description'];?></p>
                 <p class="opacity-80">
-                    <a href="_cancelarReunion.php?idmeeting=<?php echo $row['id']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar reunion </a>
-                    <a href="_cancelarReunion.php?idmeeting=<?php echo $row['id']?>" class="btn btn-m btn-success font-700 rounded"> Concluir reunion </a>
+                <a href="_endpersonalMeet.php?idmeeting=<?php echo $row['id']?>" class="btn btn-m btn-success font-700 rounded"> Concluir reunion </a>    
+                <a href="_cancelarReunion.php?idmeeting=<?php echo $row['id']?>" class="btn btn-m btn-danger font-700 rounded"> Cancelar reunion </a>
+                    
                 </p>
             </div>
         </div>
-        <?php endwhile; ?>
+        <?php endwhile; 
+        mysqli_close($link);
+        ?>
     </div>
     <!-- Page content ends here-->
     

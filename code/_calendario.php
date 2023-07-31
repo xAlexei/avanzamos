@@ -67,16 +67,14 @@ if (!isset($_SESSION["username"])) {
         require_once "_config.php";
         $conn = $link;
 
-        $query = "SELECT * FROM events";
+        $query = "SELECT * FROM events WHERE active = 1";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
 
         ?>
         <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
-                <div class="card-center text-center">
-                    <h1 class="font-25 text-uppercase font-900 opacity-30">COSTO</h1>
-                    <h1 class="font-18 font-900">$ <?php echo $row['price'];?>MXN</h1>
+                <div class="card-center text-center">                    
                     <a style="margin-top: 30px;" href="_mostrar_curso.php?id=<?php echo $row['_idEvent']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
                 </div>
             </div>
@@ -85,7 +83,6 @@ if (!isset($_SESSION["username"])) {
                     <h1 class="color-white"> <?php echo $row['eventName']?>: <?php echo $row['fecha']; ?> </h1>
                     <p class="color-white mb-0"><?php echo $row['description'] ?> </p>
                     <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
-                    <p class="color-white mb-0"><i class="fa fa-bars color-white pe-4 icon-30"></i><?php echo $row['category']?></p>
                     
                 </div>
             </div>
