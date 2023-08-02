@@ -11,17 +11,17 @@ $añoActual = date("Y");
 require_once "_config.php";
 $conn = $link;
 $sql = "SELECT MONTH(fecha) as Mes, sum(amount) AS total FROM rewards WHERE MONTH(fecha) = $mesActual";
-$query = $conn->query($sql); // Ejecutar la consulta SQL
-$data = array(); // Array donde vamos a guardar los datos
-while($r = $query->fetch_object()){ // Recorrer los resultados de Ejecutar la consulta SQL
-    $data[]=$r; // Guardar los resultados en la variable $data
+$query = $conn->query($sql); 
+$data = array(); 
+while($r = $query->fetch_object()){ 
+    $data[]=$r; 
 }
 
 $stmt = "SELECT MONTH(fecha) AS mes, SUM(amount) AS totalMes FROM rewards WHERE YEAR(fecha) = $añoActual GROUP BY MONTH(fecha)";
-$consult = $conn->query($stmt); // Ejecutar la consulta SQL
-$array = array(); // Array donde vamos a guardar los datos
-while($row = $consult->fetch_object()){ // Recorrer los resultados de Ejecutar la consulta SQL
-    $array[]=$row; // Guardar los resultados en la variable $data
+$consult = $conn->query($stmt);
+$array = array();
+while($row = $consult->fetch_object()){ 
+    $array[]=$row; 
 }
 
 $mesActual = date("m");
@@ -75,7 +75,7 @@ switch($monthName)
     $monthNameSpanish = "Noviembre";
     break;
 
-    case "November":
+    case "Diciembre":
     $monthNameSpanish = "Diciembre";
     break;
 }
@@ -134,8 +134,12 @@ switch($monthName)
     <div class="page-title-clear"></div>
         
     <div class="page-content">
-  
-        <div>
+            <div class="card card-style">
+                <div class="content">
+                    <button class="btn btn-m rounded border-yellow-dark" style="width: 100%;" onClick="window.location.reload()">ACTUALIZAR GRAFICAWS</button>
+                    </div>
+                </div>
+            <div>
             <div class="card card-style">
                 <div class="content">
                     <h1 class="text-center">Total Generado en <?php echo $monthNameSpanish?> </h1>
@@ -151,7 +155,7 @@ switch($monthName)
         </div>     
     </div>
     <!-- Page content ends here-->
-    
+
     <!-- Main Menu--> 
     <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>
     
@@ -163,10 +167,8 @@ switch($monthName)
      
     
 </div>
-<script>
-    
-    //Tabla de total generado por mes actual
-  const ctx = document.getElementById('myChart');
+<script>    
+const ctx = document.getElementById('myChart');
 
   var data = {
         labels: [ 

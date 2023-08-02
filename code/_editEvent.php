@@ -13,23 +13,15 @@ if($_GET['id']){
 }
 
 $eventName = $_POST['eventName'];
-$price = $_POST['price'];
 $description = $_POST['description'];
-$category = $_POST['category'];
 $ubication = $_POST['ubication'];
 $fecha = $_POST['fecha'];
-$places = $_POST['places'];
-$hostedBy = $_POST['hostedBy'];
 
 $query = "UPDATE events SET
 eventName = '$eventName',
-price = '$price',
 description = '$description',
-category = '$category',
 ubication = '$ubication',
-fecha = '$fecha',
-places = '$places',
-hostedBy = '$hostedBy' WHERE _idEvent = '$idEvent'";
+fecha = '$fecha' WHERE _idEvent = '$idEvent'";
 
 if($link->query($query) == TRUE){
     echo "

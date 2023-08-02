@@ -60,7 +60,7 @@ switch($monthName)
     $monthNameSpanish = "Noviembre";
     break;
 
-    case "November":
+    case "Diciembre":
     $monthNameSpanish = "Diciembre";
     break;
 }

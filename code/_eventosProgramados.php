@@ -72,8 +72,7 @@ $conn = $link;
                     <thead>
                         <tr class="bg-blue-dark">
                             <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Editar</th>
-                            <th scope="col" class="color-white py-3 font-14">Elimninar</th>
+                            <th scope="col" class="color-white py-3 font-14">Editar</th>                            
                             
                         </tr>
                     </thead>
@@ -85,9 +84,7 @@ $conn = $link;
                         ?>
                         <tr>
                             <th scope="row"><?php echo $row['eventName']?><br><?php echo $row['fecha']?></th>
-                            <td><a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-20" ></i></a></td>
-                            <td><a href="_eliminarEvento.php?id=<?php echo $row['_idEvent']?>"><i class="fa-solid fa-trash font-20" style="color: #eb0a0a;"></i></a></td>
-                            
+                            <td><a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-25" ></i></a></td>                                                    
                         </tr>
                         <?php
                         endwhile;

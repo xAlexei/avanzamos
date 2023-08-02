@@ -6,7 +6,62 @@ if(!isset($_SESSION['username'])){
 } 
 
 date_default_timezone_set('America/Mexico_City');
-$fechaActual = date("d-m-Y");
+
+$mesActual = date("m");
+$monthNum  = $mesActual;
+$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+$monthName = $dateObj->format('F'); 
+
+switch($monthName)
+{   
+    case "January":
+    $monthNameSpanish = "Enero";
+    break;
+
+    case "February":
+    $monthNameSpanish = "Febrero";
+    break;
+
+    case "March":
+    $monthNameSpanish = "Marzo";
+    break;
+
+    case "April":
+    $monthNameSpanish = "Abril";
+    break;
+
+    case "May":
+    $monthNameSpanish = "Mayo";
+    break;
+
+    case "June":
+    $monthNameSpanish = "Junio";
+    break;
+
+    case "July":
+    $monthNameSpanish = "Julio";
+    break;
+    
+    case "August":
+    $monthNameSpanish = "Agosto";
+    break;
+
+    case "September":
+    $monthNameSpanish = "Septiembre";
+    break;
+
+    case "October":
+    $monthNameSpanish = "Octubre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Noviembre";
+    break;
+
+    case "November":
+    $monthNameSpanish = "Diciembre";
+    break;
+}
 
 require_once "_config.php";
 $conn = $link;
@@ -75,7 +130,7 @@ $conn = $link;
                     </thead>
                     <tbody>
                     <?php
-                     $asistencia = "SELECT * FROM asistencia";
+                     $asistencia = "SELECT * FROM asistencia WHERE MONTH(fecha) = $mesActual";
                      $res = mysqli_query($link, $asistencia);
                     while ($row = $res->fetch_array(MYSQLI_BOTH))
                         {
@@ -101,10 +156,8 @@ $conn = $link;
                                     echo "";
                                 }
                             }
-                    ?>
-                                            
-                    </tbody>
-                    
+                    ?>                                            
+                    </tbody>                    
                 </table>
                 <button name="actualizar" type="submit" class="btn btn-m bg-yellow-dark font-700 rounded" type="submit" style="width: 100%;">
                     GUARDAR
@@ -140,10 +193,26 @@ $conn = $link;
 				}
 			}
 
-            mysqli_close($link);
+            
 		?>
         <!-- Reuniones -->
-        <div data-menu-load="menu-footer.html"></div>
+        <div class="card card-style">
+            <div class="content">
+                <h1 class="text-center">Faltas totales en <?php echo $monthNameSpanish?></h1>
+                <div class="list-group list-custom-small list-menu ms-0 me-1">
+                    <?php 
+                    $query = $conn->query("SELECT username, SUM(asistencia) AS faltasTotales FROM asistencia WHERE MONTH(fecha) = $mesActual GROUP BY username");
+                    while($row = mysqli_fetch_array($query)):
+                    ?>
+                    <a href="#">
+                        <img src="images/avatars/2s.png">
+                        <span><?php echo $row['username']?></span>
+                        <p class="float-end">Faltas: <?php echo $row['faltasTotales']?></p>
+                    </a>    
+                    <?php endwhile; mysqli_close($link);?>    
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Page content ends here-->
 

@@ -56,78 +56,24 @@ $idevent = $_GET['id'];
                 <h3>Ingresa los datos del evento</h3>
                 <p>
                     These boxes will react to them when you type or select a value.
-                </p>
-                <!--Nombre del evento -->
+                </p>            
                 <form action="_editEvent.php?id=<?php echo $idevent?>" method="POST">
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-name" name="eventName" id="eventName" placeholder="Nombre del evento">
-                    <label for="form1" class="color-highlight">Name</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <!--Precio -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="number" class="form-control validate-text" name="price" id="price" placeholder="Precio del evento">
-                    <label for="form2" class="color-highlight">Precio</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
+                <!--Nombre del evento -->
+                <input type="hidden" value="Reunion Semanal" name="eventName">                
                 <!--Descripcion del evento -->
                 <div class="input-style has-borders no-icon mb-4">
                     <textarea id="description" name="description" placeholder="Enter your message"></textarea>
                     <label for="form7" class="color-highlight">Descripcion del evento</label>
                     <em class="mt-n3">(required)</em>
-                </div>
-                <!--Categoria del evento -->
-                <div class="input-style has-borders no-icon mb-4">
-                    <label for="form5" class="color-highlight">Select A Value</label>
-                    <select id="category" name="category">
-                        <option value="default" disabled selected>Selecciona una opcion</option>
-                        <option value="Moda y Eventos">Moda y Eventos</option>
-                        <option value="Salud">Salud</option>
-                        <option value="Servicios">Servicios</option>
-                        <option value="Construccion">Construcción</option>
-                        <option value="Legal y Contable">Legal y Contable</option>
-                        <option value="Tecnologia y Marketing">Tecnología y Marketing</option>
-                        <option value="Alimentos y Bebidas">Alimentos y Bebidas</option>
-                    </select>
-                    <span><i class="fa fa-chevron-down"></i></span>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <i class="fa fa-check disabled invalid color-red-dark"></i>
-                    <em></em>
-                </div>
+                </div>                
                 <!--Ubicacion -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="ubication" id="ubication" placeholder="Lugar del evento">
-                    <label for="form2" class="color-highlight">Lugar</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
+                <input type="hidden" class="form-control validate-text" name="ubication" id="ubication" value="OUI Restaurante Bar">
                 <!--Fecha del evento -->
                 <div class="input-style has-borders no-icon mb-4">
                     <input type="date" max="2030-01-01" min="2021-01-01" class="form-control validate-text" id="fecha" name="fecha" placeholder="Fecha">
                     <label for="form6" class="color-highlight">Select Date</label>
                     <i class="fa fa-check disabled valid me-4 pe-3 font-12 color-green-dark"></i>
                     <i class="fa fa-check disabled invalid me-4 pe-3 font-12 color-red-dark"></i>
-                </div>
-                <!-- Cupos disponibles  -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="places" id="places" placeholder="Lugares disponibles">
-                    <label for="form2" class="color-highlight">Lugares disponibles</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
-                </div>
-                <!-- Creado por -->
-                <div class="input-style has-borders no-icon validate-field mb-4">
-                    <input type="text" class="form-control validate-text" name="hostedBy" id="hostedBy" placeholder="Presentado por John Doe">
-                    <label for="form2" class="color-highlight">Presentado por</label>
-                    <i class="fa fa-times disabled invalid color-red-dark"></i>
-                    <i class="fa fa-check disabled valid color-green-dark"></i>
-                    <em>(required)</em>
                 </div>
                 <div class="input-style">
                 <button type="submit" class="btn btn-full btn-l font-600 font-13 mt-4 rounded-s" style="width: 100%; background-color: #F1BE35;">

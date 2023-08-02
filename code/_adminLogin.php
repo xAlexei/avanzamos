@@ -8,7 +8,7 @@ $password = $_POST["password"];
 
 
 // Create connection
-  $conn = $link;
+$conn = $link;
 
 $query = "SELECT * FROM users WHERE username = '$username'";
 $res = mysqli_query($link, $query);

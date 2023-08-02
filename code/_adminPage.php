@@ -98,7 +98,7 @@ $user = $_SESSION['username'];
     </div> 
          <?php endwhile; mysqli_close($link)?>
                
-     </div>
+     
     <!-- Page content ends here-->
 
     <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>    
