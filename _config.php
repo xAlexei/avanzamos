@@ -1,7 +1,7 @@
 <?php
 /* Database credentials. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-define('DB_SERVER', '	avanzamosmas.com');
+define('DB_SERVER', '208.109.58.44');
 define('DB_USERNAME', 'avanzamos');
 define('DB_PASSWORD', 'avanzamos0912');
 define('DB_NAME', 'avanzamosmas');
