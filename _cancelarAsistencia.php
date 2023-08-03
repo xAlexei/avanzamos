@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION['username'])){
-    header("Location: _index.html");
+    header("Location: index.html");
 }
 
 $id = $_GET['id'];

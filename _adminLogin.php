@@ -25,7 +25,7 @@ if(!password_verify($password, $password_hash) && $typeUser == 'ADMIN'){
 }else{
   echo "<script>
   alert('Usuario o contraseña incorrectos')
-  window.location.replace('_index.html')
+  window.location.replace('index.html')
   </script>";
 }
 

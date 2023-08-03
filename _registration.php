@@ -24,7 +24,7 @@
     if($link->query($query)){
         echo "<script>
         alert('Insertado correctamente')
-        window.location.replace('_index.html')
+        window.location.replace('index.html')
         </script>
         ";
     }

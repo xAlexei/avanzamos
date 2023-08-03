@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['username'])){
-    header("Location: _index.html");
+    header("Location: index.html");
 }
 
 $name = $_GET['name'];

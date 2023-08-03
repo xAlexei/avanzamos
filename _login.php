@@ -23,7 +23,7 @@ $name = $row['name'];
 if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
     echo "
     <script>alert('Usuario o contraseña incorrectos')
-    window.location.replace('_index.html')
+    window.location.replace('index.html')
     </script>
     ";
 }else if(password_verify($password, $password_hash) && $typeUser == 'USER'){
@@ -36,7 +36,7 @@ if(!password_verify($password, $password_hash) && $typeUser == 'USER'){
                 <strong class='color-white'>We have a problem here</strong>
               <button type='button' class='close color-white opacity-60 font-16' data-bs-dismiss='alert' aria-label='Close'>&times;</button>
           </div>";
-          header("Location: _index.html");
+          header("Location: index.html");
 
 }
 

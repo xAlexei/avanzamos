@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION['username']) && !($_SESSION['name'])){
-    header("Location: _index.html");
+    header("Location: index.html");
 }
 require_once "_config.php";
 date_default_timezone_set('America/Mexico_City');

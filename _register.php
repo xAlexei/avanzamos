@@ -132,7 +132,7 @@
                             <a class="color-white opacity-50" href="page-system-forgot-2.html">Olvidaste tu contraseña?</a>
                         </div>
                         <div class="col-6 text-end font-11">
-                            <a class="color-white opacity-50" href="_index.html">Iniciar Sesion</a>
+                            <a class="color-white opacity-50" href="index.html">Iniciar Sesion</a>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@
 
 session_start();
 if(!$_SESSION['username']){
-    header("Location: _index.html");
+    header("Location: index.html");
 }
 require_once "_config.php";
 $conn = $link;

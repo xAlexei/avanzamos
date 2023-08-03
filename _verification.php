@@ -5,7 +5,7 @@ require_once "_config.php";
 $conn = $link;
 
 if(!isset($_SESSION['username'])){
-    header("Location: _index.html");
+    header("Location: index.html");
 }
 
 $username = $_SESSION['username'];
