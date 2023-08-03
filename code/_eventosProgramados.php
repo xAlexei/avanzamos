@@ -40,16 +40,8 @@ $conn = $link;
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html" class="active-nav"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
-        <a href="#" data-menu="menu-main-admin"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
-
     <div class="page-title page-title-fixed">
-        <h1>Lista de Eventos</h1>
+        <h1>Eventos</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -58,22 +50,14 @@ $conn = $link;
     <div class="page-title-clear"></div>
 
     <div class="page-content">
-
-
-        <div class="card card-style">
-            <p class="content">
-                Aqui se muestran los eventos programados ordenados por fecha.
-            </p>
-        </div>
         <div class="card card-style">
             <div class="content mb-2">
                 <h4>REUNIONES SEMANALES</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
-                        <tr class="bg-blue-dark">
+                        <tr class="bg-yellow-dark">
                             <th scope="col" class="color-white py-3 font-14">Evento</th>
-                            <th scope="col" class="color-white py-3 font-14">Editar</th>                            
-                            
+                            <th scope="col" class="color-white py-3 font-14">Editar</th>                                                        
                         </tr>
                     </thead>
                     <tbody>

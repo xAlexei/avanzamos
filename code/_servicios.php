@@ -97,14 +97,6 @@ switch($monthName)
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
-        <a href="_mis_eventos.php"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
-        <a href="_servicios.php" class="circle-nav active-nav"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
-        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
-
     <div class="page-title page-title-fixed">
         <h1>AVANZAMOS <img src="uploads/avanzare.png" width="25px"></h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
@@ -216,7 +208,6 @@ switch($monthName)
         $query = "SELECT * FROM specialEvents";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
-
         ?>
         <div class="card card-style s card-full-left" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
