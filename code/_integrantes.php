@@ -40,17 +40,9 @@ $conn = $link;
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
-
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html" class="active-nav"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
     
     <div class="page-title page-title-fixed">
-        <h1>List Groups</h1>
+        <h1>Lista</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
@@ -61,39 +53,32 @@ $conn = $link;
     <div class="page-content">
         
         <div class="card card-style">
-          
-            <div class="content mb-2">
-                <h4 class="text-center">Integrantes del grupo AVANZAMOS</h4>
+            <div class="content mb-0">
+                <p class="mb-n1 color-yellow-dark font-600">INTEGRANTES DEL GRUPO</p>                
+                <br>   
+                <?php                         
+                    $query = "SELECT * FROM users WHERE verification < 3";
+                    $res = mysqli_query($link, $query);
+                    while($row = mysqli_fetch_array($res)):
+                ?>                                    
+                <div class="d-flex mb-4">                 
+                    <div class="align-self-center">
+                        <p class="color-yellow-dark font-11 mb-n2 font-900"><?php echo $row['name']?></p>
+                        <h2 class="font-15 line-height-s mt-1 mb-1"></h2>
+                        <p>Correo Electronico <?php echo $row['email']?>
+                        <br>Télefono: <?php echo $row['phone']?></p>
 
-                <br><table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
-                    <thead>
-                        <tr class="bg-blue-dark">
-                            <th scope="col" class="color-white py-3 font-14">Nombre</th>
-                            <th scope="col" class="color-white py-3 font-14">Teléfono</th>
-                            <th scope="col" class="color-white py-3 font-14">Correo Electronico</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php                         
-                        $query = "SELECT * FROM users";
-                        $res = mysqli_query($link, $query);
-                        while($row = mysqli_fetch_array($res)):
-                        ?>
-                        <tr>
-                            <th scope="row"><a href="_detalleUsuario.php?id=<?php echo $row['_idUser']?>"><p class="font-900"><?php echo $row['name']?><p></a></th>
-                            <td><a href="_detalleUsuario.php?id=<?php echo $row['_idUser']?>"><p class="font-900"><?php echo $row['phone']?><p></a></td>
-                            <td><a href="_detalleUsuario.php?id=<?php echo $row['_idUser']?>"><p class="font-900"><?php echo $row['email']?></p></a></td>
-                        </tr>
-                        <?php
-                        endwhile;
-                        ?>
-                    </tbody>
-                </table>
-                
-                <div class="divider mt-3"></div>
-            </div>  
-        </div>
-        <div data-menu-load="menu-footer.html"></div>
+                    </div>
+                    <div class="ms-auto ps-3 align-self-center text-center">                        
+                    <a href="_detalleUsuario.php?id=<?php echo $row['_idUser']?>"><button class="btn btn-m rounded bg-yellow-dark font-900">
+                            Detalles
+                        </button></a>
+                    </div>
+                </div>   
+                <?php endwhile; ?>             
+            </div>
+                <div class="divider"></div>
+        </div> 
     </div>
     <!-- Page content ends here-->
     

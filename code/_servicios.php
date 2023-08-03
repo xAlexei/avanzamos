@@ -196,19 +196,18 @@ switch($monthName)
                      OUI Restaurante Bar</a></p>
             </div>
         </div>
-        <div class="divider divider-margins"></div>
-        <!-- Reuniones Avanzamos -->
-        <div class="card card-style">
-            <div class="content">
-                <h1 class="text-center">EVENTOS DESTACADOS </h1>      
-            </div>
-        </div>
         <!-- EVENTOS DESTACADOS -->
         <?php 
         $query = "SELECT * FROM specialEvents";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
         ?>
+        <div class="divider divider-margins"></div>
+        <div class="card card-style">
+            <div class="content">
+                <h1 class="text-center">EVENTOS DESTACADOS </h1>      
+            </div>
+        </div>
         <div class="card card-style s card-full-left" data-card-height="230" id="resultado_busqueda">
             <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
                 <div class="card-center text-center">

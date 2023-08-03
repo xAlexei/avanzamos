@@ -92,10 +92,8 @@ $conn = $link;
                 </div>
                 <!-- follow buttons-->
                 <div class='content mb-0'>
-                    <div class='row mb-0'>
-                        <div class='col-6'>
-                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark'>AGENDAR REUNION</a>
-                        </div>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 border-yellow-dark' style="width: 100%;">AGENDAR REUNION</a>
+                        
                     </div>
             <br></div>               
         <?php       

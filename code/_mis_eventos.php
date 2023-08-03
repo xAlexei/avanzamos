@@ -70,7 +70,7 @@ $username = $_SESSION['username'];
         while($row = mysqli_fetch_array($res)):
 
         ?>
-        <div class="card card-style card-full-right" style="background-image:url(images/avanzback.png)" data-card-height="250">
+        <div class="card card-style card-full-right" style="background-image:url(images/avanzback.png)" data-card-height="300">
             <div class="card-top pt-4 ps-3">
                 <p class="color-white font-10 bg-yellow-dark d-inline px-2 py-1 rounded-xs text-uppercase"><?php echo $row['fecha']?></p>
                 <h1 class="color-white font-800 font-40 mb-0 mt-4"><?php echo $row['eventName']?></h1>
