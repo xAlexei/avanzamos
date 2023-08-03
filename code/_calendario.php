@@ -37,14 +37,6 @@ if (!isset($_SESSION["username"])) {
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
-
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"  class="active-nav"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
-        <a href="_mis_eventos.php"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
-        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
-        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
     
     <div class="page-title page-title-fixed">
         <h1>Proximos Eventos</h1>
@@ -72,21 +64,24 @@ if (!isset($_SESSION["username"])) {
         while($row = mysqli_fetch_array($res)):
 
         ?>
-        <div class="card card-style s card-full-left bg-17" data-card-height="230" id="resultado_busqueda">
-            <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
-                <div class="card-center text-center">                    
-                    <a style="margin-top: 30px;" href="_mostrar_curso.php?id=<?php echo $row['_idEvent']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
-                </div>
+     
+        <div class="card card-style card-full-right" style="background-image:url(images/avanzback.png)" data-card-height="350">
+            <div class="card-top pt-4 ps-3">
+                <p class="color-white font-10 bg-yellow-dark d-inline px-2 py-1 rounded-xs text-uppercase"><?php echo $row['fecha']?></p>
+                <h1 class="color-white font-800 font-40 mb-0 mt-4"><?php echo $row['eventName']?></h1>
+                <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
+                <h1 class="color-white font-800 font-40 mb-4"></h1>
+                <p class="color-white font-700 font-15 opacity-90">
+                    <?php echo $row['description']?>
+                </p>
+                <a href="_mostrar_curso.php?id=<?php echo $row['_idEvent']?>">
+                <button class="btn btn-m rounded border-yellow-dark btn-uppercase" style="width: 95%;">
+                    Detalles
+                </button>
+                </a>
             </div>
-            <div class="card-top bg-0 ps-5 ms-5 pt-3">
-                <div class="ps-4">
-                    <h1 class="color-white"> <?php echo $row['eventName']?>: <?php echo $row['fecha']; ?> </h1>
-                    <p class="color-white mb-0"><?php echo $row['description'] ?> </p>
-                    <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>
-                    
-                </div>
-            </div>
-            <div class="card-overlay bg-black opacity-70"></div>
+           
+            <div class="card-overlay bg-black opacity-80"></div>
         </div>
         <?php endwhile; ?>
     </div>

@@ -39,14 +39,6 @@ $person = $_GET['name'];
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html"><i class="fa-solid fa-square-plus"></i><span>Agendar</span></a>
-        <a href="_mis_eventos.php" class="active-nav"><i class="fa-solid fa-calendar-check"></i><span>Eventos</span></a>
-        <a href="_servicios.php" class="circle-nav color-yellow"><i class="fa-solid fa-house" style="color: #f0d419;"></i><span>Inicio</span></a>
-        <a href="_mis_reuniones.php"><i class="fa-sharp fa-solid fa-users"></i><span>Reuniones</span></a>
-        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
-
     <div class="page-title page-title-fixed">
         <h1>Añadir reunion semanal</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
@@ -86,9 +78,6 @@ $person = $_GET['name'];
             </form>
             </div>
         </div>
-       
-
-        <div data-menu-load="menu-footer.html"></div>
     </div>
     <!-- Page content ends here-->
     
