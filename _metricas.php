@@ -115,13 +115,7 @@ switch($monthName)
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
-    <div id="footer-bar" class="footer-bar-6">
-        <a href="index-components.html" class="active-nav"><i class="fa fa-layer-group"></i><span>Features</span></a>
-        <a href="index-pages.html"><i class="fa fa-file"></i><span>Pages</span></a>
-        <a href="index.html" class="circle-nav"><i class="fa fa-home"></i><span>Welcome</span></a>
-        <a href="index-projects.html"><i class="fa fa-camera"></i><span>Projects</span></a>
-        <a href="#" data-menu="menu-main-admin"><i class="fa fa-bars"></i><span>Menu</span></a>
-    </div>
+  
     
     <div class="page-title page-title-fixed">
         <h1>Graficas</h1>
@@ -136,7 +130,7 @@ switch($monthName)
     <div class="page-content">
             <div class="card card-style">
                 <div class="content">
-                    <button class="btn btn-m rounded border-yellow-dark" style="width: 100%;" onClick="window.location.reload()">ACTUALIZAR GRAFICAWS</button>
+                    <button class="btn btn-m rounded border-yellow-dark" style="width: 100%;" onClick="window.location.reload()">ACTUALIZAR GRAFICAS</button>
                     </div>
                 </div>
             <div>

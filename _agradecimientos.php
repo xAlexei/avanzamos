@@ -76,8 +76,6 @@ $conn = $link;
                 
             $row_count=0;
             While($row = $result->fetch_assoc()) {
-                $userId = $row['_idUser'];
-                $consulta = $link->query("SELECT FORMAT(AVG(rating),1) AS averageRating FROM rating WHERE userId = '$userId'");
                 
             ?>
       <div class='card card-style'>            

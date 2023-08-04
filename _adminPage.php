@@ -96,16 +96,7 @@ $user = $_SESSION['username'];
             </div>
         </div>
     </div> 
-         <?php endwhile; mysqli_close($link)?>
-               
-     
-    <!-- Page content ends here-->
-
-    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>    
-
-    
-<!-- Menu de confirmacion -->
-<div id="menu-option-1" 
+    <div id="menu-option-1" 
          class="menu menu-box-modal rounded-m" 
          data-menu-height="200" 
          data-menu-width="350">
@@ -154,6 +145,16 @@ $user = $_SESSION['username'];
             </div>
         </div>
     </div>
+         <?php endwhile; mysqli_close($link)?>
+               
+     
+    <!-- Page content ends here-->
+
+    <div id="menu-main-admin" class="menu menu-box-left rounded-0" data-menu-load="menu-main-admin.html"></div>    
+
+    
+<!-- Menu de confirmacion -->
+
 </div>
 
 

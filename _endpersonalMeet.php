@@ -9,7 +9,7 @@ require_once "_config.php";
 $conn = $link;
 $id = $_GET['idmeeting'];
 
-$query = "UPDATE personalmeetings SET active = 0 WHERE id='$id'";
+$query = "UPDATE personalmeetings SET active = 0 WHERE id = '$id'";
 $res = mysqli_query($link, $query);
 if($res == TRUE){
     header("Location: _mis_reuniones.php");

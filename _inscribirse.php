@@ -23,7 +23,7 @@ $res = mysqli_query($link, $query);
 if($res){
     echo "
     <script>
-    alert('Insertado')
+    alert('¡Gracias por inscribirte!')
     window.location.replace('_mis_eventos.php');
     </script>
     ";

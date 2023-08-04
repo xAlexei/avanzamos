@@ -139,7 +139,7 @@ $idevent = $_GET['id'];
         </div>
        
 
-        <div data-menu-load="menu-footer.html"></div>
+        
     </div>
     <!-- Page content ends here-->
     

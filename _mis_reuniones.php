@@ -6,6 +6,7 @@ if (!isset($_SESSION["username"])) {
 }
 
 $username = $_SESSION['username'];
+$nombre = $_SESSION['name'];
 
 ?>
 
@@ -66,7 +67,7 @@ $username = $_SESSION['username'];
         $fila = mysqli_fetch_array($result);
         $name = $fila['name'];
 
-        $query = "SELECT * FROM personalmeetings WHERE userName = '$username' AND active = 1 OR person = '$name' AND active = 1 ORDER BY fecha ASC";
+        $query = "SELECT * FROM personalmeetings WHERE userName = '$nombre' AND active = 1 OR person = '$name' AND active = 1 ORDER BY fecha ASC";
         $res = mysqli_query($link, $query);
         while($row = mysqli_fetch_array($res)):
         
