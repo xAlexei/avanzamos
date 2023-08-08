@@ -30,21 +30,14 @@ if (!isset($_SESSION["username"])) {
     
 <div id="page">
     
-    <div class="header header-fixed header-logo-center header-auto-show">
+    <div class="header header-fixed header-logo-center">
         <a href="index.html" class="header-title">Proximos Eventos</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
-    
-    <div class="page-title page-title-fixed">
-        <h1>Proximos Eventos</h1>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
-    </div>
+
     <div class="page-title-clear"></div>
 
     <!-- Eventos -->
@@ -65,7 +58,7 @@ if (!isset($_SESSION["username"])) {
 
         ?>
      
-        <div class="card card-style card-full-right" style="background-image:url(images/avanzback.png)" data-card-height="350">
+        <div class="card card-style card-full-right" style="background-image:url(images/avanzback.png)" data-card-height="400">
             <div class="card-top pt-4 ps-3">
                 <p class="color-white font-10 bg-yellow-dark d-inline px-2 py-1 rounded-xs text-uppercase"><?php echo $row['fecha']?></p>
                 <h1 class="color-white font-800 font-40 mb-0 mt-4"><?php echo $row['eventName']?></h1>

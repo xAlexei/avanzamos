@@ -106,9 +106,7 @@ switch($monthName)
     </div>
     <div class="page-title-clear"></div>
         <div class="content mt-n3 mb-4">
-            
         </div> 
-
         <?php 
         $query = $conn->query("SELECT FORMAT(sum(amount),2) AS total FROM rewards WHERE MONTH(fecha) = '$mesActual'");
         $res = mysqli_fetch_array($query);
@@ -128,7 +126,6 @@ switch($monthName)
                 </div>
             </div>
         </div>
-             
         <?php 
         $user = '';
 
@@ -208,22 +205,18 @@ switch($monthName)
                 <h1 class="text-center">EVENTOS DESTACADOS </h1>      
             </div>
         </div>
-        <div class="card card-style s card-full-left" data-card-height="230" id="resultado_busqueda">
-            <div class="card rounded-0 shadow-xl" data-card-height="cover" style="width:100px; z-index:99;">
-                <div class="card-center text-center">
-                    <h1 class="font-30 text-uppercase font-900 opacity-30"><?php echo $row['fecha']; ?></h1>
-                    <h1 class="font-18 font-900">$ <?php echo $row['price'];?>MXN</h1>
-                    <a href="_mostrar_curso.php?id=<?php echo $row['id']?>" data-menu="menu-join" class="btn btn-m bg-white color-black font-700">Asistir</a>
-                </div>
+        <div class="card card-style card-full-left" style="background-image:url(images/avanzback.png)" data-card-height="350">
+            <div class="card-top pt-4 ps-3">
+                <p class="color-white font-10 bg-yellow-dark d-inline px-2 py-1 rounded-xs text-uppercase"><?php echo $row['fecha']?></p>
+                <h1 class="color-white font-800 font-30  mb-0 mt-4"><?php echo $row['eventName']?></h1>
+                <h1 class="color-white font-800 font-40 mb-4"></h1>
+                <p class="color-white"><i class="fa fa-map-marker color-white pe-2 icon-30"></i> <?php echo $row['ubication']?></p>
+                <p class="color-white font-700 font-15 opacity-90">
+                    <?php echo $row['description']?>
+                </p>
             </div>
-            <div class="card-top bg-0 ps-5 ms-5 pt-3">
-                <div class="ps-4">
-                    <h1 class="color-white"> <?php echo $row['eventName']?> </h1>
-                    <p class="color-white "><?php echo $row['description'] ?> </p>
-                    <p class="color-white mb-0"><i class="fa fa-map-pin color-white pe-3 icon-30"></i><?php echo $row['ubication'];?></p>                    
-                </div>
-            </div>
-            <div class="card-overlay opacity-70"></div>
+                      
+            <div class="card-overlay bg-black opacity-80"></div>
         </div>
         <?php endwhile; ?>
         <div class="divider divider-margins"></div>
@@ -262,7 +255,7 @@ switch($monthName)
         </div>
     </div>
     <!-- Page content ends here-->
-    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280" data-menu-active="nav-pages"></div>  
+    <div id="menu-main" class="menu menu-box-left rounded-0" data-menu-load="menu-main.php" data-menu-width="280"></div>  
     <!-- Share Menu-->
     <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
     <!-- Colors Menu-->

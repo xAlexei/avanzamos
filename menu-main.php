@@ -37,37 +37,42 @@ $row = mysqli_fetch_array($res);
 <h6 class="menu-divider">MENU</h6>
 <div class="list-group list-custom-small list-menu">
     <a id="nav-welcome" href="_servicios.php">
-        <i class="fa-solid fa-house color-yellow-dark"></i>
+        <i class="fa-solid fa-house bg-yellow-dark "></i>
         <span>Inicio</span>
         <i class="fa fa-angle-right"></i>
     </a>
+    <a id="nav-welcome" href="_perfil.php">
+    <i class="fa-solid fa-user bg-yellow-dark"></i>
+        <span>Perfil</span>
+        <i class="fa fa-angle-right"></i>
+    </a>
     <a id="nav-homepages" href="_mis_eventos.php">
-        <i class="fa-solid fa-calendar-check color-yellow-dark" ></i>
+        <i class="fa-solid fa-calendar-check bg-yellow-dark " ></i>
         <span>Agendado</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_mis_reuniones.php">
-        <i class="fa-sharp fa-solid fa-users color-yellow-dark" ></i>
+        <i class="fa-sharp fa-solid fa-users bg-yellow-dark " ></i>
         <span>Mis reuniones personales</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_integrantes.php">
-    <i class="fa-solid fa-circle-user color-yellow-dark"></i>
+    <i class="fa-solid fa-circle-user bg-yellow-dark "></i>
         <span>Integrantes del grupo</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-components" href="_calendario.php">
-        <i class="fa-solid fa-calendar-plus color-yellow-dark" ></i>
+        <i class="fa-solid fa-calendar-plus bg-yellow-dark " ></i>
         <span>Reuniones Semanales</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_topServicios.php">
-    <i class="fa-solid fa-crown color-yellow-dark"></i>
+    <i class="fa-solid fa-crown bg-yellow-dark "></i>
         <span>Top Servicios</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a id="nav-pages" href="_agradecimientos.php">
-    <i class="fa-solid fa-star color-yellow-dark"></i>
+    <i class="fa-solid fa-star bg-yellow-dark "></i>
         <span>Agradecimientos</span>
         <i class="fa fa-angle-right"></i>
     </a>
@@ -75,12 +80,12 @@ $row = mysqli_fetch_array($res);
 <h6 class="menu-divider mt-4">Otras opciones</h6>
 <div class="list-group list-custom-small list-menu">
     <a href="_logout.php">
-        <i class="fa-solid fa-right-from-bracket color-yellow-dark"></i>
+        <i class="fa-solid fa-right-from-bracket bg-yellow-dark "></i>
         <span>Cerrar Sesión</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a href="#" data-toggle-theme="" data-trigger-switch="switch-dark-mode">
-        <i class="fa-solid fa-moon color-yellow-dark"></i>
+        <i class="fa-solid fa-moon bg-yellow-dark "></i>
         <span>Dark Mode</span>
         <div class="custom-control small-switch ios-switch">
             <input data-toggle-theme type="checkbox" class="ios-input" id="toggle-dark-menu">
@@ -91,17 +96,17 @@ $row = mysqli_fetch_array($res);
 <h6 class="menu-divider mt-4">Redes Sociales</h6>
 <div class="list-group list-custom-small list-menu">
     <a href="#">
-        <i class="fab fa-facebook-f color-yellow-dark"></i>
+        <i class="fab fa-facebook-f bg-yellow-dark "></i>
         <span>Facebook</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a href="#">
-    <i class="fa-brands fa-youtube color-yellow-dark"></i>
+    <i class="fa-brands fa-youtube bg-yellow-dark "></i>
         <span>YouTube</span>
         <i class="fa fa-angle-right"></i>
     </a>
     <a href="#">
-    <i class="fa-brands fa-spotify color-yellow-dark"></i>
+    <i class="fa-brands fa-spotify bg-yellow-dark "></i>
         <span>Spotify</span>
         <i class="fa fa-angle-right"></i>
     </a>

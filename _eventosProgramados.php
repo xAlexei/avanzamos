@@ -32,27 +32,20 @@ $conn = $link;
 
 <div id="page">
 
-    <div class="header header-fixed header-logo-center header-auto-show">
-        <a href="index.html" class="header-title">Tables</a>
+    <div class="header header-fixed header-logo-center">
+        <a href="index.html" class="header-title">Eventos Programados</a>
         <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-left"></i></a>
         <a href="#" data-menu="menu-main-admin" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
-    <div class="page-title page-title-fixed">
-        <h1>Eventos</h1>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main-admin"><i class="fa fa-bars"></i></a>
-    </div>
     <div class="page-title-clear"></div>
 
     <div class="page-content">
         <div class="card card-style">
             <div class="content mb-2">
-                <h4>REUNIONES SEMANALES</h4>
+                <h4 class="text-center">REUNIONES SEMANALES</h4>
                 <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
                     <thead>
                         <tr class="bg-yellow-dark">
@@ -69,6 +62,37 @@ $conn = $link;
                         <tr>
                             <th scope="row"><?php echo $row['eventName']?><br><?php echo $row['fecha']?></th>
                             <td><a href="_editarEvento.php?id=<?php echo $row['_idEvent']?>" ><i class="fa-solid fa-pen-to-square font-25" ></i></a></td>                                                    
+                        </tr>
+                        <?php
+                        endwhile;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EVENTOS ESPECIALES -->
+        <div class="card card-style">
+            <div class="content mb-2">
+                <h4 class="text-center">EVENTOS ESPECIALES</h4>
+                <table class="table table-borderless text-center rounded-sm shadow-l" style="overflow: hidden;">
+                    <thead>
+                        <tr class="bg-yellow-dark">
+                            <th scope="col" class="color-white py-3 font-14">Evento</th>
+                            <th scope="col" class="color-white py-3 font-14">Editar</th> 
+                            <th scope="col" class="color-white py-3 font-14">Eliminar</th>                                                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php                         
+                        $query = "SELECT * FROM specialEvents";
+                        $res = mysqli_query($link, $query);
+                        while($row = mysqli_fetch_array($res)):
+                        ?>
+                        <tr>
+                            <th scope="row"><?php echo $row['eventName']?><br><?php echo $row['fecha']?></th>
+                            <td><a href="_editSpeciaform.php?id=<?php echo $row['id']?>" ><i class="fa-solid fa-pen-to-square font-25" ></i></a></td>
+                            <td><a href="_deleteSpecial.php?id=<?php echo $row['id']?>" ><i class="fa-solid fa-trash color-red-dark font-25"></i></a></td>                                                           
                         </tr>
                         <?php
                         endwhile;

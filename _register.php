@@ -91,7 +91,7 @@
                         <label for="form1ad" class="color-highlight">Descripcion</label>
                         <em class="mt-n6">(required)</em>
                     </div>
-                    <!--Categoria del evento -->
+                    <!--Categoria de la empresa -->
                     <div class="input-style has-borders no-icon mb-4">
                         <label for="form5" class="color-highlight">Select A Value</label>
                         <select id="category" name="category">

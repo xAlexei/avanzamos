@@ -40,7 +40,6 @@ $conn = $link;
         <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
     </div>
 
- 
     <div class="page-title page-title-fixed">
         <h1>Perfil</h1>
         <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
@@ -85,7 +84,7 @@ $conn = $link;
                 </div>
                 <!-- follow buttons-->
                 <div class='content mb-0'>
-                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 border-yellow-dark' style="width: 100%;">AGENDAR REUNION</a>
+                            <a href='_reunionForm.php?name=<?php echo $row['name']?>' class='btn btn-full btn-sm rounded-s font-600 font-13 bg-yellow-dark' style="width: 100%;">AGENDAR REUNION</a>
                         
                     </div>
             <br></div>               
